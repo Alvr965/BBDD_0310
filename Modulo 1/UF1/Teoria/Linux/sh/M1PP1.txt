@@ -1,0 +1,39 @@
+Módulo 1 Unidad Formativa 1 - Alvaro Lopez Herranz 22/04/24
+
+Para poder ejecutar el shell script desde cualquier ubicacion solo hace falta de añadir el directorio a la variable de entorno PATH. Este proceso se hace escribiendo en el buscador de Windows "Editar las Variables de Entorno del Sistema", entrar en "variable de entorno", seleccionar PATH y pinchar "editar". De esta forma, vemos en que directorios tenemos acceso directos para poder ejecutar sus scripts sin tener que escribir la ruta completa. Si queremos añadir una nueva, hay que clickar en "Nueva", seleccionar ese nuevo espacio vacio y darle a "Examinar", asi podremos poner la ruta absoluta del directorio donde se encuentre nuestro script. En este caso, seria "/usr/local/bin" al ser normalmente utilizado para scripts del sistema.
+
+Para poder ejecutarlo, le he dado permisos de ejecucion y de lectura para el usuario y para el grupo actual con el siguiente comando "chmod 550 menummenuoso.sh"
+
+Para el punto tres en el que nos pide escribir los procesos del sistema, hubiera preferido elegir htop, pero te lleva a otra pantalla en la que tienes que salir de forma forzosa con ctrl+c, por lo que he elegido ps-e debido a que sigues en el terminal, aunque sea menos legible.
+
+El shell script utilizado para este ejercicio es:
+
+#!/bin/bash
+
+select OPCIONES in Users Diskspace Processes Jobies GoOut; do
+
+        case $OPCIONES in 
+
+                Users)
+
+                        who ;;
+
+                Diskspace)
+
+                        df -h ;;
+
+                Processes)
+
+                        ps -e ;;
+
+                Jobies)
+
+                        jobs ;;
+
+                GoOut)
+
+                        break ;;
+
+        esac
+
+done

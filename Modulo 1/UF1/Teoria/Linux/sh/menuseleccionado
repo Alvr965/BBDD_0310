@@ -1,0 +1,5 @@
+#!/bin/bash
+select FICHERO in $( ls )
+	do echo "Has seleccionado $FICHERO como fichero
+done
+

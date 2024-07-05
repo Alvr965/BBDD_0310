@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Obtener la lista de archivos en el directorio actual
+archivos=$(ls)
+
+# Mostrar los archivos disponibles para selección
+echo "Archivos disponibles:"
+
+# Seleccionar un archivo
+select FICHERO in $archivos; do
+    if [ -n "$FICHERO" ]; then
+        echo "Has seleccionado el fichero $FICHERO"
+        # Aquí puedes agregar lógica adicional según lo que quieras hacer con el archivo seleccionado
+        
+        # Por ejemplo, puedes preguntar al usuario qué acción desea realizar con el archivo
+        echo "¿Qué acción deseas realizar con el archivo?"
+        options=("Borrar" "Copiar" "Visualizar" "Salir")
+        select option in "${options[@]}"; do
+            case $option in
+                "Borrar")
+                    rm "$FICHERO"
+                    echo "El archivo $FICHERO ha sido borrado."
+                    break
+                    ;;
+                "Copiar")
+                    read -p "Ingresa la ruta de destino para copiar el archivo: " destino
+                    cp "$FICHERO" "$destino"
+                    echo "El archivo $FICHERO ha sido copiado a $destino."
+                    break
+                    ;;
+                "Visualizar")
+                    less "$FICHERO"
+                    break
+                    ;;
+                "Salir")
+                    echo "Saliendo del script."
+                    exit 0
+                    ;;
+                *) echo "Opción inválida";;
+            esac
+        done
+    else
+        echo "Opción inválida. Por favor, selecciona un número válido."
+    fi
+done

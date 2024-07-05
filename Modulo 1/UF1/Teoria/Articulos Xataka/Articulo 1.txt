@@ -1,0 +1,19 @@
+En la prehistoria de la informática, durante los años 50 y 60, solo unas pocas personas en todo el mundo tenían las habilidades necesarias para operar los enormes computadores de la época, que ocupaban varias habitaciones y requerían múltiples operarios para funcionar. Estas máquinas eran principalmente utilizadas por grandes universidades o ejércitos y eran desconocidas en los hogares.
+
+Sin embargo, la situación cambió radicalmente con el tiempo, y ahora cualquiera puede acceder a ordenadores sencillos de utilizar. Pero, ¿cómo comenzó esta era de la información?
+
+Durante la Segunda Guerra Mundial, los gobiernos más poderosos invirtieron en el desarrollo de máquinas capaces de procesar información, ya sea descifrando mensajes enemigos o enviando información oculta a aliados. Esto condujo al surgimiento de la arquitectura de Von Neumann, propuesta por John Von Neumann en la década de 1940 para establecer un esquema de funcionamiento genérico para los computadores.
+
+La arquitectura de Von Neumann consiste en una unidad de proceso que incluye una ALU (Unidad Aritmético Lógica) y una unidad de control, dispositivos de memoria para almacenamiento y periféricos de entrada/salida para la interacción con el usuario. Esta arquitectura fue implementada por primera vez en el ENIAC (Computador Numérico Integrador y Electrónico), utilizado por el ejército estadounidense entre 1946 y 1955.
+
+Los primeros computadores operaban mediante el sistema binario, utilizando únicamente los números 0 y 1 para representar la información. Esto permitía la construcción de circuitos electrónicos para realizar operaciones matemáticas a través de circuitos elementales.
+
+Los algoritmos, secuencias de órdenes o instrucciones dictadas en un cierto orden, eran fundamentales para el funcionamiento de estos computadores. Por ejemplo, el proceso de cocinar un huevo frito con puntilla puede ser visto como un algoritmo, donde cada paso debe ser claramente definido y seguido en un orden estricto.
+
+Los procesadores, encargados de recibir y ejecutar secuencias de órdenes, realizan principalmente operaciones matemáticas y de almacenamiento. Las instrucciones, operaciones simples entendidas por el procesador, forman conjuntos llamados ISA (Arquitectura de Conjunto de Instrucciones), como x86 para procesadores Intel o AMD, y ARM para procesadores de Samsung, Qualcomm, Apple, etc.
+
+La microarquitectura organiza los componentes internos de un procesador, como registros, buffers y unidades de proceso. Estos procesadores evolucionaron desde los primeros equipos con válvulas de vacío hasta los modernos dispositivos con transistores y sistemas operativos avanzados.
+
+La segunda generación de procesadores introdujo los transistores y los primeros discos duros, así como los lenguajes de alto nivel y los sistemas operativos monousuario. Por ejemplo, el IBM 7090 fue uno de los primeros ordenadores con CPU de transistores, marcando un hito en la historia de la informática.
+
+En resumen, desde sus inicios hasta la actualidad, la informática ha experimentado una evolución significativa, pasando de máquinas enormes operadas por unos pocos expertos a dispositivos accesibles para cualquier persona. La próxima etapa incluirá el análisis de los diseños RISC y CISC, así como sus repercusiones en los dispositivos modernos y las microarquitecturas más importantes.

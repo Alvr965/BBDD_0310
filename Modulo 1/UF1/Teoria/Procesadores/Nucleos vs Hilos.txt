@@ -1,0 +1,43 @@
+Núcleos e hilos de un procesador ¡Qué son y analiza las diferencias entre ambos!
+Los Hilos en un procesador permiten administrar las tareas de un procesador y de sus diferentes núcleos de una forma más eficiente.
+
+La diferencia entre los núcleos e hilos de un procesador, podemos definirlo por una estrecha línea, pero no deberás preocuparte, ya que en este post podrás encontrar toda la información necesaria.
+
+Son muchas las ocasiones que hay confusión en torno a la diferencia entre núcleos e hilos de un procesador, muchas personas no conocen su diferencia además de no saber el significado de cada una de estas. En el caso de que desees conocer la diferencia entre ambos términos, no hay duda alguna que este post es el indicado para ti.
+Diferencias entre nucleos e hilos de un procesador
+Diferencias entre núcleos e hilos de un procesador
+
+Si hablamos a nivel de una persona más que posea un ordenador, este artículo ayudará a saciar las ganas de conocer la diferencia entre núcleos e hilos de un procesador.
+
+Pero si hablamos a nivel de desarrollado, es de suma importancia si deseamos crear una aplicación que funcione realmente bien, en cuanto a un nivel de consumo de recursos.
+
+¿Deseas conocer más a fondo acerca de la diferencia entre núcleos e hilos de un procesador? Te aconsejamos que leas toda la información que hemos agrupado para ti, ya que así podrás diferenciarlos con más facilidad.
+Hilos que conforman un procesador
+
+Los hilos son otras de las cosas que conforman un procesador, y son totalmente diferentes a los núcleos aunque en muchas de las ocasiones los suelen confundir. Cabe destacar, que los mismos se pueden distinguir como el flujo de control de programa; ayuda directamente a un procesador a que este cumpla todas sus tareas.
+
+En cuanto a la diferencia entre los núcleos e hilos de un procesador, es que la función de los hilos es hacer que los tiempos de espera entre los procesos se aprovechen de una mejor manera. Aunque un solo núcleo podría realizar una tarea al mismo tiempo, pero referente a los hilos, estos pueden hacer creer al ordenador y también al usuario, que si se puede hacer más de una cosa al mismo tiempo.
+
+¿Cómo es esto posible? En lugar de realizar una tarea por completo, divide la tarea en porciones lo que quiere decir que cada uno de los hilos se encarga de una parte concreta de dicho programa.
+
+Es decir, procedemos a hacer un poco de un proceso y otro poco de otro, hay que destacar que cada uno de estos trozos corresponde al de un hilo; lo que quiere decir que no tenemos que esperar terminar una tarea, para comenzar con otra. 
+
+Por otro lado, el número de hilos corresponde de forma directa con el número de tareas que se puede llevar a cabo de forma simultánea.
+Núcleos e hilos
+Núcleos e hilos
+Núcleo que conforman un procesador 
+
+Un núcleo vendría siendo como un sub-procesador en sí mismo, hace algún tiempo los procesadores eran de un solo núcleo, por lo cual, no podían realizar más que una tarea al mismo tiempo. 
+
+Cuando hablamos de las diferencias entre los núcleos e hilos de un procesador, podemos decir que como un núcleo es un procesador en sí mismo, un CPU multinúcleo que posea dos núcleos puede ejecutar dos tareas al mismo tiempo.
+
+Un ejemplo claro de esto podríamos ser nosotros mismos, ya que solo podemos consumir una cosa a la vez, ya que solo poseemos una boca; vendría siendo a lo que denominamos como CPU multinúcleo.
+
+Más de un núcleo, lo que vendría siendo que un humano tendría dos bocas para comer, pero eso sí, un CPU que contenga dos núcleos si podría realizar dos tareas al mismo tiempo sin problema alguno.
+Por cada núcleo existen dos hilos ¡Salvó en algunas excepciones! 
+
+En el caso de que nuestro procesador posea más de un hilo, podemos proceder a activarlo o desactivarlo con la ayuda de la BIOS; aunque debemos de tener en cuenta que está viene activada.
+
+Cabe mencionar, que está información te será de gran ayuda, ya que existen programas muy antiguos que no lo soportan.
+
+Ya conoces la diferencias entre los núcleos e hilos de un procesador, sus significados y las funciones que cumple cada uno como parte de un procesador de cualquier ordenador.

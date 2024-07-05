@@ -1,0 +1,13 @@
+ARM, una arquitectura de procesadores y también una empresa con una rica historia, se ha destacado en los últimos años por su enorme crecimiento y su presencia en una amplia gama de dispositivos electrónicos. Su historia comienza en el Reino Unido en los años setenta, cuando Acorn Computers Ltd., una empresa ya desaparecida, colaboró con importantes compañías en el mercado actual.
+
+En 1980, la BBC (British Broadcasting Corporation) lanzó el Computer Literacy Project, un proyecto educativo que buscaba desarrollar un equipo informático a medida. Acorn presentó el Acorn Proton, un ordenador evolutivo del Acorn Atom, que destacó por su potencia y precio asequible. Este equipo, renombrado como BBC Micro, fue un gran éxito, vendiendo 24,000 unidades en 1982 y un millón en total hasta 1994.
+
+Después del BBC Micro, Acorn se aventuró en nuevos desarrollos, incluidos los chips de alto rendimiento basados en la arquitectura RISC. En 1983, comenzaron a diseñar lo que más tarde sería conocido como ARM, con el ARM1 como su primer chip. Aunque enfrentaron dificultades financieras, lanzaron el ARM2, utilizado en el BBC Micro y en computadoras compatibles con IBM PC.
+
+En la recta final de los años ochenta, Acorn colaboró con Apple en el diseño de procesadores para la Apple Newton, lo que llevó a la creación de Advanced RISC Machines Ltd. (ARM Ltd.) en 1990. Esta empresa, posteriormente conocida como ARM Holdings, creció rápidamente y licenció sus productos a múltiples empresas líderes en tecnología.
+
+Mientras tanto, Acorn enfrentó problemas económicos y reorganizaciones, eventualmente vendiendo la compañía en 1999. ARM continuó su éxito y crecimiento, ampliando su presencia en una variedad de dispositivos electrónicos debido a su bajo consumo energético y su bajo costo de fabricación.
+
+La arquitectura ARM ha evolucionado con el tiempo, introduciendo nuevas instrucciones y mejoras en el rendimiento y la seguridad con cada nueva versión. Su presencia en una amplia gama de dispositivos, desde teléfonos y tabletas hasta electrodomésticos y automóviles, la convierte en una de las arquitecturas más importantes en la historia de la informática.
+
+El futuro de ARM parece prometedor, con un continuo aumento de rendimiento y una menor demanda de energía. Se espera que su uso se expanda aún más en áreas como los centros de datos, los automóviles y los dispositivos portátiles, lo que la convierte en una parte integral de la próxima generación de tecnología.

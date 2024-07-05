@@ -1,0 +1,6 @@
+#!/bin/bash 
+if [ -a michi.txt ]; then
+	echo "Los michis existen"
+else
+	echo "cat-astrofe"
+fi

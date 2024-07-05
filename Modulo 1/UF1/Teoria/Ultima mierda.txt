@@ -1,0 +1,6 @@
+sed -n '/bash$/p' /etc/passwd | sed 's/^/El usuario /g' | sed 's/:[a-z]*:[0-9]*:[0-9]*:.*:\/.*:/ utiliza /g' 1 sed 's/ "./\U&/' / sed 's/"//g' - Explicacion dada por chatgpt
+
+Aprender a usar:
+awk - https://geekland.eu/uso-del-comando-awk-en-linux-y-unix-con-ejemplos/
+sed - https://geekland.eu/uso-del-comando-sed-en-linux-y-unix-con-ejemplos/
+grep - https://geekland.eu/uso-del-comando-grep-en-linux-y-unix-con-ejemplos/

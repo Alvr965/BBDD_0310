@@ -1,0 +1,38 @@
+#!/usr/bin/bash
+while true; do
+    clear
+    echo "Menú de opciones:"
+    echo "1. Ver los usuarios conectados al servidor"
+    echo "2. Ver el espacio disponible en el disco duro"
+    echo "3. Ver los procesos en ejecución"
+    echo "4. Ver los trabajos en ejecución"
+    echo "5. Salir"
+
+read -p "Seleccione una opción: " opcion
+    case $opcion in
+        1) 
+			who;;
+
+        2) 
+			df -h 
+			memoria_total=$(df -h | awk '/^\/dev\// { total += $4 } END { print total }')
+			if ((memoria_total >= 1024 )); then
+				memoria_total_gb=$(echo "scale=2; $memoria_total / 1024" | bc)    
+				echo "Memoria total disponible en el disco duro: $memoria_total_gb GB"
+			else
+				echo "Memoria total disponible en el disco duro: $memoria_total MB"
+           fi ;;
+		3) 
+			ps aux;;
+
+		4)
+			jobs;;
+
+		5)
+			echo "Saliendo del programa..."
+			exit 0 ;;
+		*)
+			echo "Opción no válida. Por favor, seleccione una opción válida." ;;
+    esac
+read -p "Presione Enter para continuar..."
+done 
