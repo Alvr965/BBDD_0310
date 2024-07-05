@@ -1,0 +1,37 @@
+declare function local:minPrice($p as xs:decimal?,$d as xs:decimal?)
+as xs:decimal?
+{
+let $disc := ($p * $d) div 100
+return ($p - $disc)
+};
+
+for $x in //CD
+return <PVP>{data($x/PRICE)} rebajado a {local:minPrice($x/PRICE,10)}</PVP>
+
+(:#Si el pais es España, aplica un 50% de descuento:)
+
+declare function local:minPrice($c as xs:string?,$p as xs:decimal?,$d as xs:decimal?)
+as xs:decimal?
+{
+let $disc := ($p * $d) div 100
+let $discPais := if($c = 'España') then ($p*50) div 100 else $disc 
+return ($p - $discPais)
+};
+
+for $x in //CD
+return <PVP> El libro {data($x/TITLE)} de precio inicial {data($x/PRICE)} ha sido rebajado a {local:minPrice($x/COUNTRY,$x/PRICE,10)}</PVP>
+
+(:#Ordenar por Precio Inicial considerando el precio final:)
+
+declare function local:minPrice($c as xs:string?,$p as xs:decimal?,$d as xs:decimal?)
+as xs:decimal?
+{
+let $disc := ($p * $d) div 100
+let $discPais := if($c = 'España') then ($p*50) div 100 else $disc 
+return ($p - $discPais)
+};
+
+for $x in //CD
+let $preciofinal := local:minPrice($x/COUNTRY,$x/PRICE,10)
+order by number($x/PRICE),$preciofinal
+return <PVP> {data($x/PRICE)} ha sido rebajado a {$preciofinal}</PVP>

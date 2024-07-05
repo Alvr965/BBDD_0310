@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persons xsi:SchemaLocation="http://www.microsoft.com testing.xsd" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<person eyecolor="green">
+		<firstname>Hege</firstname>
+		<lastname>Refsnes</lastname>
+	</person>
+	
+	<person eyecolor="blue">
+		<firstname>Stale</firstname>
+		<lastname>Refsnes</lastname>
+	</person>
+
+</persons>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alumnos>
+	<alumno id="101">
+		<nombrecompleto>
+			<nombre>'Juan Alberto'</nombre>
+			<apellido>Estebanez</apellido>
+		</nombrecompleto>
+		<NIF>12345678L</NIF>
+		<Telefono>987654321</Telefono>
+		<emails>
+			<email1>juanito@estupidez.es</email1>
+			<email2/>
+		</emails>
+		<CodigoPostal>98653</CodigoPostal>>
+		<Curso>
+			<CertificadoProfesionalidad1>
+				<CodigoCP>IFC031080</CodigoCP>
+				<nombreCP>'Administracion de BBDD'</nombreCP>
+				<HorasCP>370</HorasCP>
+				<Modulos>
+					<Modulo1>
+						<CodigoM1>MF4564-5</CodigoM1>
+						<nombreM1>'Introduccion a BBDD'</nombreM1>
+						<UFS>
+							<UF1 Aprobado ='5.0'>
+								<CodigoUF1>UF3453</CodigoUF1>
+								<nombreUF1>'Sistemas Operativos'</nombreUF1>
+								<notaUF1>'9.0'</notaUF1>
+							</UF1>
+							<UF2 Aprobado ='5.0'>
+								<CodigoUF2>UF3454</CodigoUF2>
+								<nombreUF2>'Ficheros y BBDD'</nombreUF2>
+								<notaUF2>'3.0'</notaUF2>
+							</UF2>
+							<UF3/>
+						</UFS>
+					</Modulo1>
+					<Modulo2/>
+				</Modulos>
+			</CertificadoProfesionalidad1>
+			<CertificadoProfesionalidad2/>
+		</Curso>
+		<Practicas>
+			<FechaInicio>05-02-2024</FechaInicio>
+			<FechaFin>05-05-2024</FechaFin>
+			<Empresa>Endesa</Empresa>
+		</Practicas>
+	</alumno>
+</alumnos>

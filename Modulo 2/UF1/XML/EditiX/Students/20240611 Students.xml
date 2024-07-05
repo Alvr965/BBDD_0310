@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+	<student stu_Id="101">
+		<stu_name>
+			<first_name>Joseph</first_name>
+			<last_name/>
+		</stu_name>
+		<Age>22</Age>
+		<Gender value="M"/>
+		<Doa>2016-11-23</Doa>
+		<Address>Pune</Address>
+	</student>
+	<student stu_Id="102">
+		<stu_name>
+			<first_name>María</first_name>
+			<last_name/>
+		</stu_name>
+		<Age>35</Age>
+		<Gender value="M"/>
+		<Doa>2016-11-23</Doa>
+		<Address>New York</Address>
+	</student>
+	<student stu_Id="103">
+		<stu_name> 
+			<first_name>Vipul</first_name>
+			<last_name/>
+		</stu_name>
+		<Age>20</Age>
+		<Gender value="M"/>
+		<Doa>2016-11-24</Doa>
+		<Address>Miami</Address>
+	</student>
+	<student stu_Id="104">
+		<stu_name>
+			<first_name>Anubhav</first_name>
+			<last_name/>
+		</stu_name>
+		<Age>31</Age>
+		<Gender value="M"/>
+		<Doa>2016-11-25</Doa>
+		<Address>Pune</Address>
+	</student>
+	<student stu_Id="105">
+		<stu_name>
+			<first_name>Utkarsh</first_name>
+			<last_name/>
+		</stu_name>
+		<Age>35</Age>
+		<Gender value="M"/>
+		<Doa>2016-11-23</Doa>
+		<Address>New York</Address>
+	</student>
+	<student stu_Id="106">
+		<stu_name>
+			<first_name>Carolina</first_name>
+			<last_name>Pérez</last_name>
+		</stu_name>
+		<Age>35</Age>
+		<Gender value="F"/>
+		<Doa>2016-11-24</Doa>
+		<Address>New York</Address>
+	</student>
+</students>

@@ -1,0 +1,11 @@
+
+<!DOCTYPE personas [
+<!ELEMENT personas (persona+)>
+<!ELEMENT persona (nombre,apellidos1,apellidos2?,documento)>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT apellido1 (#PCDATA)>
+<!ELEMENT apellido2 (#PCDATA)>
+<!ELEMENT documento (#PCDATA)>
+<!ATTLIST persona rol (alumno|profesor) #REQUIRED>
+<!ATTLIST documento valido (pasaporte|NIF|NIE) #REQUIRED>
+]>

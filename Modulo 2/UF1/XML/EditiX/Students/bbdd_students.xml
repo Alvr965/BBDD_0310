@@ -1,0 +1,3 @@
+//student[./Gender='F']//name/text()
+|
+//student[./Gender='F']//surname/text()

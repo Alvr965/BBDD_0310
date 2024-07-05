@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE TVSCHEDULE SYSTEM "C:\Users\Mañanas\Downloads\XML\EditiX\w3\TVSCHEDULE.dtd">
+<TVSCHEDULE NAME="VALUE">
+	<CHANNEL CHAN="VALUE">
+		<BANNER>VALUE</BANNER>
+		<DAY>
+			<DATE>VALUE</DATE>
+			<HOLIDAY>VALUE</HOLIDAY>
+		</DAY>
+	</CHANNEL>
+</TVSCHEDULE>

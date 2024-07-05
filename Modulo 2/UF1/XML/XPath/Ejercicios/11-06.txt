@@ -1,0 +1,32 @@
+Le estoy pidiendo que busque el elemento student desde la raiz, solo busco los que cumplen la condicion que, desde el nodo actual, que es student, tengan como descendiente el elemento address cuyo valor sea miami, que ahi, identifique el atributo stu_Id. Ademas, quiero que se haga el mismo tipo de busqueda con el mismo tipo de criterio pero que me devuelva el descendiente name y mas concretamente su contenido
+
+//student[./Address='Miami']//@stu_Id
+|
+//student[./Address='Miami']//name/text()
+
+Le estoy pidiendo que busque el elemento student desde la raiz, solo busco los que cumplen la condicion que, desde el nodo actual, que es student, tengan como descendiente el elemento genero cuyo valor sea F, que ahi, identifique, desde la raiz, cualquier descendiente sea un elemento de nombre 'name' y devuelva su contenido. Ademas, quiero que se haga el mismo tipo de busqueda con el mismo tipo de criterio pero que me devuelva el descendiente surname y mas concretamente su contenido
+//student[./Gender='F']//name/text()
+|
+//student[./Gender='F']//surname/text()
+#Forma de la clase - Es la misma query que arriba solo que gender es un atributo, por tanto, cambia ligeramente la peticion.
+//student[Gender/@value='F']//first_name/text
+|
+//student[Gender/@value='F']//last_name/text
+#Forma del profe - Concatenar las tres peticiones y la queremos entre comillado. Pero la parte de id la quiero entre parentesis, esta forma de meterlo es mediante literales, es decir, poner una cadena de caracteres que significa "(id=" y al final poner ")". Tienes que poner que sea 2.0/3.0
+concat(
+	//Gender[@value='F']/parent::student//first_name/text()," ",
+	//Gender[@value='F']/parent::student//last_name/text(),
+	" (id=",//Gender[@value='F']/parent::student//@stu_Id,")"
+	)
+#Alternativa
+//Gender[@value='F']/parent::student/concat(.//first_name,
+											" ",
+											.//last_name)
+
+
+Busca una cadena '-24' como criterio y aquellos que lo cumplan, devuelva el stu_Id de esos estudiantes que cumplan el criterio
+#Forma de Javier
+//student[contains(Doa,'-24')]/@stu_Id
+#Tremenda Fumada, Modo expresion regular
+//student[matches(Doa,'[0-9]{4}\-[0-9]{2}\-24')]/@stu_Id
+//student[matches(Doa,'.{8}24')]/@stu_Id

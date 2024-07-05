@@ -1,0 +1,19 @@
+for $invoice in //Invoices/Invoice
+let $invoiceNumber := $invoice/InvoiceHeader/InvoiceNumber
+let $totalInvoiceAmount := $invoice/InvoiceTotals/InvoiceTotal
+let $taxes := $invoice/TaxesOutputs/Tax
+return
+    <Invoice>
+        <InvoiceNumber>{data($invoiceNumber)}</InvoiceNumber>
+        <TotalInvoiceAmount>{data($totalInvoiceAmount)}</TotalInvoiceAmount>
+        {
+            for $tax in $taxes
+            return
+                <Tax>
+                    <TaxTypeCode>{data($tax/TaxTypeCode)}</TaxTypeCode>
+                    <TaxRate>{data($tax/TaxRate)}</TaxRate>
+                    <TaxableBase>{data($tax/TaxableBase/TotalAmount)}</TaxableBase>
+                    <TaxAmount>{data($tax/TaxAmount/TotalAmount)}</TaxAmount>
+                </Tax>
+        }
+    </Invoice>

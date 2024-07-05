@@ -1,0 +1,13 @@
+for $i in /CATALOG/CD
+let $precioStr := $i/PRICE
+let $precio := 
+    if ($precioStr castable as xs:decimal and xs:decimal($precioStr) > 0) 
+    then xs:decimal($precioStr) 
+    else ()
+let $precioredondeado := round-half-to-even($precio, 2)
+let $resultado := concat($i/TITLE, '(', $precio,'$)')
+where ($i/COUNTRY ='USA' or $i/COUNTRY='Norway') or $i/ARTIST= 'Manolo Escobar'
+order by $precioredondeado,$i/TITLE
+return <result>
+			{$resultado}
+	   </result>

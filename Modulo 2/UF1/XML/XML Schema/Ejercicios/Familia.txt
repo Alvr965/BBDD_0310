@@ -1,0 +1,50 @@
+Documento xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persons xsi:noNamespaceSchemaLocation="Disfuncion.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<person>
+		<firstname>Hege</firstname>
+		<lastname>Refsnes</lastname>
+		<children>
+			<childname>Cecilie</childname>
+		</children>
+		<pets>
+			<gato>Bernardo</gato>
+		</pets>
+		<coche>
+			SEAT
+		</coche>
+	</person>
+	<person>
+		<firstname>Stale</firstname>
+		<lastname>Refsnes</lastname>
+	</person>
+</persons>
+
+Documento XSD Schema
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="persons">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="person" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="firstname" type="xs:string"/>
+    <xs:element name="lastname" type="xs:string"/>
+
+    <xs:element name="person">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="firstname"/>
+                <xs:element ref="lastname"/>
+                <!-- Allow any elements here -->
+                <xs:any minOccurs="0" maxOccurs="10" processContents="lax"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema> 

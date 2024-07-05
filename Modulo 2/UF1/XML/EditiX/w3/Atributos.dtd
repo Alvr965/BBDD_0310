@@ -1,0 +1,6 @@
+
+<!ELEMENT note  ( to , from)>
+<!ELEMENT to  ( #PCDATA )>
+<!ELEMENT from  ( #PCDATA )>
+<!ATTLIST to tipo (INTERNO|EXTERNO) "INTERNO">
+
