@@ -1,0 +1,7 @@
+consulta.sql es un script de sql que selecciona los datos y los importa a un csv
+	mysql -uvaro -pVaro$2024 -Dexamen < consulta.sql
+	
+	scp
+		Coge el fichero csv, lo lee y lo envia al servidor de mariadb de ubuntu y ahi tenemos la informacion del csv generado en el servidor de mariadb de windows
+Para no tener que hacer todo a la vez, generamos un archivo bat que recoja el csv y lo envie a ese servidor de forma conjunta
+	Tambien podrias hacer que el bat acceda a mariadb, ejecute la consulta, genere el csv y lo transfiera.

@@ -1,0 +1,79 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. Todos los derechos reservados.
+
+Instale la versión más reciente de PowerShell para obtener nuevas características y mejoras. https://aka.ms/PSWindows                                                                                                                                                                                                PS C:\Windows\system32> Install-Module -Name SqlServer -Scope CurrentUser                                                                                                 Se necesita el proveedor de NuGet para continuar
+PowerShellGet necesita la versión del proveedor de NuGet '2.8.5.201' o posterior para interactuar con repositorios
+basados en NuGet. El proveedor de NuGet debe estar disponible en 'C:\Program
+Files\PackageManagement\ProviderAssemblies' o 'C:\Users\Mañanas\AppData\Local\PackageManagement\ProviderAssemblies'.
+ También puedes instalar el proveedor de NuGet ejecutando 'Install-PackageProvider -Name NuGet -MinimumVersion
+2.8.5.201 -Force'. ¿Quieres que PowerShellGet se instale e importe el proveedor de NuGet ahora?
+[S] Sí  [N] No  [U] Suspender  [?] Ayuda (el valor predeterminado es "S"):
+
+Repositorio que no es de confianza
+Estás instalando los módulos desde un repositorio que no es de confianza. Si confías en este repositorio, cambia su
+valor InstallationPolicy ejecutando el cmdlet Set-PSRepository. ¿Estás seguro de que quieres instalar los módulos de
+ 'PSGallery'?
+[S] Sí  [O] Sí a todo  [N] No  [T] No a todo  [U] Suspender  [?] Ayuda (el valor predeterminado es "N"): s
+PS C:\Windows\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+Cambio de directiva de ejecución
+La directiva de ejecución te ayuda a protegerte de scripts en los que no confías. Si cambias dicha directiva,
+podrías exponerte a los riesgos de seguridad descritos en el tema de la Ayuda about_Execution_Policies en
+https:/go.microsoft.com/fwlink/?LinkID=135170. ¿Quieres cambiar la directiva de ejecución?
+[S] Sí  [O] Sí a todo  [N] No  [T] No a todo  [U] Suspender  [?] Ayuda (el valor predeterminado es "N"): s
+PS C:\Windows\system32> Invoke-Sqlcmd
+PS C:\Windows\system32> Install-Module -Name SqlServer
+PS C:\Windows\system32> Get-Module SqlServer -ListAvailable
+
+
+    Directorio: C:\Users\Mañanas\Documents\WindowsPowerShell\Modules
+
+
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Script     22.2.0     SqlServer                           {Add-RoleMember, Add-SqlAvailabilityDatabase, Add-SqlAv...
+
+PS C:\Windows\system32> Import-Module SqlServer
+PS C:\Windows\system32> Get-Module -Name SqlServer
+
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Script     22.2.0     SqlServer                           {Add-RoleMember, Add-SqlAvailabilityDatabase, Add-SqlAv...
+
+
+PS C:\Windows\system32> $serverInstance = Read-Host "varo-VirtualBox"
+varo-VirtualBox: 192.168.11.46
+PS C:\Windows\system32> $credential = Get-Credential
+
+cmdlet Get-Credential en la posición 1 de la canalización de comandos
+Proporcione valores para los parámetros siguientes:
+Credential
+PS C:\Windows\system32> Get-SqlInstance -ServerInstance $serverInstance -Credential $credential
+
+Instance Name                   Version    ProductLevel UpdateLevel  HostPlatform HostDistribution
+-------------                   -------    ------------ -----------  ------------ ----------------
+192.168.11.46                   16.0.4125  RTM          CU13         Linux        Ubuntu
+
+
+PS C:\Windows\system32> Install-Module -Name SqlServer -AllowClobber
+PS C:\Windows\system32> Import-Module SqlServer
+PS C:\Windows\system32> $serverInstance = Read-Host "Enter the server instance name (e.g., ubuntu-server:1433)"
+Enter the server instance name (e.g., ubuntu-server:1433): 192.168.11.46
+PS C:\Windows\system32> $username = Read-Host "Enter the SQL Server username"
+Enter the SQL Server username: sa
+PS C:\Windows\system32> $password = Read-Host "Enter the SQL Server password"
+Enter the SQL Server password: lEUBUNTU56
+PS C:\Windows\system32> $databaseName = Read-Host "Enter the database name"
+Enter the database name: test
+PS C:\Windows\system32> $password = Read-Host "Enter the SQL Server password" -AsSecureString
+Enter the SQL Server password: **********
+PS C:\Windows\system32> $passwordPlainText = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($password))
+PS C:\Windows\system32> $query ="SELECT * FROM frutas"
+PS C:\Windows\system32> $connectionString = "Server=$serverInstance;Database=$databaseName;User Id=$username;Password=$passwordPlainText;TrustServerCertificate=True;"
+PS C:\Windows\system32> $result= Invoke-Sqlcmd -ConnectionString $connectionstring -Query $query
+PS C:\Windows\system32> $result | Format-Table -Autosize
+
+tipo_fruta colorfruta
+---------- ----------
+naranja    naranja
+fresa      rojo

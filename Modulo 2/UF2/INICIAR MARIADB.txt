@@ -1,0 +1,1 @@
+mysql --ssl=0 -u root -p en mysql shell

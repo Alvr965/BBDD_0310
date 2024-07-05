@@ -1,0 +1,136 @@
+(:Contar el numero de CDs:)
+count(//CD)
+
+(:Contar el numero de valores unicos que pueda tomar Pais:)
+count(distinct-values(//COUNTRY))
+
+(:Insertar nodos justo despues de uno existente, en este caso, el nodo b4 con texto inserted child despues del b4:)
+insert nodes <b4> inserted child </b4> after
+//YEAR
+
+(:Insertar un nodo hermano con mensaje inserted sibling si el nodo que consideramos tiene el valor 1985:)
+insert nodes <a1985> inserted sibling </a1985> after
+//YEAR[./text()='1985']
+
+(:Insertar un nodo hijo que sea un CD nuevo, :)
+insert nodes 
+  <CD>
+    <TITLE>Porompompomporompomperopero</TITLE>
+    <ARTIST>Manolo Escobar</ARTIST>
+    <COUNTRY>España</COUNTRY>
+    <COMPANY>Discografia Jose</COMPANY>
+    <PRICE>9.90</PRICE>
+    <YEAR>1990</YEAR>
+  </CD> 
+  as first into /CATALOG
+  
+(:Inserta a Taylor Swift como coartista despues de Manolo Escobar en todo CD que aparezca esta persona como artista:)
+insert nodes 
+  <COARTIST>Taylor Swift</COARTIST> after
+  //ARTIST[./text()='Manolo Escobar']
+  
+(:Inserta a Taylor Swift como coartista antes de Manolo Escobar en el primer CD que aparezca esta persona como artista:)
+insert nodes 
+  <COARTIST>Taylor Swift</COARTIST> before
+  //ARTIST[./text()='Manolo Escobar'][1]
+  
+(:La primera instruccion lo que hace es que elimine todos los nodos coartist con el criterio que su padre tenga un nodo hijo llamado artista cuyo contenido sea Manolo Escobar:)
+delete nodes //COARTIST[../ARTIST[(./text()='Manolo Escobar')]]
+
+(:Las siguientes instrucciones es que eliminen :)
+delete nodes //COARTIST[./text()='Taylor Swift']
+delete nodes //COARTIST[./text()='Taylorin Swift']
+
+(:Elimina todos los CDs cuyo nodo hijo Año tenga el valor 1985:)
+delete nodes //CD[./YEAR/text()='1985']
+
+Replacing
+replace node //CD[1]/ARTIST with <ARTISTA>Taylor Swift</ARTISTA>
+
+Replacing multiple nodes
+for $i in //ARTIST return 
+replace node $i with <ARTISTAZO>{$i/text()}</ARTISTAZO> 
+
+(:Reemplazar todos los nodos artistazo por su mismo contenido en Mayuscula:)
+for $i in //ARTISTAZO return 
+replace node $i with <ARTISTAZO>{$i/upper-case(text())}</ARTISTAZO>
+for $i in //ARTISTAZO return 
+replace value of node $i with fn:upper-case($i/text())
+
+Cambiar el nombre del nodo TITLE por Titulin
+rename node //TITLE as "Titulin"
+
+(:Hacerlo en una funcion:)
+declare updating function
+    local:renameNode($elem as element(),
+                     $rep as xs:string)
+    {
+        rename node $elem as $rep
+    };
+
+    local:renameNode(//COUNTRY, "Nacion")
+
+(:copia el catalogo entero, modifica el artista Taylor Swift por "Quien Sea" y eliminamos todo menos Titulo y Artista:)
+
+declare function local:transformar($cd as element())
+	{
+		copy $c:= $cd
+			modify (delete nodes $c/Nacion,
+					delete nodes $c/COMPANY,
+					delete nodes $c/PRICE,
+					delete nodes $c/YEAR,
+					replace value of node $c/ARTISTAZO[text()='TAYLOR SWIFT'] with 'QUIEN SEA')
+			return $c
+	};
+for $CD in /CATALOG/CD[YEAR>=1995]
+	return local:transformar($CD)
+			
+			
+(:Cambio de nombre de nodo:)
+declare function local:transformar($cd as element())
+	{
+		copy $c:= $cd
+			modify (delete nodes $c/Nacion,
+					delete nodes $c/COMPANY,
+					delete nodes $c/PRICE,
+					delete nodes $c/YEAR,
+					replace node $c/Titulin with <TITULON> {$c/Titulin/text()}</TITULON>,
+					replace node $c/ARTISTAZO with <LEARTIST> {$c/Titulin/text()}</LEARTIST>,
+					replace value of node $c/ARTISTAZO[text()='TAYLOR SWIFT'] with 'QUIEN SEA')
+			return $c
+	};
+for $CD in /CATALOG/CD[YEAR>=1995]
+	return local:transformar($CD)
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			

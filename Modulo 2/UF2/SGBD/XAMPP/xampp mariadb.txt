@@ -1,0 +1,530 @@
+Microsoft Windows [Versión 10.0.22631.3737]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Windows\System32>cd %userprofile%
+
+C:\Users\Mañanas>cd .
+
+C:\Users\Mañanas>cd ..
+
+C:\Users>cd ..
+
+C:\>cd /sqlite
+
+C:\SQLite>sqlite3
+SQLite version 3.46.0 2024-05-23 13:25:27 (UTF-16 console I/O)
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> .databse
+Error: unknown command or invalid arguments:  "databse". Enter ".help" for help
+sqlite> .database
+main: "" r/w
+sqlite>
+sqlite> .open students
+sqlite> .databases
+main: C:\SQLite\students r/w
+sqlite> .tables
+estudiantes  students
+sqlite> .exit
+
+C:\SQLite>cd..
+
+C:\>cd XAMPP
+
+C:\xampp>cd /mysql/bin
+El sistema no puede encontrar la ruta especificada.
+
+C:\xampp>cd \mysql\bin
+El sistema no puede encontrar la ruta especificada.
+
+C:\xampp>cd mysql\bin
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [(none)]> use information_schema;
+Database changed
+MariaDB [information_schema]> show tables;
++---------------------------------------+
+| Tables_in_information_schema          |
++---------------------------------------+
+| ALL_PLUGINS                           |
+| APPLICABLE_ROLES                      |
+| CHARACTER_SETS                        |
+| CHECK_CONSTRAINTS                     |
+| COLLATIONS                            |
+| COLLATION_CHARACTER_SET_APPLICABILITY |
+| COLUMNS                               |
+| COLUMN_PRIVILEGES                     |
+| ENABLED_ROLES                         |
+| ENGINES                               |
+| EVENTS                                |
+| FILES                                 |
+| GLOBAL_STATUS                         |
+| GLOBAL_VARIABLES                      |
+| KEYWORDS                              |
+| KEY_CACHES                            |
+| KEY_COLUMN_USAGE                      |
+| OPTIMIZER_TRACE                       |
+| PARAMETERS                            |
+| PARTITIONS                            |
+| PLUGINS                               |
+| PROCESSLIST                           |
+| PROFILING                             |
+| REFERENTIAL_CONSTRAINTS               |
+| ROUTINES                              |
+| SCHEMATA                              |
+| SCHEMA_PRIVILEGES                     |
+| SESSION_STATUS                        |
+| SESSION_VARIABLES                     |
+| STATISTICS                            |
+| SQL_FUNCTIONS                         |
+| SYSTEM_VARIABLES                      |
+| TABLES                                |
+| TABLESPACES                           |
+| TABLE_CONSTRAINTS                     |
+| TABLE_PRIVILEGES                      |
+| TRIGGERS                              |
+| USER_PRIVILEGES                       |
+| VIEWS                                 |
+| GEOMETRY_COLUMNS                      |
+| SPATIAL_REF_SYS                       |
+| CLIENT_STATISTICS                     |
+| INDEX_STATISTICS                      |
+| INNODB_SYS_DATAFILES                  |
+| USER_STATISTICS                       |
+| INNODB_SYS_TABLESTATS                 |
+| INNODB_LOCKS                          |
+| INNODB_MUTEXES                        |
+| INNODB_CMPMEM                         |
+| INNODB_CMP_PER_INDEX                  |
+| INNODB_CMP                            |
+| INNODB_FT_DELETED                     |
+| INNODB_CMP_RESET                      |
+| INNODB_LOCK_WAITS                     |
+| TABLE_STATISTICS                      |
+| INNODB_TABLESPACES_ENCRYPTION         |
+| INNODB_BUFFER_PAGE_LRU                |
+| INNODB_SYS_FIELDS                     |
+| INNODB_CMPMEM_RESET                   |
+| INNODB_SYS_COLUMNS                    |
+| INNODB_FT_INDEX_TABLE                 |
+| INNODB_CMP_PER_INDEX_RESET            |
+| user_variables                        |
+| INNODB_FT_INDEX_CACHE                 |
+| INNODB_SYS_FOREIGN_COLS               |
+| INNODB_FT_BEING_DELETED               |
+| INNODB_BUFFER_POOL_STATS              |
+| INNODB_TRX                            |
+| INNODB_SYS_FOREIGN                    |
+| INNODB_SYS_TABLES                     |
+| INNODB_FT_DEFAULT_STOPWORD            |
+| INNODB_FT_CONFIG                      |
+| INNODB_BUFFER_PAGE                    |
+| INNODB_SYS_TABLESPACES                |
+| INNODB_METRICS                        |
+| INNODB_SYS_INDEXES                    |
+| INNODB_SYS_VIRTUAL                    |
+| INNODB_TABLESPACES_SCRUBBING          |
+| INNODB_SYS_SEMAPHORE_WAITS            |
++---------------------------------------+
+79 rows in set (0.000 sec)
+
+MariaDB [information_schema]> describe tables;
++------------------+---------------------+------+-----+---------+-------+
+| Field            | Type                | Null | Key | Default | Extra |
++------------------+---------------------+------+-----+---------+-------+
+| TABLE_CATALOG    | varchar(512)        | NO   |     | NULL    |       |
+| TABLE_SCHEMA     | varchar(64)         | NO   |     | NULL    |       |
+| TABLE_NAME       | varchar(64)         | NO   |     | NULL    |       |
+| TABLE_TYPE       | varchar(64)         | NO   |     | NULL    |       |
+| ENGINE           | varchar(64)         | YES  |     | NULL    |       |
+| VERSION          | bigint(21) unsigned | YES  |     | NULL    |       |
+| ROW_FORMAT       | varchar(10)         | YES  |     | NULL    |       |
+| TABLE_ROWS       | bigint(21) unsigned | YES  |     | NULL    |       |
+| AVG_ROW_LENGTH   | bigint(21) unsigned | YES  |     | NULL    |       |
+| DATA_LENGTH      | bigint(21) unsigned | YES  |     | NULL    |       |
+| MAX_DATA_LENGTH  | bigint(21) unsigned | YES  |     | NULL    |       |
+| INDEX_LENGTH     | bigint(21) unsigned | YES  |     | NULL    |       |
+| DATA_FREE        | bigint(21) unsigned | YES  |     | NULL    |       |
+| AUTO_INCREMENT   | bigint(21) unsigned | YES  |     | NULL    |       |
+| CREATE_TIME      | datetime            | YES  |     | NULL    |       |
+| UPDATE_TIME      | datetime            | YES  |     | NULL    |       |
+| CHECK_TIME       | datetime            | YES  |     | NULL    |       |
+| TABLE_COLLATION  | varchar(32)         | YES  |     | NULL    |       |
+| CHECKSUM         | bigint(21) unsigned | YES  |     | NULL    |       |
+| CREATE_OPTIONS   | varchar(2048)       | YES  |     | NULL    |       |
+| TABLE_COMMENT    | varchar(2048)       | NO   |     | NULL    |       |
+| MAX_INDEX_LENGTH | bigint(21) unsigned | YES  |     | NULL    |       |
+| TEMPORARY        | varchar(1)          | YES  |     | NULL    |       |
++------------------+---------------------+------+-----+---------+-------+
+23 rows in set (0.012 sec)
+
+MariaDB [information_schema]> select table_name, avg_row_length from information_schema.tables order by 1;
++----------------------------------------------------+----------------+
+| table_name                                         | avg_row_length |
++----------------------------------------------------+----------------+
+| accounts                                           |              0 |
+| ALL_PLUGINS                                        |              0 |
+| APPLICABLE_ROLES                                   |            979 |
+| CHARACTER_SETS                                     |            384 |
+| CHECK_CONSTRAINTS                                  |              0 |
+| CLIENT_STATISTICS                                  |            386 |
+| COLLATIONS                                         |            231 |
+| COLLATION_CHARACTER_SET_APPLICABILITY              |            195 |
+| COLUMNS                                            |              0 |
+| columns_priv                                       |              0 |
+| COLUMN_PRIVILEGES                                  |           2893 |
+| column_stats                                       |              0 |
+| cond_instances                                     |              0 |
+| db                                                 |           5461 |
+| ENABLED_ROLES                                      |            387 |
+| ENGINES                                            |            731 |
+| event                                              |              0 |
+| EVENTS                                             |              0 |
+| events_stages_current                              |              0 |
+| events_stages_history                              |              0 |
+| events_stages_history_long                         |              0 |
+| events_stages_summary_by_account_by_event_name     |              0 |
+| events_stages_summary_by_host_by_event_name        |              0 |
+| events_stages_summary_by_thread_by_event_name      |              0 |
+| events_stages_summary_by_user_by_event_name        |              0 |
+| events_stages_summary_global_by_event_name         |              0 |
+| events_statements_current                          |              0 |
+| events_statements_history                          |              0 |
+| events_statements_history_long                     |              0 |
+| events_statements_summary_by_account_by_event_name |              0 |
+| events_statements_summary_by_digest                |              0 |
+| events_statements_summary_by_host_by_event_name    |              0 |
+| events_statements_summary_by_thread_by_event_name  |              0 |
+| events_statements_summary_by_user_by_event_name    |              0 |
+| events_statements_summary_global_by_event_name     |              0 |
+| events_waits_current                               |              0 |
+| events_waits_history                               |              0 |
+| events_waits_history_long                          |              0 |
+| events_waits_summary_by_account_by_event_name      |              0 |
+| events_waits_summary_by_host_by_event_name         |              0 |
+| events_waits_summary_by_instance                   |              0 |
+| events_waits_summary_by_thread_by_event_name       |              0 |
+| events_waits_summary_by_user_by_event_name         |              0 |
+| events_waits_summary_global_by_event_name          |              0 |
+| FILES                                              |           4022 |
+| file_instances                                     |              0 |
+| file_summary_by_event_name                         |              0 |
+| file_summary_by_instance                           |              0 |
+| func                                               |              0 |
+| general_log                                        |              0 |
+| GEOMETRY_COLUMNS                                   |           4244 |
+| global_priv                                        |           4096 |
+| GLOBAL_STATUS                                      |           6340 |
+| GLOBAL_VARIABLES                                   |           6340 |
+| gtid_slave_pos                                     |              0 |
+| help_category                                      |            341 |
+| help_keyword                                       |            442 |
+| help_relation                                      |            143 |
+| help_topic                                         |           2146 |
+| hosts                                              |              0 |
+| host_cache                                         |              0 |
+| INDEX_STATISTICS                                   |           1743 |
+| index_stats                                        |              0 |
+| INNODB_BUFFER_PAGE                                 |           6852 |
+| INNODB_BUFFER_PAGE_LRU                             |           6669 |
+| INNODB_BUFFER_POOL_STATS                           |            257 |
+| INNODB_CMP                                         |             25 |
+| INNODB_CMPMEM                                      |             29 |
+| INNODB_CMPMEM_RESET                                |             29 |
+| INNODB_CMP_PER_INDEX                               |           1755 |
+| INNODB_CMP_PER_INDEX_RESET                         |           1755 |
+| INNODB_CMP_RESET                                   |             25 |
+| INNODB_FT_BEING_DELETED                            |              9 |
+| INNODB_FT_CONFIG                                   |           1163 |
+| INNODB_FT_DEFAULT_STOPWORD                         |             56 |
+| INNODB_FT_DELETED                                  |              9 |
+| INNODB_FT_INDEX_CACHE                              |           1054 |
+| INNODB_FT_INDEX_TABLE                              |           1054 |
+| innodb_index_stats                                 |            147 |
+| INNODB_LOCKS                                       |          31244 |
+| INNODB_LOCK_WAITS                                  |            599 |
+| INNODB_METRICS                                     |           3003 |
+| INNODB_MUTEXES                                     |          24017 |
+| INNODB_SYS_COLUMNS                                 |            610 |
+| INNODB_SYS_DATAFILES                               |          12007 |
+| INNODB_SYS_FIELDS                                  |            594 |
+| INNODB_SYS_FOREIGN                                 |           1752 |
+| INNODB_SYS_FOREIGN_COLS                            |           1748 |
+| INNODB_SYS_INDEXES                                 |            618 |
+| INNODB_SYS_SEMAPHORE_WAITS                         |          60189 |
+| INNODB_SYS_TABLES                                  |           2060 |
+| INNODB_SYS_TABLESPACES                             |           2102 |
+| INNODB_SYS_TABLESTATS                              |           1215 |
+| INNODB_SYS_VIRTUAL                                 |             17 |
+| INNODB_TABLESPACES_ENCRYPTION                      |           2012 |
+| INNODB_TABLESPACES_SCRUBBING                       |           2020 |
+| innodb_table_stats                                 |            819 |
+| INNODB_TRX                                         |           4530 |
+| KEYWORDS                                           |            194 |
+| KEY_CACHES                                         |            659 |
+| KEY_COLUMN_USAGE                                   |           4637 |
+| mutex_instances                                    |              0 |
+| objects_summary_global_by_type                     |              0 |
+| OPTIMIZER_TRACE                                    |              0 |
+| PARAMETERS                                         |              0 |
+| PARTITIONS                                         |              0 |
+| performance_timers                                 |              0 |
+| plugin                                             |              0 |
+| PLUGINS                                            |              0 |
+| pma__bookmark                                      |              0 |
+| pma__central_columns                               |              0 |
+| pma__column_info                                   |              0 |
+| pma__designer_settings                             |              0 |
+| pma__export_templates                              |              0 |
+| pma__favorite                                      |              0 |
+| pma__history                                       |              0 |
+| pma__navigationhiding                              |              0 |
+| pma__pdf_pages                                     |              0 |
+| pma__recent                                        |              0 |
+| pma__relation                                      |              0 |
+| pma__savedsearches                                 |              0 |
+| pma__table_coords                                  |              0 |
+| pma__table_info                                    |              0 |
+| pma__table_uiprefs                                 |              0 |
+| pma__tracking                                      |              0 |
+| pma__userconfig                                    |              0 |
+| pma__usergroups                                    |              0 |
+| pma__users                                         |              0 |
+| proc                                               |              0 |
+| PROCESSLIST                                        |              0 |
+| procs_priv                                         |              0 |
+| PROFILING                                          |            308 |
+| proxies_priv                                       |          16384 |
+| REFERENTIAL_CONSTRAINTS                            |           4814 |
+| roles_mapping                                      |              0 |
+| ROUTINES                                           |              0 |
+| rwlock_instances                                   |              0 |
+| SCHEMATA                                           |           3464 |
+| SCHEMA_PRIVILEGES                                  |           2507 |
+| servers                                            |              0 |
+| session_account_connect_attrs                      |              0 |
+| session_connect_attrs                              |              0 |
+| SESSION_STATUS                                     |           6340 |
+| SESSION_VARIABLES                                  |           6340 |
+| setup_actors                                       |              0 |
+| setup_consumers                                    |              0 |
+| setup_instruments                                  |              0 |
+| setup_objects                                      |              0 |
+| setup_timers                                       |              0 |
+| slow_log                                           |              0 |
+| socket_instances                                   |              0 |
+| socket_summary_by_event_name                       |              0 |
+| socket_summary_by_instance                         |              0 |
+| SPATIAL_REF_SYS                                    |           7691 |
+| SQL_FUNCTIONS                                      |            194 |
+| STATISTICS                                         |           5753 |
+| SYSTEM_VARIABLES                                   |              0 |
+| TABLES                                             |          14841 |
+| TABLESPACES                                        |           6951 |
+| tables_priv                                        |              0 |
+| TABLE_CONSTRAINTS                                  |           2504 |
+| table_io_waits_summary_by_index_usage              |              0 |
+| table_io_waits_summary_by_table                    |              0 |
+| table_lock_waits_summary_by_table                  |              0 |
+| TABLE_PRIVILEGES                                   |           2700 |
+| TABLE_STATISTICS                                   |           1181 |
+| table_stats                                        |              0 |
+| threads                                            |              0 |
+| time_zone                                          |              0 |
+| time_zone_leap_second                              |              0 |
+| time_zone_name                                     |              0 |
+| time_zone_transition                               |              0 |
+| time_zone_transition_type                          |              0 |
+| transaction_registry                               |              0 |
+| TRIGGERS                                           |              0 |
+| user                                               |           NULL |
+| users                                              |              0 |
+| USER_PRIVILEGES                                    |           2314 |
+| USER_STATISTICS                                    |            567 |
+| user_variables                                     |           6630 |
+| VIEWS                                              |              0 |
++----------------------------------------------------+----------------+
+181 rows in set (0.108 sec)
+
+MariaDB [information_schema]> show character set like '%';
++----------+-----------------------------+---------------------+--------+
+| Charset  | Description                 | Default collation   | Maxlen |
++----------+-----------------------------+---------------------+--------+
+| big5     | Big5 Traditional Chinese    | big5_chinese_ci     |      2 |
+| dec8     | DEC West European           | dec8_swedish_ci     |      1 |
+| cp850    | DOS West European           | cp850_general_ci    |      1 |
+| hp8      | HP West European            | hp8_english_ci      |      1 |
+| koi8r    | KOI8-R Relcom Russian       | koi8r_general_ci    |      1 |
+| latin1   | cp1252 West European        | latin1_swedish_ci   |      1 |
+| latin2   | ISO 8859-2 Central European | latin2_general_ci   |      1 |
+| swe7     | 7bit Swedish                | swe7_swedish_ci     |      1 |
+| ascii    | US ASCII                    | ascii_general_ci    |      1 |
+| ujis     | EUC-JP Japanese             | ujis_japanese_ci    |      3 |
+| sjis     | Shift-JIS Japanese          | sjis_japanese_ci    |      2 |
+| hebrew   | ISO 8859-8 Hebrew           | hebrew_general_ci   |      1 |
+| tis620   | TIS620 Thai                 | tis620_thai_ci      |      1 |
+| euckr    | EUC-KR Korean               | euckr_korean_ci     |      2 |
+| koi8u    | KOI8-U Ukrainian            | koi8u_general_ci    |      1 |
+| gb2312   | GB2312 Simplified Chinese   | gb2312_chinese_ci   |      2 |
+| greek    | ISO 8859-7 Greek            | greek_general_ci    |      1 |
+| cp1250   | Windows Central European    | cp1250_general_ci   |      1 |
+| gbk      | GBK Simplified Chinese      | gbk_chinese_ci      |      2 |
+| latin5   | ISO 8859-9 Turkish          | latin5_turkish_ci   |      1 |
+| armscii8 | ARMSCII-8 Armenian          | armscii8_general_ci |      1 |
+| utf8     | UTF-8 Unicode               | utf8_general_ci     |      3 |
+| ucs2     | UCS-2 Unicode               | ucs2_general_ci     |      2 |
+| cp866    | DOS Russian                 | cp866_general_ci    |      1 |
+| keybcs2  | DOS Kamenicky Czech-Slovak  | keybcs2_general_ci  |      1 |
+| macce    | Mac Central European        | macce_general_ci    |      1 |
+| macroman | Mac West European           | macroman_general_ci |      1 |
+| cp852    | DOS Central European        | cp852_general_ci    |      1 |
+| latin7   | ISO 8859-13 Baltic          | latin7_general_ci   |      1 |
+| utf8mb4  | UTF-8 Unicode               | utf8mb4_general_ci  |      4 |
+| cp1251   | Windows Cyrillic            | cp1251_general_ci   |      1 |
+| utf16    | UTF-16 Unicode              | utf16_general_ci    |      4 |
+| utf16le  | UTF-16LE Unicode            | utf16le_general_ci  |      4 |
+| cp1256   | Windows Arabic              | cp1256_general_ci   |      1 |
+| cp1257   | Windows Baltic              | cp1257_general_ci   |      1 |
+| utf32    | UTF-32 Unicode              | utf32_general_ci    |      4 |
+| binary   | Binary pseudo charset       | binary              |      1 |
+| geostd8  | GEOSTD8 Georgian            | geostd8_general_ci  |      1 |
+| cp932    | SJIS for Windows Japanese   | cp932_japanese_ci   |      2 |
+| eucjpms  | UJIS for Windows Japanese   | eucjpms_japanese_ci |      3 |
++----------+-----------------------------+---------------------+--------+
+40 rows in set (0.000 sec)
+
+MariaDB [information_schema]> use test;
+Database changed
+MariaDB [test]> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2024-06-19 12:10:44 |
++---------------------+
+1 row in set (0.000 sec)
+
+MariaDB [test]> INSERT INTO estudiantes VALUE (null,'Roberto Nuñez', 21, 'M', now(),'Calle Arcos de Jalón')
+    -> ;
+Query OK, 1 row affected, 1 warning (0.003 sec)
+
+MariaDB [test]> SELECT * FROM estudiantes;
++---------------+-------------------+------+--------+------------+----------------------+
+| id_estudiante | nombre_estudiante | Edad | Genero | Doa        | Address              |
++---------------+-------------------+------+--------+------------+----------------------+
+|             1 | Roberto Nuñez     |   21 | M      | 2024-06-19 | Calle Arcos de Jalón |
++---------------+-------------------+------+--------+------------+----------------------+
+1 row in set (0.000 sec)
+
+MariaDB [information_schema]> select column_name, ordinal_position, data_type
+    -> from columns
+    -> where table_name='estudiantes';
++-------------------+------------------+-----------+
+| column_name       | ordinal_position | data_type |
++-------------------+------------------+-----------+
+| id_estudiante     |                1 | int       |
+| nombre_estudiante |                2 | varchar   |
+| Edad              |                3 | int       |
+| Genero            |                4 | char      |
+| Doa               |                5 | date      |
+| Address           |                6 | varchar   |
++-------------------+------------------+-----------+
+6 rows in set (0.008 sec)
+
+MariaDB [information_schema]> select constraint_name, constraint_type
+    -> from table_constraints
+    -> where table_name='estudiantes';
++-----------------+-----------------+
+| constraint_name | constraint_type |
++-----------------+-----------------+
+| PRIMARY         | PRIMARY KEY     |
++-----------------+-----------------+
+1 row in set (0.001 sec)
+
+MariaDB [information_schema]> select column_name
+    -> from key_column_usage
+    -> where table_name='estudiantes'
+    -> and constraint_name='primary';
++---------------+
+| column_name   |
++---------------+
+| id_estudiante |
++---------------+
+1 row in set (0.001 sec)
+
+MariaDB [information_schema]> select schema_name, default_character_set_name, default_collation_name
+    -> from schemata;
++--------------------+----------------------------+------------------------+
+| schema_name        | default_character_set_name | default_collation_name |
++--------------------+----------------------------+------------------------+
+| information_schema | utf8                       | utf8_general_ci        |
+| mysql              | utf8mb4                    | utf8mb4_general_ci     |
+| performance_schema | utf8                       | utf8_general_ci        |
+| phpmyadmin         | utf8                       | utf8_bin               |
+| test               | cp850                      | cp850_general_ci       |
++--------------------+----------------------------+------------------------+
+5 rows in set (0.000 sec)
+
+MariaDB [ifct0310]> source ifct0310.sql
+Query OK, 2 rows affected (0.010 sec)
+
+Query OK, 1 row affected (0.000 sec)
+
+Database changed
+Query OK, 0 rows affected (0.004 sec)
+
+Query OK, 0 rows affected (0.016 sec)
+
+Query OK, 1 row affected (0.001 sec)
+
+Query OK, 3 rows affected (0.001 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+#Consulta de la integridad referencial de la tabla uf en el diccionario de datos, la clave externa de una tabla de referencia siempre debe aludir a una fila valida de la tabla a la que se haga referencia. La integridad referencial garantiza que la relacion entre dos tablas permanezca sincronizada (Wikipedia)
+
+MariaDB [ifct0310]> select constraint_name, constraint_type
+    -> from information_schema.table_constraints
+    -> where table_name='UF';
++-----------------+-----------------+
+| constraint_name | constraint_type |
++-----------------+-----------------+
+| PRIMARY         | PRIMARY KEY     |
+| uf_ibfk_1       | FOREIGN KEY     |
++-----------------+-----------------+
+2 rows in set (0.001 sec)
+
+MariaDB [ifct0310]> select column_name
+    -> , referenced_table_name
+    -> , referenced_column_name
+    -> from information_schema.key_column_usage
+    -> WHERE CONSTRAINT_NAME='uf_ibfk_1';
++-------------+-----------------------+------------------------+
+| column_name | referenced_table_name | referenced_column_name |
++-------------+-----------------------+------------------------+
+| MODULO      | modulo                | CODIGO                 |
++-------------+-----------------------+------------------------+
+1 row in set (0.087 sec)
+
+MariaDB [ifct0310]>

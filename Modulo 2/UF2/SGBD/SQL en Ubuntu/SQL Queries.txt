@@ -1,0 +1,43 @@
+-----------------------------Cuantas Tablas hay en el diccionaro
+SELECT COUNT (*)
+FROM dba_objects
+WHERE object_type= 'TABLE';
+
+------------------------------------------------------------------Para saber los nombres de las tablas:------------------------------------------------------------------------------------------------
+SELECT object_name
+FROM dba_objects
+WHERE object_type = 'TABLE';
+---------------------------------------------------------------------Contar el numero de usuarios------------------------------------------------------------------------------------------------------
+SELECT COUNT (*)
+FROM dba_users;
+-----------------------------Realizar una operacion matematica y que solo lo devolviera en una tabla compuesta de una fila y una columna---------------------------------------------------------------
+SQL> SELECT ((3*4)+5)/3 FROM DUAL;
+
+((3*4)+5)/3
+-----------
+ 5,66666667
+---------------------------------------------------------------------Obtener la fecha actual-----------------------------------------------------------------------------------------------------------
+SQL> SELECT SYSDATE FROM DUAL;
+
+SYSDATE
+--------
+25/06/24
+------------------------------------------------------------Obtener la fecha actual y la hora actual------------------------------------------------------------------------------------------------
+SQL> SELECT SYSTIMESTAMP FROM DUAL;
+
+SYSTIMESTAMP
+---------------------------------------------------------------------------
+25/06/24 13:30:52,047207 +02:00
+
+SQL> clear
+SQL> select distinct owner from dba_tables;
+
+18 filas seleccionadas.
+
+---------------------------------------------No repetir el encabezado de la columna correspondiente hasta que se haya repetido-------------------------------------------------------------------------
+set pagesize 100 
+select distinct owner from dba_tables order by 1;
+
+select username from dba_users
+minus
+select distinct owner from dba_tables order by 1;

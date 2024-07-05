@@ -1,0 +1,209 @@
+-- Conectar como SYSDBA
+sqlplus sys@localhost/XEPDB1 as sysdba
+
+-----------------------------Cuantas Tablas hay en el diccionario--------------------
+SELECT COUNT (*)
+FROM dba_objects
+WHERE object_type= 'TABLE';
+
+-----------------------------Para saber los nombres de las tablas--------------------
+SELECT object_name
+FROM dba_objects
+WHERE object_type = 'TABLE';
+-----------------------------Contar el numero de usuarios--------------------
+SELECT COUNT (*)
+FROM dba_users;
+-----------------------------Realizar una operacion matematica y que solo lo devolviera en una tabla compuesta de una fila y una columna--------------------
+SQL> SELECT ((3*4)+5)/3 FROM DUAL;
+
+((3*4)+5)/3
+-----------
+ 5,66666667
+-----------------------------Obtener la fecha actual--------------------
+SQL> SELECT SYSDATE FROM DUAL;
+
+SYSDATE
+--------
+25/06/24
+-----------------------------Obtener la fecha actual y la hora actual--------------------
+SQL> SELECT SYSTIMESTAMP FROM DUAL;
+
+SYSTIMESTAMP
+---------------------------------------------------------------------------
+25/06/24 13:30:52,047207 +02:00
+
+SQL> clear
+SQL> select distinct owner from dba_tables;
+
+18 filas seleccionadas.
+
+set pagesize 100 #No repite el encabezado de la columna correspondiente hasta que se haya repetido
+select distinct owner from dba_tables order by 1;
+
+select username from dba_users
+minus
+select distinct owner from dba_tables order by 1;
+
+
+-- Crear el usuario
+CREATE USER varo IDENTIFIED BY lEUBUNTU56;
+
+-- Asignar privilegios
+GRANT CONNECT TO varo;
+
+-- Conectarse al nuevo usuario sin necesidad de desconectarse de sys
+connect varo/lEUBUNTU56@localhost:1521/XEPDB1;
+	Le estamos dando
+		El nombre de usuario
+		La contraseña tal cual como la pusimos, aqui distingue mayusculas y minusculas
+		Maquina a la que te quieres conectar
+			A tu misma maquina- localhost
+			IPv4 - IP de la Maquina Virtual
+			ip a - IP en Linux
+			ipconfig - IP en cmd de Windows
+		Puerto utilizado por el listener de oracle, que por defecto es 1521
+		base de datos utilizado por defecto - eXpress Edition Pluggable DataBase 1
+-- Crear una tabla, pero primero hay que otorgar permisos de crear tabla desde sys al nuevo usuario, porque, palabras de Roberto, otorgar poderes a une misme solo lo hacen ciertos organismos politicos
+	En una nueva ventana
+		GRANT CREATE TABLE TO varo;
+	En la ventana donde estas conectade como el nuevo usuario
+		SQL> CREATE TABLE students (stu_Id int primary key,
+    	stu_name varchar(25), Age int, Gender char(1),
+    	Doa date, Address varchar(20));
+
+-- Si intentas insertar tal cual, no vas a poder insertar la tabla porque tienes un espacio de tabla menor a lo que necesitas para insertar, para ello, tienes que aumentar ese espacio de tabla
+	En la ventana con SYS conectada
+		ALTER USER varo QUOTA 1M ON USERS;
+	En la ventana con varo conectada
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(101, 'Joseph', 22, 'M', TO_DATE('2016-11-23', 'YYYY-MM-DD'), 'Pune')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(102, 'Maria', 35, 'M', TO_DATE('2016-11-23', 'YYYY-MM-DD'), 'New York')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(103, 'Vipul', 20, 'M', TO_DATE('2026-11-24', 'YYYY-MM-DD'), 'Miami')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(104, 'Anubhav', 31, 'M', TO_DATE('2016-11-25', 'YYYY-MM-DD'), 'Pune')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(105, 'Utkarsh', 35, 'M', TO_DATE('2016-11-23', 'YYYY-MM-DD'), 'New York')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(106, 'Carolina', 35, 'F', TO_DATE('2016-11-24', 'YYYY-MM-DD'), 'New York')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(107, 'Cecilia', 52, 'F', TO_DATE('2016-11-22', 'YYYY-MM-DD'), 'Rosario')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(108, 'Akshay', 36, 'M', TO_DATE('2016-11-23', 'YYYY-MM-DD'), 'Pune')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(109, 'Akash', 38, 'M', TO_DATE('2016-11-25', 'YYYY-MM-DD'), 'New York')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(110, 'Javier', 26, 'M', TO_DATE('1998-05-16', 'YYYY-MM-DD'), 'Madrid')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+(124, 'Michisasion', 56, 'G', TO_DATE('2016-09-21', 'YYYY-MM-DD'), 'Madrid')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(111, 'Raghav', 24, 'M', TO_DATE('2016-11-23', 'YYYY-MM-DD'), 'Detroit')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(112, 'Bianca', 24, 'F', TO_DATE('2016-11-24', 'YYYY-MM-DD'), 'Pune')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(113, 'Amnrit', 23, 'M', TO_DATE('2016-11-25', 'YYYY-MM-DD'), 'Miami')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(114, 'Andrew', 18, 'M', TO_DATE('2016-11-23', 'YYYY-MM-DD'), 'Boston')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(115, 'Ricky', 26, 'M', TO_DATE('2016-11-25', 'YYYY-MM-DD'), 'Detroit')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(116, 'Cummins', 30, 'M', TO_DATE('2016-11-24', 'YYYY-MM-DD'), 'Chicago')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(117, 'Rabada', 20, 'M', TO_DATE('2016-11-23', 'YYYY-MM-DD'), 'Boston')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(118, 'Johnson', 25, 'M', TO_DATE('2016-11-23', 'YYYY-MM-DD'), 'New York')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(119, 'Jessenia', 27, 'M', TO_DATE('2016-11-25', 'YYYY-MM-DD'), 'Boston')
+/
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(120, 'Illeana', 25, 'F', TO_DATE('2016-11-24', 'YYYY-MM-DD'), 'Chicago'); 
+
+-- Otra forma de insertar las filas es tenerlas en un documento y ejecutarlo como un sh. En SQL se denominaria, ejecutar un script
+	nano insert.sql
+	Copiar las mismas peticiones como si estuvieras en la consola
+	en sql y ejecultar la instruccion
+		@insert.sql
+
+Descargas 21.14 en Windows x64
+	Basic Light - https://download.oracle.com/otn_software/nt/instantclient/2114000/instantclient-basiclite-windows.x64-21.14.0.0.0dbru.zip
+	SQL Plus Package - https://download.oracle.com/otn_software/nt/instantclient/2114000/instantclient-sqlplus-windows.x64-21.14.0.0.0dbru.zip
+	
+Despues descomprimimos y creamos una carpeta en c llamado oracle,
+Añades el contenido del descargado a esa carpeta y pones la ruta en PATH
+	C:\oracle\instantclient_21_14
+	
+Despues, si quieres conectar a la maquina virtual tienes que localizar el archivo tnsnames.ora, el cual hay que crear en este cliente instantaneo en la ruta
+	/oracle/instantclient_21_14/network/admin
+
+Ahi, hay que modificarlo dependiendo del descriptor que quieras utilizar, que no es mas que una forma de agrupar toda la informacion acerca de la direccion de la maquina a la que te vas a conectar, el puerto utilizado por el listener y la base de datos usada
+Ejemplo de tnsnames con la maquina virtual cuya ip es 192.168.0.162
+
+XE =
+	(DESCRIPTION =
+		(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.162)(PORT = 1521))
+		(CONNECT DATA =
+			(SERVER = DEDICATED)
+			(SERVICE_NAME = XE)
+		)
+	)
+	
+XEPDB1 =
+	(DESCRIPTION =
+		(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.162)(PORT = 1521))
+		(CONNECT DATA =
+			(SERVER = DEDICATED)
+			(SERVICE_NAME = XEPDB1)
+		)
+	)
+
+LISTENER_XE =
+	(ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.162)(PORT = 1521))
+	
+Una vez armado el tnsnames, hay que entrar en oracle linux para habilitar el puerto en el firewall
+	sudo firewall-cmd --zone=public --add-port=1521/tcp --permanent
+	sudo firewall-cmd --reload
+	
+Para conectarse desde el cmd
+	c:\Users\Alvaro>sqlplus varo/lEUBUNTU56@192.168.0.162:1521/XEPDB1 as sysdba
+	c:\Users\Alvaro>sqlplus varo/lEUBUNTU56@192.168.0.162:1521/XE as sysdba
+	c:\Users\Alvaro>sqlplus Roberto/Roberto$2024@192.168.0.110:1521/XEPDB1 as sysdba

@@ -1,0 +1,70 @@
+Instalacion de Oracle 21c XE en Windows
+	Quitar el PATH de Oracle Instant Client
+	Descargar Oracle Database 21c para Windows
+		Recuerda hacerlo en un usuario que no tenga ñ o caracteres especiales como tildes y cosis asi.
+	Hay que añadir los ejecutables en el PATH, por eso quitamos la anterior ruta
+		C:\app\user\product\21c\homes\OraDB21Home1\network\admin
+Hay que conectarse al servidor de Oracle Linux a traves del cmd utilizando este cliente
+	Abrir el New Manager (Aplicaciones del nuevo paquete instalado)
+		Nomenclatura de Servicios
+			Darle al (+)
+				Nombre de Servicio de Red - Alvaro
+				Protocolo utilizado - TCP/IP
+				Nombre del Host - 192.168.0.162
+				Numero de Puerto - 1521
+				Nombre del Servicio - XEPDB1
+				Tipo de Conexion - Servidor Dedicado
+			Prueba de Conexion - Cambiar de Conexion
+				Nombre de Usuario - SYSTEM
+				Contraseña - La indicada al instalar - lEUBUNTU56
+
+c:\Users\Alvaro>sqlplus varo/lEUBUNTU56@Alvaro as sysdba
+	Deberia conectarte de golpe gracias a esto
+		Despues tienes que poner SYSTEM lEUBUNTU56
+--------------------Crear nuevo usuario
+	CREATE USER hr IDENTIFIED BY hr;
+--------------------Darle espacio para poder añadir registros a las tablas
+	ALTER USER hr QUOTA 1M ON Users;
+--------------------Otorgar permisos de conexion y de creacion de tablas
+	GRANT CONNECT, CREATE TABLE TO hr
+
+--------------------------------MariaDB-----------------------------------------
+Descargar MariaDB Server
+Poner el modo de vista de mostrar las extensiones de los archivos
+Abrir my.ini
+--------------------Conectarse a MariaDB--------------------
+	c:\Program Files\MariaDB 11.4\bin> mariadb -u root -p -h localhost -P 3333
+	Nombre de la Sesion - root
+--------------------Desconectarse de MariaDB--------------------
+c:\Windows\System32>net stop MariaDB
+
+--------------------Deshabilitar o Habilitar el servicio de MariaDB--------------------
+Entrar en w3 school y publicar en internet la tabla que creamos con MariaDB, como la creamos con usuario root y sin contraseña, hay que editar el documento students.php para que devuelva un tipo de informacion determinado
+
+	<?php
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "test";
+
+	// Create connection
+	$conn = mysqli_connect($servername, $username, $password, $dbname);
+	// Check connection
+	if (!$conn) {
+	  die("Connection failed: " . mysqli_connect_error());
+	}
+
+	$sql = "SELECT * FROM estudiantes";
+	$result = mysqli_query($conn, $sql);
+
+	if (mysqli_num_rows($result) > 0) {
+	  // output data of each row
+	  while($row = mysqli_fetch_assoc($result)) {
+		echo "id: " . $row["id_estudiante"]. " - Name: " . $row["nombre_estudiante"]. "<br>";
+	  }
+	} else {
+	  echo "0 results";
+	}
+
+	mysqli_close($conn);
+	?>

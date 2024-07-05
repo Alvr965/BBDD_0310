@@ -1,0 +1,107 @@
+root@varo-VirtualBox:/home/varo# apt install curl
+root@varo-VirtualBox:/home/varo# curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg
+root@varo-VirtualBox:/home/varo# curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
+root@varo-VirtualBox:/home/varo# curl -fsSL https://packages.microsoft.com/config/ubuntu/22.04/mssql-server-2022.list | sudo tee /etc/apt/sources.list.d/mssql-server-2022.list
+root@varo-VirtualBox:/home/varo# sudo apt-get install -y mssql-server
+
+root@varo-VirtualBox:/home/varo# sudo /opt/mssql/bin/mssql-conf setup
+Elija una edición de SQL Server:
+
+  1) Evaluation (gratis, sin derechos de uso en producción, límite de 180 días)
+  2) Developer (gratis, sin derechos de uso en producción)
+  3) Express (gratis)
+  4) Web (DE PAGO)
+  5) Standard (DE PAGO)
+  6) Enterprise (DE PAGO) - CPU core utilization restricted to 20 physical/40 hyperthreaded
+  7) Enterprise Core (DE PAGO) - CPU core utilization up to Operating System Maximum
+  8) He comprado una licencia mediante un canal de ventas al por menor y tengo una clave de producto.
+  9) Standard (Billed through Azure) - Use pay-as-you-go billing through Azure.
+ 10) Enterprise Core (Billed through Azure) - Use pay-as-you-go billing through Azure.
+
+Encontrará información sobre las ediciones en
+
+https://go.microsoft.com/fwlink/?LinkId=2109348&clcid=0x40a
+
+Para usar las ediciones DE PAGO de este software es necesaria una licencia distinta mediante un
+Programa Licencias por Volumen de Microsoft.
+Al elegir la edición DE PAGO, confirma que dispone del
+número adecuado de licencias para instalar y ejecutar este software.
+By choosing an edition billed Pay-As-You-Go through Azure, you are verifying 
+that the server and SQL Server will be connected to Azure by installing the 
+management agent and Azure extension for SQL Server.
+
+
+
+Especifique su edición(1-10): 3
+
+Los términos de licencia de este producto se pueden encontrar en
+/usr/share/doc/mssql-server or downloaded from: https://aka.ms/useterms
+
+La declaración de privacidad se puede consultar en:
+https://go.microsoft.com/fwlink/?LinkId=853010&clcid=0x40a
+
+¿Acepta los términos de licencia? [Yes/No]:y
+
+Elija el idioma de SQL Server:
+(1) English
+(2) Deutsch
+(3) Español
+(4) Français
+(5) Italiano
+(6) 日本語
+(7) 한국어
+(8) Português
+(9) Руѝѝкий
+(10) 中文 – 简体
+(11) 中文 （繝体）
+
+Escriba una opción entre la 1 y la 11: 3
+Escriba la contraseña de administrador del sistema de SQL Server: 
+Confirme la contraseña de administrador del sistema de SQL Server: 
+Configurando SQL Server...
+
+El PID de licencias se ha procesado correctamente. La nueva edición es [Express Edition].
+ForceFlush is enabled for this instance. 
+ForceFlush feature is enabled for log durability.
+Created symlink /etc/systemd/system/multi-user.target.wants/mssql-server.service → /lib/systemd/system/mssql-server.service.
+La configuración se ha completado correctamente. SQL Server se está iniciando.
+
+root@varo-VirtualBox:/home/varo# systemctl status mssql-server --no-pager
+● mssql-server.service - Microsoft SQL Server Database Engine
+     Loaded: loaded (/lib/systemd/system/mssql-server.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2024-07-02 10:23:29 CEST; 36s ago
+
+root@varo-VirtualBox:/home/varo# ls /var/opt/mssql/
+data  log  mssql.conf  secrets
+
+root@varo-VirtualBox:/home/varo# sudo nano /var/opt/mssql/mssql.conf
+	Aqui poner
+		[network]
+		tcpport=1433
+
+root@varo-VirtualBox:/home/varo# sudo systemctl restart mssql-server
+root@varo-VirtualBox:/home/varo# sudo systemctl status mssql-server
+● mssql-server.service - Microsoft SQL Server Database Engine
+     Loaded: loaded (/lib/systemd/system/mssql-server.service; enabled; vendor >
+     Active: active (running) since Tue 2024-07-02 10:37:41 CEST; 7s ago
+
+root@varo-VirtualBox:/home/varo# sudo ss -tlnp | grep sqlservr
+LISTEN 0      128        127.0.0.1:1431      0.0.0.0:*    users:(("sqlservr",pid=10319,fd=116))    
+LISTEN 0      128          0.0.0.0:1433      0.0.0.0:*    users:(("sqlservr",pid=10319,fd=66))     
+LISTEN 0      128            [::1]:1431         [::]:*    users:(("sqlservr",pid=10319,fd=109))    
+LISTEN 0      128                *:1433            *:*    users:(("sqlservr",pid=10319,fd=65))     
+
+varo@varo-VirtualBox:~$ sudo ufw allow 1433/tcp
+Reglas actualizadas
+Reglas actualizadas (v6)
+
+varo@varo-VirtualBox:~$ sudo ufw reload
+El cortafuegos no está activado (omitiendo recarga)
+
+varo@varo-VirtualBox:~$ wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+varo@varo-VirtualBox:~$ sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/22.04/prod.list)"
+varo@varo-VirtualBox:~$ sudo apt update
+varo@varo-VirtualBox:~$ sudo apt install mssql-tools
+varo@varo-VirtualBox:~$ echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
+varo@varo-VirtualBox:~$ source ~/.bashrc
+varo@varo-VirtualBox:~$ sqlcmd -S localhost -U sa -P lEUBUNTU56

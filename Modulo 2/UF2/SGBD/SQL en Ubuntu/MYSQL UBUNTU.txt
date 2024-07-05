@@ -1,0 +1,141 @@
+sudo apt update
+sudo apt upgrade
+sudo apt install mysql-server
+mysql -V
+Importar archivo de windows a ubuntu
+chmod 777 /home/sql
+scp C:\xampp\mysql\bin\ifct0310.sql varo@192.168.11.46:/home/sql/
+cd /home/sql
+sudo mysql -u root -p
+source ifct0310.sql
+
+mysql> select COUNT(*)
+    -> FROM information_schema.tables
+    -> ;
++----------+
+| COUNT(*) |
++----------+
+|      330 |
++----------+
+1 row in set (0,00 sec)
+
+mysql> select table_schema, COUNT(*) from information_schema.tables group by table_schema;
+
++--------------------+----------+
+| TABLE_SCHEMA       | COUNT(*) |
++--------------------+----------+
+| mysql              |       37 |
+| information_schema |       79 |
+| performance_schema |      111 |
+| sys                |      101 |
+| ifct0310           |        2 |
++--------------------+----------+
+5 rows in set (0,00 sec)
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+
+varo@varo-VirtualBox:~$ sudo mysql_secure_installation
+
+Securing the MySQL server deployment.
+
+Enter password for user root: 
+
+VALIDATE PASSWORD COMPONENT can be used to test passwords
+and improve security. It checks the strength of password
+and allows the users to set only those passwords which are
+secure enough. Would you like to setup VALIDATE PASSWORD component?
+
+Press y|Y for Yes, any other key for No: Y
+
+There are three levels of password validation policy:
+LOW    Length >= 8
+MEDIUM Length >= 8, numeric, mixed case, and special characters
+STRONG Length >= 8, numeric, mixed case, special characters and dictionary file
+
+Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 2
+
+Using existing password for root.
+Estimated strength of the password: 50 
+Change the password for root ? ((Press y|Y for Yes, any other key for No) : n
+ ... skipping.
+ 
+By default, a MySQL installation has an anonymous user,
+allowing anyone to log into MySQL without having to have
+a user account created for them. This is intended only for
+testing, and to make the installation go a bit smoother.
+You should remove them before moving into a production
+environment.
+
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+Normally, root should only be allowed to connect from
+'localhost'. This ensures that someone cannot guess at
+the root password from the network.
+
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
+
+Success.
+
+By default, MySQL comes with a database named 'test' that
+anyone can access. This is also intended only for testing,
+and should be removed before moving into a production
+environment.
+
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
+
+ - Dropping test database...
+
+Success.
+
+ - Removing privileges on test database...
+
+Success.
+
+Reloading the privilege tables will ensure that all changes
+made so far will take effect immediately.
+
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+All done! 
+
+sudo mysql -u root -p
+
+mysql> CREATE USER 'varo'@'localhost' IDENTIFIED BY 'Varo$2024';
+Query OK, 0 rows affected (0,02 sec)
+
+mysql>GRANT CREATE, ALTER, DROP, INSERT, UPDATE, INDEX, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'varo'@'localhost' WITH GRANT OPTION;
+
+#ahora se puede conectar con mysql con el nombre del usuario (varo) sin el sudo
+
+mysql -u varo -p
+
+Enter password:Varo$2024
+
+
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+#cambiar en nano el  bind address a 0.0.0.0.
+sudo systemctl restart mysql
+sudo mysql -u root -p
+CREATE USER 'windows0506'@'192.168.11.16' IDENTIFIED BY 'Windows$2024';
+GRANT ALL PRIVILEGES ON nombre_base_datos.* TO 'nuevo_usuario'@'localhost';
+	Si aun asi no te deja, da privilegios de todo
+		GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'windows0506'@'192.168.11.16' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+sudo ufw allow from 192.168.11.46 to any port 3306
+sudo ufw allow 3306
+
+Instalar el cliente de mysql en windows
+\connect windows0506@192.168.11.46
+Windows$2024
+
+Another Prueba
+CREATE USER 'usuario'@% identified by 'User$567'
+GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'usuario'@'%' WITH GRANT OPTION;
+sudo ufw disable
+FLUSH PRIVILEGES;
+\connect usuario@192.168.11.80
+User$567
+
+

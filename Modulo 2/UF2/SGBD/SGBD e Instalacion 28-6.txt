@@ -1,0 +1,76 @@
+------------------------Instalacion de XAMPP--------------------------
+https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/8.2.12/xampp-windows-x64-8.2.12-0-VS16-installer.exe
+
+Una vez ahi, tienes que encender el servidor de apache y de mysql, cuidado con la conexion de mysql que tienes que darle a realizar cambios como administracion.
+
+--------------------------Conexion a MySQL desde PHP--------------------------
+Mirar archivo MYSQLHTML.php
+
+--------------------------Conexion a SQLite desde PHP--------------------------
+Mirar archivo SQLiteHTML.php
+
+--------------------------Conexion a Oracle desde PHP--------------------------
+Mirar archivo Oracle.php (Cuidado con la contraseña y a la maquina a la que te estas conectando (Pone Roberto, el cual tiene host=192.168.11.110, port=1521, nombre del servicio=XEPDB1
+	Posteriormente, tienes que irte a la ruta xampp/php/php.ini
+		Quitarle el ';' a la linea que pone ';extension=oci8_19'
+	Siempre que modifiques el archivo php.ini, tienes que reiniciar el servidor Apache de XAMPP
+
+--------------------------Conexion a SQLite, Oracle, MySQL desde PHP--------------------------
+Mirar archivo BBDD.php
+
+--------------------------------------------ODBC----------------------------------------------
+Conceptos Basicos
+	https://learn.microsoft.com/es-es/cpp/data/odbc/odbc-basics?view=msvc-170
+Lista de Controladores
+	https://learn.microsoft.com/es-es/cpp/data/odbc/odbc-driver-list?view=msvc-170
+	Tambien existe uno para MariaDB en su pagina
+	
+---------------------------------Oracle en ODBC para Windows---------------------------------
+Tirar del instant client que descargaste o 
+	Descargar el paquete basico https://download.oracle.com/otn_software/nt/instantclient/2114000/instantclient-basic-windows.x64-21.14.0.0.0dbru.zip
+Descargar la carpeta ODBC (https://download.oracle.com/otn_software/nt/instantclient/2114000/instantclient-odbc-windows.x64-21.14.0.0.0dbru.zip) y descomprimirla para dumpear su contenido en c:oracle/instant_client_21_14 (La tienes que crear tu)
+	Hay que añadir la ubicacion de los ejecutables de ODBC como variable del entorno PATH, pero del SISTEMA, NO SOLO DEL USUARIO
+		El proceso es igual que cuando manipulamos con instant client, solo que hay que añadir la direccion c:oracle/instant_client_21_14 en PATH y reiniciar el equipo anfitrion entero.
+	Toca configurar los drivers
+		Abre Administrador de origen de datos de ODBC (64 bits)
+			DNS Sistema
+				Agregar
+					Oracle in instant_client_21_14 (O en oracle si lo has dumpeado en c:/oracle
+						Name: El que te de la gana
+						Descripcion: Conexion al servidor de Oracle Linux
+						Service Name: 192.168.11.110/XEPDB1 (Nos estamos conectando al ordenador de Roberto cual sanguijuelas
+						Username: HR
+							Test Connection
+								Dejas todo y en password pones HR (CUIDADO CON LAS MAYUSCULAS, AQUI SI IMPORTA, EN EL USUARIO NO)
+	Volvemos a tocar lo que es php.ini, pero esta vez para descomentar las lineas que hacen referencia a:
+		ODBC
+		PDO_ODBC
+
+El resultado se encuentra en ODBCOracleHR.php
+
+EJERCICIO MARAVILLOSO AQUI SE HA INVENTADO EL AMIGO ROBERTO, AHORA TENEMOS QUE REALIZAR LA MISMA CONSULTA AÑADIENDO LOS DRIVERS ODBC A MARIADB, GESTOR QUE SE ME HA ROTO DOS VECES
+
+Ejem
+
+-------------------------ODBC drivers para MariaDB para windows-------------------------------
+
+Descargar ODBC para MariaDB - Recuerda escoger la version x64 de Windows (https://mariadb.com/downloads/connectors/connectors-data-access/odbc-connector) 
+
+Toca configurar los drivers
+		Abre Administrador de origen de datos de ODBC (64 bits)
+			DNS Sistema
+				Agregar MariaDB ODBC (No, no tiene otro nombre)
+					Nombre Servicio: MariaDB
+						Nombre Servidor: 192.168.11.110 (Parasitamos a Roberto)
+						Puerto: 3306 (El por defecto de MySQL)
+						User Name: root
+						Password:
+						Database: hr
+				En TLS Settings, desmarca el cuadradito de Verify Certificate, tienes que avanzar bastante en las opciones, desmarcar y volver a probar la conexion
+				
+La unica diferencia de ODBCMariaDBHR.php con ODBCOracleHR.php es el cambio de usuario, de contraseña y de dsn
+	user: root frente a HR
+	password: "" frente a HR
+	dsn: oracle21c frente a MariaDB
+	
+		

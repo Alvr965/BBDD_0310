@@ -1,0 +1,142 @@
+varo@varo-VirtualBox:~$ sudo apt install unixodbc unixodbc-dev odbcinst mariadb-server mariadb-client -y
+Descargar los drivers de odbc de MariaDB
+cd ./Descargas
+sudo apt install mariadb-connector-odbc-3.2.2-ubu2204-amd64.deb
+
+varo@varo-VirtualBox:~$ sudo mysql_secure_installation
+
+NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+In order to log into MariaDB to secure it, we'll need the current
+
+password for the root user. If you've just installed MariaDB, and
+
+haven't set the root password yet, you should just press enter here.
+
+Enter current password for root (enter for none): 
+
+OK, successfully used password, moving on...
+
+Setting the root password or using the unix_socket ensures that nobody
+can log into the MariaDB root user without the proper authorisation.
+
+You already have your root account protected, so you can safely answer 'n'.
+
+Switch to unix_socket authentication [Y/n] n
+ ... skipping.
+You already have your root account protected, so you can safely answer 'n'.
+Change the root password? [Y/n] n
+ ... skipping.
+
+By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them.  This is intended only for testing, and to make the installation
+go a bit smoother.  You should remove them before moving into a
+production environment.
+
+Remove anonymous users? [Y/n] y
+ ... Success!
+
+Normally, root should only be allowed to connect from 'localhost'.  This
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] y
+ ... Success!
+
+By default, MariaDB comes with a database named 'test' that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] 
+ - Dropping test database...
+ ... Success!
+ - Removing privileges on test database...
+ ... Success!
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] y
+ ... Success!
+
+Cleaning up...
+
+All done!  If you've completed all of the above steps, your MariaDB
+installation should now be secure.
+
+Thanks for using MariaDB!
+
+Tienes que modificar obdcinst.ini
+	sudo nano /etc/odbcinst.ini
+		[MariaDB]
+		Description=MariaDB
+		Driver=/usr/lib/x86_64-linux-gnu/odbc/libmaodbc.so
+Tienes que modificar obdc.ini
+	sudo nano /etc/odbc.ini
+		[MariaDB]
+			Description=MariaDB ODBC Connection
+			Driver=/usr/lib/x86_64-linux-gnu/odbc/libmaodbc.so
+			Server=localhost
+			User=varo
+			Password=lEUBUNTU56
+			Database=test
+			Port=3306
+
+root@varo-VirtualBox:/home/varo# mysql -u root -p #Crea la base de datos que has puesto en odbc.ini
+												   crea una tabla con una unica columna para que esta exista al salir de la sesion
+												   Da permisos de todo al usuario que has puesto en odbc.ini en el servidor que hayas puesto identificado por la contraseña que hayas puesto.
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 39
+Server version: 10.6.18-MariaDB-0ubuntu0.22.04.1 Ubuntu 22.04
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database test;
+Query OK, 1 row affected (0,000 sec)
+
+MariaDB [(none)]> use test;
+Database changed
+
+MariaDB [test]> create table prueba (columna int);
+Query OK, 0 rows affected (0,008 sec)
+
+MariaDB [test]> GRANT ALL PRIVILEGES ON *.* TO 'varo'@'localhost' IDENTIFIED BY
+'lEUBUNTU56';
+Alternativa 
+	GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'varo'@'localhost' WITH GRANT OPTION;
+Query OK, 0 rows affected (0,001 sec)
+
+MariaDB [test]> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0,000 sec)
+
+MariaDB [test]> .exit
+Bye
+
+root@varo-VirtualBox:/home/varo# systemctl restart mariadb
+
+root@varo-VirtualBox:/home/varo# odbcinst -j
+unixODBC 2.3.9
+DRIVERS............: /etc/odbcinst.ini
+SYSTEM DATA SOURCES: /etc/odbc.ini
+FILE DATA SOURCES..: /etc/ODBCDataSources
+USER DATA SOURCES..: /root/.odbc.ini
+SQLULEN Size.......: 8
+SQLLEN Size........: 8
+SQLSETPOSIROW Size.: 8
+
+root@varo-VirtualBox:/home/varo# isql -v MariaDB varo lEUBUNTU56
++---------------------------------------+
+| Connected!                            |
+|                                       |
+| sql-statement                         |
+| help [tablename]                      |
+| quit                                  |
+|                                       |
++---------------------------------------+
+SQL> exit
+
+
+
+

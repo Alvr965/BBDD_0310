@@ -1,0 +1,289 @@
+----------------------------------INICIO---------------------
+-LOG COMO SUPERUSARIO: su o sudo -s
+-cambiar root con editor:
+			visudo --#modificar root#
+				root	ALL(ALL)	ALL
+				mauro	ALL(ALL)	ALL
+-guardar, salir de editor
+
+
+------------------ESPACIO DISPONIBLE PARA INSTALAR Y PARTICION DE VOL. LOGICOS----------------
+
+[root@localhost mauro]# lsblk
+NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda           8:0    0   20G  0 disk 
+├─sda1        8:1    0    1G  0 part /boot
+└─sda2        8:2    0   19G  0 part 
+  ├─ol-root 252:0    0   36G  0 lvm  /
+  └─ol-swap 252:1    0    2G  0 lvm  [SWAP]
+sdb           8:16   0   20G  0 disk 
+└─ol-root   252:0    0   36G  0 lvm  /
+sdc           8:32   0   20G  0 disk 
+sr0          11:0    1 50,4M  0 rom  /run/media/mauro/VBox_GAs_7.0.18
+[root@localhost mauro]# pvcreate /dev/sdc
+  Physical volume "/dev/sdc" successfully created.
+[root@localhost mauro]# pvs
+  PV         VG Fmt  Attr PSize   PFree   
+  /dev/sda2  ol lvm2 a--  <19,00g       0 
+  /dev/sdb   ol lvm2 a--  <20,00g 1016,00m
+  /dev/sdc      lvm2 ---   20,00g   20,00g
+[root@localhost mauro]# vgs
+  VG #PV #LV #SN Attr   VSize  VFree   
+  ol   2   2   0 wz--n- 38,99g 1016,00m
+[root@localhost mauro]# vgextend ol /dev/sdc
+  Volume group "ol" successfully extended
+[root@localhost mauro]# vgs
+  VG #PV #LV #SN Attr   VSize   VFree  
+  ol   3   2   0 wz--n- <58,99g <20,99g
+[root@localhost mauro]# lvs
+  LV   VG Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root ol -wi-ao---- 36,00g                                                    
+  swap ol -wi-ao----  2,00g                                                    
+[root@localhost mauro]# lvdisplay ol
+  --- Logical volume ---
+  LV Path                /dev/ol/swap
+  LV Name                swap
+  VG Name                ol
+  LV UUID                l1qDYf-rhBU-x4OB-TkoZ-cqFV-y1jC-fgwoUH
+  LV Write Access        read/write
+  LV Creation host, time localhost.localdomain, 2024-06-25 11:39:47 -0400
+  LV Status              available
+  # open                 2
+  LV Size                2,00 GiB
+  Current LE             512
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           252:1
+   
+  --- Logical volume ---
+  LV Path                /dev/ol/root
+  LV Name                root
+  VG Name                ol
+  LV UUID                8Jg1dS-PK0Y-LbI2-0Xk5-mq3C-QogJ-3ChEtO
+  LV Write Access        read/write
+  LV Creation host, time localhost.localdomain, 2024-06-25 11:39:48 -0400
+  LV Status              available
+  # open                 1
+  LV Size                36,00 GiB
+  Current LE             9216
+  Segments               2
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           252:0
+   
+[root@localhost mauro]# lvextend -L36G /dev/ol/root
+  New size (9216 extents) matches existing size (9216 extents).
+[root@localhost mauro]# lvs
+  LV   VG Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root ol -wi-ao---- 36,00g                                                    
+  swap ol -wi-ao----  2,00g                                                    
+[root@localhost mauro]# xfs_growfs /dev/mapper/ol-root
+meta-data=/dev/mapper/ol-root    isize=512    agcount=9, agsize=1113856 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=1, sparse=1, rmapbt=0
+         =                       reflink=1    bigtime=0 inobtcount=0
+data     =                       bsize=4096   blocks=9437184, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0, ftype=1
+log      =internal log           bsize=4096   blocks=2560, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+[root@localhost mauro]# 
+
+
+--------------------INSTALADO ORACLE LINUX-------------
+
+
+-DESCARGAR PREINSTALADOR VER.8 LINUX, DEL LINK DE ORACLE EN EL EXPLORADOR DE LA MAQUINA VIRTUAL (revisar conexión antes)
+-QUEDARA EN CARPETA "Descargas"
+
+#Con 4 gigas de RAM, 4 nucleos y un disco duro de 50 gigas. He creado esta maravillosa maquina virtual
+#Vete a drive, carpeta compartida, descarga el oracle database de LINUX y se ira a Descargas
+cd /home/varo/Descargas
+ls
+	oracle-database-xe-21c-1.0-1.ol8.x86_64.rpm
+	Asegurate que tienes la conexion cableada
+curl -O https://yum.oracle.com/RPM-GPG-KEY-oracle-ol8
+rpm --import RPM-GPG-KEY-oracle-ol8
+dnf -y install oracle-database-preinstall-21c
+cd /home/varo/Descargas
+dnf -y install oracle-database-xe-21c-1.0-1.ol8.x86_64.rpm
+/etc/init.d/oracle-xe-21c configure
+	Specify a password to be used for database accounts. Oracle recommends that the password entered should be at least 8 characters in length, contain at least 1 uppercase character, 1 lower case character and 1 digit [0-9]. Note that the same password will be used for SYS, SYSTEM and PDBADMIN accounts:
+		Confirm the password: lEUBUNTU56
+		Configuring Oracle Listener.
+		Listener configuration succeeded.
+		Configuring Oracle Database XE.
+		Introduzca la contraseña de usuario SYS: 
+		***********
+		lEUBUNTU56
+		Introduzca la contraseña de usuario SYSTEM: 
+		***********
+		Introduzca la contraseña de usuario de PDBADMIN: 
+		********* 
+
+	Creación de la base de datos terminada. Consulte los archivos log de /opt/oracle/cfgtoollogs/dbca/XE
+	 para obtener más información.
+	Información de Base de Datos:
+	Nombre de la Base de Datos Global:XE
+	Identificador del Sistema (SID):XE
+	Para obtener información detallada, consulte el archivo log "/opt/oracle/cfgtoollogs/dbca/XE/XE.log".
+
+	Connect to Oracle Database using one of the connect strings:
+		 Pluggable database: localhost.localdomain/XEPDB1
+		 Multitenant container database: localhost.localdomain
+	Use https://localhost:5500/em to access Oracle Enterprise Manager for Oracle Database XE
+
+En localhost:5000/em hay que utilizar
+	User - SYSTEM
+	Contraseña - lEUBUNTU56
+	Container - XEPDB1
+
+[varo@localhost ~]$ export ORACLE_SID=XE
+[varo@localhost ~]$ export ORAENV_ASK=NO
+[varo@localhost ~]$ . /opt/oracle/product/21c/dbhomeXE/bin/oraenv
+ORACLE_BASE environment variable is not being set since this
+information is not available for the current user ID varo.
+You can set ORACLE_BASE manually if it is required.
+Resetting ORACLE_BASE to its previous value or ORACLE_HOME
+The Oracle base has been set to /opt/oracle/product/21c/dbhomeXE
+[varo@localhost ~]$ sqlplus SYS@localhost/XEPDB1 as sysdba
+
+SQL>
+
+-------------PARA INSTALAR SQLPLUS-WRAP----------
+
+sudo su
+rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo yum install rlwrap
+[varo@localhost ~]$ export ORACLE_SID=XE
+[varo@localhost ~]$ export ORAENV_ASK=NO
+[varo@localhost ~]$ . /opt/oracle/product/21c/dbhomeXE/bin/oraenv
+ORACLE_BASE environment variable is not being set since this
+information is not available for the current user ID varo.
+You can set ORACLE_BASE manually if it is required.
+Resetting ORACLE_BASE to its previous value or ORACLE_HOME
+The Oracle base has been set to /opt/oracle/product/21c/dbhomeXE
+[varo@localhost ~]$ rlwrap sqlplus sys@localhost/XEPDB1 as sysdba
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Tue Jun 25 03:40:24 2024
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter password: 
+ERROR:
+ORA-01017: nombre de usuario/contrase?a no validos; conexion denegada
+
+
+Enter user-name: SYSTEM
+Enter password: lEUBUNTU56
+Hora de Ultima Conexion Correcta: Mar Jun 25 2024 03:27:21 -04:00
+
+Conectado a:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+-----------------------REINICIAR E INICIAR SQLPLUS--------------
+
+systemctl daemon-reload
+systemctl enable oracle-xe-21c
+systemctl start oracle-xe-21c
+
+
+-----------------------CONFIGURAR BASH PARA INICIAR DIRECTAMENTE SQLPLUS-------
+
+nano .bashrc
+
+#AGREGO EN ULTIMA FILA EXPORTAR VARIABLES Y UN ALIAS PARA EL WRAP
+export ORACLE_SID=XE
+export ORAENV_ASK=NO
+. /opt/oracle/product/21c/dbhomeXE/bin/oraenv
+alias sqlplus="rlwrap sqlplus"
+
+-guardo y cierro
+-reinicio consola
+
+
+--------------------EN CASO DE ERROR DE UBICACION DEL PATH!!!-------
+
+Pasos para Resolver el Problema
+Elimina el Alias Temporalmente:
+Elimina temporalmente el alias para sqlplus para que podamos verificar si sqlplus funciona directamente.
+
+bash
+Copiar código
+unalias sqlplus
+Configura las Variables de Entorno Nuevamente:
+
+bash
+Copiar código
+export ORACLE_HOME=/opt/oracle/product/21c/dbhomeXE
+export PATH=$ORACLE_HOME/bin:$PATH
+Verifica que sqlplus Ahora Está en el PATH:
+
+bash
+Copiar código
+which sqlplus
+La salida debería ser:
+
+plaintext
+Copiar código
+/opt/oracle/product/21c/dbhomeXE/bin/sqlplus
+Intenta Ejecutar sqlplus Nuevamente:
+
+bash
+Copiar código
+sqlplus / as sysdba
+Hacer los Cambios Permanentes
+Para hacer que los cambios sean permanentes:
+
+Edita el Archivo .bashrc o .bash_profile:
+
+bash
+Copiar código
+nano ~/.bashrc
+Añade las Siguientes Líneas:
+
+bash
+Copiar código
+export ORACLE_HOME=/opt/oracle/product/21c/dbhomeXE
+export PATH=$ORACLE_HOME/bin:$PATH
+Aplica los Cambios:
+
+bash
+Copiar código
+source ~/.bashrc
+Si Deseas Usar rlwrap
+Si prefieres seguir usando rlwrap con sqlplus (esto proporciona funcionalidades adicionales como el historial de comandos), asegúrate de que el alias esté configurado correctamente después de haber añadido sqlplus al PATH.
+
+Edita el Archivo .bashrc:
+
+bash
+Copiar código
+nano ~/.bashrc
+Añade o Ajusta el Alias:
+
+bash
+Copiar código
+alias sqlplus='rlwrap /opt/oracle/product/21c/dbhomeXE/bin/sqlplus'
+Aplica los Cambios:
+
+bash
+Copiar código
+source ~/.bashrc
+
+-reiniciar consola
+-------------------------------------
+
+AHORA YA SE PUEDE INGRESAR CON EL ALIAS directamente y quedara CONFIGURADO SQLPLUS CON WRAP:
+
+sqlplus sys@localhost/XEPDB1 as sysdba
+
+SQL>
+
+
+----------------FIN------------------
