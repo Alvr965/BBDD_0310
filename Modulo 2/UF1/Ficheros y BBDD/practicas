@@ -1,0 +1,56 @@
+
+<p><strong>Práctica para la implementación de las organizaciones más
+importantes vistas en la Parte I del programa</strong></p>
+<ul>
+<li><strong>PR-F-001</strong>. Fichero 1 (<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocw-practicasenunciado.pdf/view">PDF</a>).
+Enunciado de la práctica de ficheros.</li>
+<li><strong>PR-F-002.</strong> Fichero&nbsp;2 (<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocwplantilladememoria.pdf/view">PDF</a>).
+Plantilla de la memoria que debe ser cumplimentado por el alumno según
+va desarrollando cada uno de los hitos de la práctica.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Transparencias de apoyo para el desarrollo de
+práctica</strong></p>
+<ul>
+<li><strong>PR-F-003</strong>. Fichero&nbsp;3 (<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocwp11.pdf/view">PDF</a>).
+Transparencias de apoyo para la realización del primer hito de la
+práctica.</li>
+<li><strong>PR-F-004</strong>. Fichero&nbsp;4 (<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocwp12.pdf/view">PDF</a>).
+Transparencias de apoyo para la realización del segundo hito de la
+práctica.</li>
+<li><strong>PR-F-005</strong>. Fichero&nbsp;5 (<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocwp14.pdf/view">PDF</a>).
+Transparencias de apoyo para la realización del tercer hito de la
+práctica.</li>
+<li><strong>PR-F-006</strong>. Fichero&nbsp;6 (<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocwp15.pdf/view">PDF</a>).
+Transparencias de apoyo para la realización del cuarto hito de la
+práctica.</li>
+<li><strong>PR-F-007</strong>. Fichero&nbsp;7 (<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocwp18.pdf/view">PDF</a>).
+Transparencias de apoyo para la realización del quinto hito de la
+práctica.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Drivers en Delphi Pascal</strong></p>
+<ul>
+<li><strong>PR-F-008</strong>. Fichero&nbsp;8 (<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocwdelphi.zip/view">ZIP</a>).
+Simuladores de soporte serial, secuencial y direccionado.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>Fichero de datos inicial con organización serial consecutiva
+y registros de longitud fija</strong></p>
+<ul>
+<li><strong>PR-F-009.</strong> Fichero&nbsp;9 (<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/malos_sin_tildes.txt/view">TXT</a>).
+Simuladores de soporte serial, secuencial y direccionado. 
+
+<p><strong>&nbsp;</strong></p>
+</li>
+</ul>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-6726970-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>

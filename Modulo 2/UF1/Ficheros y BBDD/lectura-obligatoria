@@ -1,0 +1,45 @@
+
+<p style="margin: 0cm 0cm 0pt 18pt;"><u>BIBLIOGRAFIA BASICA</u></p>
+<p style="margin: 0cm 0cm 0pt 18pt;">&nbsp;</p>
+<p style="margin: 0cm 0cm 0pt 18pt;"><strong>PARTE I</strong></p>
+<ul>
+<li>
+<div><strong>LO-B-001</strong>. Folk, M. J. &amp; Zoellick, B. (1993).
+"Estructuras de archivos". Ed. Addison Wesley.</div>
+</li>
+<li>
+<div><strong>LO-B-002</strong>. Folk, M. J., Zoellick, B, &amp;
+Riccardi, G. (1998). "File structures: an object-oriented approach with
+C++". Ed. Addison Wesley.</div>
+</li>
+<li>
+<div><strong>LO-B-003.</strong> Elmasri, R. y Navathe, S.B. Sistemas de
+Bases de Datos, 4ª edición, Pearson Addison-Wesley, Jul 2003.</div>
+</li>
+<li><strong>LO-B-004.</strong> Dolores Cuadra, Elena Castro, Ana
+Iglesias, Paloma Martínez, Javier Calle, César de Pablo, Harith
+Al-Jumaily y Lourdes Moreno. Desarrollo de Bases de Datos: casos
+prácticos desde el análisis a la implementación. RAMA 2007.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;PARTE II</strong></p>
+<ul>
+<li><strong>LO-B-005</strong>. Dolores Cuadra, Elena Castro, Ana
+Iglesias, Paloma Martínez, Javier Calle, César de Pablo, Harith
+Al-Jumaily y Lourdes Moreno. <strong>Desarrollo de Bases de Datos:
+casos prácticos desde el análisis a la implementación</strong>. RAMA
+2007.</li>
+<li><strong>LO-B-006</strong>. Elmasri, R. y Navathe, S.B. Sistemas de
+Bases de Datos, 4ª edición, Pearson Addison-Wesley, Jul 2003.</li>
+</ul>
+<p>&nbsp;</p>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-6726970-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>

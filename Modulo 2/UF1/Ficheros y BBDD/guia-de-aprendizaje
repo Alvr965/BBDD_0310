@@ -1,0 +1,153 @@
+
+<p>&nbsp;</p>
+<table width="931" height="468" cellspacing="0" cellpadding="0" border="0" class="documentTable" style="width: 931px; height: 468px;">
+<thead>
+<tr>
+<td style="text-align: center;">Bloques temáticos</td>
+<td style="text-align: center;">Tiempo previsto de aprendizaje</td>
+<td style="text-align: center;">Materiales de estudio y lectura
+básicos</td>
+<td style="text-align: center;">Materiales de estudio y lectura
+complementarios</td>
+<td style="text-align: center;">Actividades de refuerzo al
+aprendizaje</td>
+<td style="text-align: center;">Trabajos a entregar al profesor</td>
+<td style="text-align: center;">Observaciones</td>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td class="documentByLine">
+<p style="text-align: center;">Organizaciones&nbsp; básicas de
+ficheros</p>
+</td>
+<td class="documentByLine">
+<p style="text-align: center;">&nbsp; 18 horas</p>
+</td>
+<td class="documentByLine">
+<p><strong>MC-F-001</strong> (<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema1.pdf/view">PDF</a>)</p>
+<p><strong>MC-F-002&nbsp;</strong> (<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema2.pdf/view">PDF</a>)</p>
+<p><strong>MC-F-003</strong> (<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema3.pdf/view">PDF</a>)</p>
+<p><strong>LO-B-001</strong></p>
+<p><strong>LO-B-002</strong>&nbsp;</p>
+</td>
+<td class="documentByLine">
+<p><strong>OR-B-002</strong></p>
+<p><strong>OR-B-005</strong></p>
+</td>
+<td class="documentByLine">
+<p><strong>PE-A-001&nbsp;&nbsp;</strong> (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema2_ejer.pdf/view">PDF</a>)</p>
+<p><strong>PE-AS-001</strong> (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema2_ejer_sol.pdf/view">PDF</a>)</p>
+</td>
+<td class="documentByLine">
+<p><strong>PR-F-001</strong>(<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocw-practicasenunciado.pdf/view">PDF</a>)</p>
+<p><strong>PR-F-002</strong>(<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocwplantilladememoria.pdf/view">PDF</a>)</p>
+<p><strong>PR-F-003</strong>(<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocwp11.pdf/view">PDF</a>)</p>
+<p><strong>PR-F-004</strong>(<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocwp12.pdf/view">PDF</a>)</p>
+<p><strong>PR-F-005</strong>(<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocwp14.pdf/view">PDF</a>)</p>
+</td>
+<td class="documentByLine">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td class="documentByLine">
+<p style="text-align: center;">&nbsp;Organizaciones indizadas</p>
+</td>
+<td class="documentByLine">
+<p style="text-align: center;">&nbsp;9 horas</p>
+</td>
+<td class="documentByLine">
+<p><strong>MC-F-004</strong> (<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema4.pdf/view">PDF</a>)</p>
+<p><strong>LO-B-003</strong></p>
+</td>
+<td class="documentByLine">
+<p><strong>OR-B-003</strong></p>
+<p>&nbsp;</p>
+</td>
+<td class="documentByLine">
+<p><strong>PE-A-002&nbsp;&nbsp;&nbsp;&nbsp;</strong> (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema5.pdf/view">PDF</a>)</p>
+<p><strong>PE-AS-002&nbsp;&nbsp;</strong> (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema5_sol.pdf/view">PDF</a>)</p>
+</td>
+<td class="documentByLine">
+<p><strong>PR-F-006</strong>(<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocwp15.pdf/view">PDF</a>)</p>
+<p><strong>PR-F-007</strong>(<a href="./informatica/ficheros-y-bases-de-datos/practicas-1/ocwp18.pdf/view">PDF</a>)</p>
+</td>
+<td class="documentByLine">&nbsp;</td>
+</tr>
+<tr class="even">
+<td class="documentByLine">&nbsp;Acceso Multiclave</td>
+<td class="documentByLine">
+<p style="text-align: center;">&nbsp;3 horas</p>
+</td>
+<td class="documentByLine">
+<p><strong>MC-F-005</strong> (<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema5.pdf/view">PDF</a>)</p>
+<p><strong>LO-B-003</strong></p>
+</td>
+<td class="documentByLine">&nbsp; 
+
+<p><strong>OR-B-004</strong></p>
+</td>
+<td class="documentByLine">&nbsp;</td>
+<td class="documentByLine">
+<p><strong>PE-E-001</strong> (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_ejercicio1_todo.pdf/view">PDF</a>)</p>
+<p><strong>PE-ES-001</strong> (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_ejercicio1_todo_sol.pdf/view">PDF</a>)</p>
+</td>
+<td class="documentByLine">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td class="documentByLine">
+<p style="text-align: center;">&nbsp;Introducción a las Bases de Datos
+y Modelo Relacional</p>
+</td>
+<td class="documentByLine">
+<p style="text-align: center;">&nbsp;24 horas</p>
+</td>
+<td class="documentByLine">
+<p><strong>MC-F-006</strong> (<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema6.pdf/view">PDF</a>)</p>
+<p><strong>MC-F-007</strong> (<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema7.pdf/view">PDF</a>)</p>
+<p><strong>MC-F-007 bis</strong>&nbsp;(<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema7BIS.pdf/view">PDF</a>)</p>
+<p><strong>LO-B-003</strong></p>
+<p><strong></strong><strong>LO-B-004</strong></p>
+</td>
+<td class="documentByLine">&nbsp; 
+
+<p><strong>OR-B-006</strong></p>
+<p><strong></strong><strong>OR-B-007</strong></p>
+<p><strong></strong><strong>OR-B-008</strong></p>
+</td>
+<td class="documentByLine">
+<p><strong>PE-A-003&nbsp;&nbsp;&nbsp;&nbsp;</strong> (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema7_ej.pdf/view">PDF</a>)</p>
+<p><strong>PE-AS-003&nbsp;&nbsp;</strong> (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema7_ej_sol.pdf/view">PDF</a>)</p>
+</td>
+<td class="documentByLine">&nbsp;</td>
+<td class="documentByLine">&nbsp;</td>
+</tr>
+<tr class="even">
+<td class="documentByLine">
+<p style="text-align: center;">&nbsp;Diseño Físico de Bases de
+Datos</p>
+</td>
+<td class="documentByLine">
+<p style="text-align: center;">&nbsp;3 horas</p>
+</td>
+<td class="documentByLine">&nbsp;<strong>MC-F-008</strong> (<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema8.pdf/view">PDF</a>)</td>
+<td class="documentByLine">&nbsp;</td>
+<td class="documentByLine">&nbsp;</td>
+<td class="documentByLine">&nbsp; 
+
+<p><strong>PE-E-002</strong> (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema7_eval.pdf/view">PDF</a>)</p>
+<p><strong>PE-ES-002</strong> (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema7_eval_sol.pdf/view">PDF</a>)</p>
+</td>
+<td class="documentByLine">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-6726970-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>

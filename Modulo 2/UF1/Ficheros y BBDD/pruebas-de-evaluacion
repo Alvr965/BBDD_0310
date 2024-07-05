@@ -1,0 +1,39 @@
+
+<p>&nbsp;</p>
+<p>Ejercicios de autoevaluación&nbsp;</p>
+<ul>
+<li><strong>PE-A-001</strong>.&nbsp;Autoevaluación 1 (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema2_ejer.pdf/view">PDF</a>).
+Ejercicio centrado en los conceptos estudiados en el tema 2.</li>
+<li><strong>PE-AS-001</strong>. Autoevaluación&nbsp;1 Solución&nbsp;(<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema2_ejer_sol.pdf/view">PDF</a>).
+Solución al ejercicio del tema 2.</li>
+<li><strong>PE-A-002</strong>.&nbsp;Autoevaluación&nbsp;2 (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema5.pdf/view">PDF</a>).
+Ejercicio centrado en&nbsp;las organizaciones indizadas aunque repasa
+de manera general&nbsp;la Parte I del&nbsp;programa.&nbsp;</li>
+<li><strong>PE-AS-002</strong>. Autoevaluación&nbsp;2 Solución&nbsp;(<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema5_sol.pdf/view">PDF</a>).
+Solución al problema de autoevaluación anterior.</li>
+<li><strong>PE-A-003.</strong> Autoevaluación&nbsp;3 (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema7_ej.pdf/view">PDF</a>).
+Ejercicio de modelado relacional (Tema 7).</li>
+<li><strong>PE-AS-003.</strong> Autoevaluación&nbsp;3 (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema7_ej_sol.pdf/view">PDF</a>).
+Propuesta de solución para el ejercicio de modelado relacional (Tema
+7).</li>
+</ul>
+<p>&nbsp;</p>
+<p>Exámenes</p>
+<ul>
+<li><strong>PE-E-001</strong>. Examen 1 (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_ejercicio1_todo.pdf/view">PDF</a>).
+Examen correspondiente a&nbsp;la parte I del programa.</li>
+<li><strong>PE-ES-001</strong>. Examen 1 Solución&nbsp;(<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_ejercicio1_todo_sol.pdf/view">PDF</a>).</li>
+<li><strong>PE-E-002</strong>. Examen&nbsp;2 (<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema7_eval.pdf/view">PDF</a>).
+Examen correspondiente a&nbsp;la parte II del programa.</li>
+<li><strong>PE-ES-002</strong>. Examen&nbsp;2 Solución&nbsp;(<a href="./informatica/ficheros-y-bases-de-datos/ejercicios-resueltos/ocw_tema7_eval_sol.pdf/view">PDF</a>).</li>
+</ul>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-6726970-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>

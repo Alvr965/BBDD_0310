@@ -1,0 +1,51 @@
+
+<p>&nbsp;<strong>PARTE 1: Organización de la información en sistemas de
+ficheros</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p>&nbsp; <strong>1. Introducción</strong></p>
+<ul>
+<li><strong>MC-F-001</strong>.&nbsp;Transparencias de teoría&nbsp;(<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema1.pdf/view">PDF</a>).&nbsp;</li>
+</ul>
+<p>&nbsp; <strong>2. Organización consecutiva</strong></p>
+<ul>
+<li><strong>MC-F-002</strong>.&nbsp;Transparencias de teoría&nbsp;(<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema2.pdf/view">PDF</a>).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+</ul>
+<p>&nbsp;<strong>&nbsp;3. Organización direccionada</strong></p>
+<ul>
+<li><strong>MC-F-003</strong>.&nbsp;Transparencias de teoría&nbsp;(<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema3.pdf/view">PDF</a>).</li>
+</ul>
+<p>&nbsp; <strong>4. Organización indizada</strong></p>
+<ul>
+<li><strong>MC-F-004</strong>.&nbsp;Transparencias de teoría&nbsp;(<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema4.pdf/view">PDF</a>).&nbsp;</li>
+</ul>
+<p>&nbsp;&nbsp;<strong>5. Acceso multiclave</strong></p>
+<ul>
+<li><strong>MC-F-005</strong>.&nbsp;Transparencias de teoría&nbsp;(<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema5.pdf/view">PDF</a>).&nbsp;<br />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+</ul>
+<p><em>&nbsp;</em> <strong>PARTE 2: Organización de la información en
+Bases de Datos</strong></p>
+<p>&nbsp; <strong>6. Introducción a las bases de datos</strong></p>
+<ul>
+<li><strong>MC-F-006</strong>.&nbsp;Transparencias de teoría&nbsp;(<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema6.pdf/view">PDF</a>).&nbsp;</li>
+</ul>
+<p>&nbsp; <strong>7. Modelo relacional</strong></p>
+<ul>
+<li><strong>MC-F-007</strong>.&nbsp;Transparencias de teoría&nbsp;(<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema7.pdf/view">PDF</a>).&nbsp;&nbsp;&nbsp;</li>
+<li><strong>MC-F-008</strong>.&nbsp;Transparencias de teoría&nbsp;bis
+(<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema7BIS.pdf/view">PDF</a>).&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+</ul>
+<p>&nbsp;&nbsp;<strong>8. Diseño Físico en un Base de Datos
+relacional</strong></p>
+<ul>
+<li><strong>MC-F-009</strong>.&nbsp;Transparencias de teoría&nbsp;(<a href="./informatica/ficheros-y-bases-de-datos/material-clase/FBD-Tema8.pdf/view">PDF</a>).&nbsp;</li>
+</ul>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-6726970-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>

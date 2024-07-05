@@ -1,0 +1,17 @@
+CERTIFICADOS(CERTIFICADO(CODIGO(FAMILIA C(4); NUMERO N(4));
+								NOMBRE C(100);
+								HORAS N(3)
+								MODULOS (MODULO (CODIGO C(2);
+												 NUMERO N(4);
+												 [GUION C(1);
+												  DIGITO N(1)];
+												 NOMBRE C(50);
+												 UFS (UF (CODIGO C(2);
+															NUMERO N(4);
+															NOMBRE C(50)
+														 )
+													 )?*
+												)
+										)+
+						)
+			)+

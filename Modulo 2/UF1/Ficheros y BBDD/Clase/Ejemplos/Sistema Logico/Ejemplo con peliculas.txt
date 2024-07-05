@@ -1,0 +1,11 @@
+Peliculas(Pelicula(Titulo C(42);
+				   Realizacion(Año N(4);
+							   Productora C(20));
+				   Genero C(9);
+				   Director (Nombre C(20);Apellido C(20));
+				   Actrices (Nombre C(20);Apellido C(20))*;
+				   BS (Autor (Nombre C(20);Apellido C(20));
+					   Formato C(3)
+					   )?
+				  )
+		 )+

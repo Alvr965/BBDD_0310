@@ -1,0 +1,1 @@
+(Tamaño Medio Registros* Numero de Registros)/(Tamaño Disponible para un solo registro fisico*Numero de Registros Fisicos Disponibles)

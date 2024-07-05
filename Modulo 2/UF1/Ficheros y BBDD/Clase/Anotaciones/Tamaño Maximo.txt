@@ -1,0 +1,1 @@
+Tamaño max Titulo+Tamaño max Año+Tamaño max Productora+Tamaño max Nombre Director+Tamaño max Apellido Director+Veces Maximo Actores*(Tamaño max Nombre Actores+Tamaño max Apellido Actores)+Tamaño max Nombre BS+Tamaño max Apellido BS+(Veces Maximo*Tamaño max Formato BS)
