@@ -1,0 +1,25 @@
+<!-- DTD created at Fri Jun 14 13:26:29 CEST 2024 with EditiX XML Editor (http://www.editix.com). Please insert an encoding attribute header for converting any DTD  -->
+
+<!ELEMENT  libroabuela (recetas)>
+<!ELEMENT  recetas (receta)*>
+<!ELEMENT  receta (titulo,descripcion,ingredientes,instrucciones)>
+<!ATTLIST receta 
+id CDATA #REQUIRED
+dificultad (Facil|Media|Dificil) #REQUIRED>
+<!ELEMENT  titulo        (#PCDATA)>
+<!ELEMENT  descripcion   (#PCDATA)>
+<!ELEMENT  ingredientes  (ingrediente)+>
+<!ELEMENT  ingrediente  (nombreingrediente,cantidad)*>
+<!ATTLIST cantidad 
+unidadmasa CDATA #REQUIRED
+>
+<!ELEMENT  instrucciones (instruccion,tiempopreparacion,tiempococcion?)>
+<!ATTLIST instruccion
+id CDATA #REQUIRED
+telefono #IMPLIED>
+<!ATTLIST tiempopreparacion
+unidadtiempo CDATA #REQUIRED>
+<!ATTLIST tiempococcion
+unidadtiempo CDATA #REQUIRED>
+
+

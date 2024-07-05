@@ -1,0 +1,88 @@
+En DTD (Document Type Definition) para XML, hay varios tipos de atributos que puedes utilizar. Aquí está una lista de los tipos de atributos más comunes:
+
+CDATA: Character Data. Este es el tipo de atributo más general y puede contener cualquier cadena de caracteres.
+xml
+Copiar código
+<!ATTLIST elemento atributo CDATA #REQUIRED>
+
+ID: Un identificador único dentro del documento. Cada valor de un atributo de tipo ID debe ser único en todo el documento XML.
+xml
+Copiar código
+<!ATTLIST elemento atributo ID #REQUIRED> Solo puede existir un atributo cuyo tipo sea ID
+
+IDREF: Una referencia a un ID dentro del documento. Este tipo de atributo debe coincidir con el valor de algún atributo de tipo ID.
+
+Copiar código
+<!ATTLIST elemento atributo IDREF #REQUIRED>
+
+IDREFS: Una lista de referencias a ID dentro del documento. Este tipo de atributo puede contener una lista de valores separados por espacios, cada uno de los cuales debe coincidir con algún valor de atributo de tipo ID.
+xml
+Copiar código
+<!ATTLIST elemento atributo IDREFS #REQUIRED>
+
+ENTITY: Una referencia a una entidad no parseada. Las entidades no parseadas son aquellas que no son procesadas por el analizador XML.
+xml
+Copiar código
+<!ATTLIST elemento atributo ENTITY #REQUIRED>
+
+ENTITIES: Una lista de referencias a entidades no parseadas. Similar a ENTITY, pero permite múltiples referencias separadas por espacios.
+xml
+Copiar código
+<!ATTLIST elemento atributo ENTITIES #REQUIRED>
+
+NMTOKEN: Name Token. Puede contener cualquier combinación de letras, dígitos, guiones, puntos, dos puntos y guiones bajos.
+xml
+Copiar código
+<!ATTLIST elemento atributo NMTOKEN #REQUIRED>
+
+NMTOKENS: Una lista de NMTOKEN. Similar a NMTOKEN, pero permite múltiples tokens separados por espacios.
+xml
+Copiar código
+<!ATTLIST elemento atributo NMTOKENS #REQUIRED>
+
+NOTATION: Se utiliza para declarar que el valor del atributo debe coincidir con uno de un conjunto de valores predefinidos en una declaración de notación.
+xml
+Copiar código
+<!ATTLIST elemento atributo NOTATION (nota1 | nota2 | nota3) #REQUIRED>
+
+Enumerated Types: Una lista de valores posibles que el atributo puede tomar. Especificas los valores dentro de paréntesis y separados por barras verticales.
+xml
+Copiar código
+<!ATTLIST elemento atributo (valor1 | valor2 | valor3) "valor1">
+Ejemplo de Uso de Diferentes Tipos de Atributos
+Aquí hay un ejemplo que utiliza varios tipos de atributos:
+
+xml
+Copiar código
+<!DOCTYPE ejemplo [
+  <!ELEMENT ejemplo (elemento*)>
+  <!ELEMENT elemento (#PCDATA)>
+  <!ATTLIST elemento
+    id ID #REQUIRED
+    ref IDREF #IMPLIED
+    refs IDREFS #IMPLIED
+    entidad ENTITY #IMPLIED
+    entidades ENTITIES #IMPLIED
+    token NMTOKEN #IMPLIED
+    tokens NMTOKENS #IMPLIED
+    notacion NOTATION (nota1 | nota2) #IMPLIED
+    enumerado (opcion1 | opcion2 | opcion3) "opcion1"
+  >
+]>
+
+<ejemplo>
+  <elemento id="E1" ref="E2" refs="E2 E3" entidad="entidad1" entidades="entidad1 entidad2" token="token1" tokens="token1 token2" notacion="nota1" enumerado="opcion2">
+    Ejemplo de uso de varios tipos de atributos.
+  </elemento>
+</ejemplo>
+En este ejemplo:
+
+id es un atributo de tipo ID y debe ser único en el documento.
+ref es un atributo de tipo IDREF y debe referenciar un ID existente.
+refs es un atributo de tipo IDREFS y puede referenciar múltiples ID.
+entidad es un atributo de tipo ENTITY y debe referenciar una entidad no parseada.
+entidades es un atributo de tipo ENTITIES y puede referenciar múltiples entidades no parseadas.
+token es un atributo de tipo NMTOKEN y puede contener un token de nombre.
+tokens es un atributo de tipo NMTOKENS y puede contener múltiples tokens de nombre.
+notacion es un atributo de tipo NOTATION y debe coincidir con uno de los valores predefinidos.
+enumerado es un atributo de tipo enumerado y puede tomar uno de los valores especificados.

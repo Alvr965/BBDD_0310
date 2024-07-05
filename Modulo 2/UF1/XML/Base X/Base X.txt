@@ -1,0 +1,96 @@
+for $pais in //country
+let $poblacion := xs:integer($pais/@population div 1000)
+order by $pais/@population/number()
+where substring($pais/@name/string(), 1 ,1)="S"
+return
+  <pais nombre="{$pais/@name/string()}" unidad="miles" habitantes="{$poblacion}"/>
+
+
+(:Ahora, crea una funcion y considera millones:)  
+for $pais in //country
+let $poblacion := xs:integer($pais/@population div 1000000)
+order by $pais/@population/number()
+where substring($pais/@name/string(), 1 ,1)="S"
+return
+  <pais nombre="{$pais/@name/string()}" unidad="miles" habitantes="{$poblacion}"/>
+
+(:Añadiendo contador, esta enumerando la iteracion correspondiente a cada salida, esta consiguiendo un identificador nuevo y unico para cada elemento. Los validadores de XML nos garantizan esa unicidad:)
+declare namespace hurgaciones="http://www.3.org";(:Estoy creando un cambio de nombre basado en una uri para que valide el cambio de nombre por el de local:)
+declare function hurgaciones:millones($valor as xs:decimal?)
+as xs:decimal?
+{
+  let $minisalida := xs:integer($valor div 1000)
+  let $salida := if($valor >= 1000000) then xs:integer($valor div 1000000) else $minisalida
+  return $salida
+};
+for $pais at $contador in //country
+let $poblacion := hurgaciones:millones($pais/@population)
+order by $pais/@population/number()
+where substring($pais/@name/string(), 1 ,1)="S"
+return
+  <pais id="P_{$contador}" nombre="{$pais/@name/string()}" habitantes="{$poblacion}"/>
+
+
+(:Si quieres ordenarlo por id:)
+declare namespace hurgaciones="http://www.3.org";(:Estoy creando un cambio de nombre basado en una uri para que valide el cambio de nombre por el de local:)
+declare function hurgaciones:millones($valor as xs:decimal?)
+as xs:decimal?
+{
+  let $minisalida := xs:integer($valor div 1000)
+  let $salida := if($valor >= 1000000) then xs:integer($valor div 1000000) else $minisalida
+  return $salida
+};
+for $pais at $contador in //country
+let $poblacion := hurgaciones:millones($pais/@population)
+(:order by $pais/@population/number():)
+order by $pais/@id/number()
+return
+  <pais id="P_{$contador}" nombre="{$pais/@name/string()}" habitantes="{$poblacion}"/>
+  (::)
+
+
+(:He añadido la condicion en la que si poblacion es menor a 1000000, coja los miles:)
+declare namespace hurgaciones="http://www.3.org";
+declare function hurgaciones:millones($valor as xs:decimal?)
+as xs:string?
+{
+  if($valor ge 1000000) then
+   concat(xs:string(xs:decimal($valor) div 1000000), " millones") 
+  else
+   concat(xs:string(xs:decimal($valor) div 1000), " mil") 
+};
+for $pais at $contador in //country
+let $poblacion := hurgaciones:millones($pais/@population)
+(:order by $pais/@population/number():)
+order by $pais/@id/number()
+return
+  <pais id="P_{$contador}" nombre="{$pais/@name/string()}" habitantes="{$poblacion}"/>
+  
+
+(:He añadido la condicion en la que si poblacion es menor a 1000000, coja los miles y los millones y miles los coloque como atributos, yo he pedido que diferencie entre millones y miles, jose que cuando sea inferior a 2 millones, que indique millon:)
+declare namespace hurgaciones="http://www.3.org/";
+declare function hurgaciones:cantidad($valor as xs:decimal?)
+as xs:decimal?
+{
+  let $miles    := xs:decimal($valor div 1000)
+  let $millones := xs:decimal($valor div 1000000)
+  let $salida   := if($valor >= 1000000) then $millones else $miles
+  return $salida
+};
+declare function hurgaciones:unidad($valor as xs:decimal?)
+as xs:string?
+{
+  let $miles    := "miles"
+  let $millon   := "millon"
+  let $millones := "millones"
+  let $salida   := if($valor > 1000000 and $valor < 2000000) then $millon
+                   else if ($valor >= 2000000) then $millones
+                                               else $miles
+  return $salida
+};
+for $pais at $contador in //country
+let $poblacion := hurgaciones:cantidad($pais/@population)
+let $unidad    := hurgaciones:unidad($pais/@population)
+order by $pais/@population descending
+return
+  <pais id="P_{$contador}" nombre="{$pais/@name/string()}" habitantes="{$poblacion}" unidad="{$unidad}"/> 

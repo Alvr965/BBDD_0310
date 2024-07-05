@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="CD">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TITLE"/>
+				<xs:element ref="ARTIST"/>
+				<xs:element ref="COUNTRY"/>
+				<xs:element ref="COMPANY"/>
+				<xs:element ref="PRICE"/>
+				<xs:element ref="YEAR"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ARTIST" type="xs:string"/>
+	<xs:element name="CATALOG">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CD" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="COUNTRY" type="xs:string"/>
+	<xs:element name="PRICE" type="xs:string"/>
+	<xs:element name="YEAR" type="xs:string"/>
+	<xs:element name="TITLE" type="xs:string"/>
+	<xs:element name="COMPANY" type="xs:string"/>
+</xs:schema>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<libroabuela>
+	<recetario>
+		<receta id="r_1" dificultad="Fácil">
+			<titulo>Macarroncicos con queso</titulo>
+			<descripcion>Plato de pasta clasico con un delicioso lipido fermentado</descripcion>
+			<ingredientes>
+				<ingrediente>
+					<nombreingrediente>Pluma</nombreingrediente>
+					<cantidad unidadmasa="gramos">350</cantidad>
+				</ingrediente>
+				<ingrediente>
+					<nombreingrediente>Queso Parmesano</nombreingrediente>
+					<cantidad unidadmasa="gramos">35000</cantidad>
+				</ingrediente>
+			</ingredientes>
+			<instrucciones>
+				<instruccion id="i_1">Compra Macarroncicos</instruccion>
+				<instruccion id="i_2">Compra Parmesano para matar a un regimiento</instruccion>
+				<instruccion id="i_3"/>
+				<instruccion telefono="698523147"/>
+				<tiempopreparacion unidadtiempo="minutos">60</tiempopreparacion>
+				<tiempococcion unidadtiempo="minutos">10</tiempococcion>
+			</instrucciones>
+		</receta>
+	</recetario>
+</libroabuela>
+

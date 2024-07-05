@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="libroabuela">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="recetario"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="recetario">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="receta"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="receta">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="titulo"/>
+				<xs:element ref="descripcion"/>
+				<xs:element ref="ingredientes"/>
+				<xs:element ref="instrucciones"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="dificultad" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="titulo" type="xs:string"/>
+	<xs:element name="descripcion" type="xs:string"/>
+	<xs:element name="ingredientes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ingrediente" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ingrediente">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="nombreingrediente"/>
+				<xs:element ref="cantidad"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nombreingrediente" type="xs:string"/>
+	<xs:element name="cantidad">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="unidadmasa" type="xs:string" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="instrucciones">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="instruccion" maxOccurs="unbounded"/>
+				<xs:element ref="tiempopreparacion"/>
+				<xs:element ref="tiempococcion"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="instruccion">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="id" type="xs:string"/>
+					<xs:attribute name="telefono" type="xs:integer"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tiempopreparacion">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="unidadtiempo" type="xs:string" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tiempococcion">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="unidadtiempo" type="xs:string" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
