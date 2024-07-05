@@ -1,0 +1,126 @@
+varo@varo-VirtualBox:~$ sudo su
+[sudo] contraseña para varo: 
+root@varo-VirtualBox:/home/varo# git clone https://github.com/alvarolh7696/the-new-era.git
+Clonando en 'the-new-era'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Recibiendo objetos: 100% (3/3), listo.
+root@varo-VirtualBox:/home/varo# nano repository.txt
+root@varo-VirtualBox:/home/varo# nano repository2.txt
+root@varo-VirtualBox:/home/varo# 
+root@varo-VirtualBox:/home/varo# git status
+fatal: no es un repositorio git (ni ninguno de los directorios superiores): .git
+root@varo-VirtualBox:/home/varo# git repository
+git: 'repository' no es un comando de git. Mira 'git --help'.
+root@varo-VirtualBox:/home/varo# exit
+exit
+varo@varo-VirtualBox:~$ git status
+fatal: no es un repositorio git (ni ninguno de los directorios superiores): .git
+varo@varo-VirtualBox:~$ cd repository
+bash: cd: repository: No existe el archivo o el directorio
+varo@varo-VirtualBox:~$ cd the-new-era
+varo@varo-VirtualBox:~/the-new-era$ nano thenewage
+varo@varo-VirtualBox:~/the-new-era$ nano thenewage.txt
+varo@varo-VirtualBox:~/the-new-era$ nano theolderage.txt
+varo@varo-VirtualBox:~/the-new-era$ git status
+fatal: detected dubious ownership in repository at '/home/varo/the-new-era'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory /home/varo/the-new-era
+varo@varo-VirtualBox:~/the-new-era$ touch the-new.txt
+touch: no se puede efectuar `touch' sobre 'the-new.txt': Permiso denegado
+varo@varo-VirtualBox:~/the-new-era$ touch the-new
+touch: no se puede efectuar `touch' sobre 'the-new': Permiso denegado
+varo@varo-VirtualBox:~/the-new-era$ sudo su
+root@varo-VirtualBox:/home/varo/the-new-era# touch the-new
+root@varo-VirtualBox:/home/varo/the-new-era# git status
+En la rama main
+Tu rama está actualizada con 'origin/main'.
+
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que será confirmado)
+	the-new
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
+root@varo-VirtualBox:/home/varo/the-new-era# nano thenewage.txt
+root@varo-VirtualBox:/home/varo/the-new-era# git status
+En la rama main
+Tu rama está actualizada con 'origin/main'.
+
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que será confirmado)
+	the-new
+	thenewage.txt
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
+root@varo-VirtualBox:/home/varo/the-new-era# git add sample.html
+fatal: ruta especificada 'sample.html' no concordó con ningún archivo
+root@varo-VirtualBox:/home/varo/the-new-era# git add the-new
+root@varo-VirtualBox:/home/varo/the-new-era# git add the-new.html
+fatal: ruta especificada 'the-new.html' no concordó con ningún archivo
+root@varo-VirtualBox:/home/varo/the-new-era# git add thenewage.txt
+root@varo-VirtualBox:/home/varo/the-new-era# git commit -m
+error: switch `m' requiere un valor
+root@varo-VirtualBox:/home/varo/the-new-era# git commit -m "se agrego archivo HTML de muestra"
+Identidad del autor desconocido
+
+*** Por favor cuéntame quién eres.
+
+Ejecuta
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Tu Nombre"
+
+para configurar la identidad por defecto de tu cuenta.
+Omite --global para configurar tu identidad solo en este repositorio.
+
+fatal: no es posible auto-detectar la dirección de correo (se obtuvo 'root@varo-VirtualBox.(none)')
+root@varo-VirtualBox:/home/varo/the-new-era# git commit -m "Se agregó archivo HTML de muestra que contiene síntaxis basica"
+Identidad del autor desconocido
+
+*** Por favor cuéntame quién eres.
+
+Ejecuta
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Tu Nombre"
+
+para configurar la identidad por defecto de tu cuenta.
+Omite --global para configurar tu identidad solo en este repositorio.
+
+fatal: no es posible auto-detectar la dirección de correo (se obtuvo 'root@varo-VirtualBox.(none)')
+root@varo-VirtualBox:/home/varo/the-new-era# git config --global user.email "alvarolh7696"
+root@varo-VirtualBox:/home/varo/the-new-era# git config --global user.name "alvarolh7696"
+root@varo-VirtualBox:/home/varo/the-new-era# git config --global user.email "lopezherranz.alvaro@gmail.com"
+root@varo-VirtualBox:/home/varo/the-new-era# git commit -m "Se agregó archivo HTML de muestra que contiene síntaxis basica"
+[main 22ec135] Se agregó archivo HTML de muestra que contiene síntaxis basica
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 the-new
+ create mode 100644 thenewage.txt
+root@varo-VirtualBox:/home/varo/the-new-era# git remote
+origin
+root@varo-VirtualBox:/home/varo/the-new-era# git push origin master
+error: src refspec master no concuerda con ninguno
+error: falló el empuje de algunas referencias a 'https://github.com/alvarolh7696/the-new-era.git'
+root@varo-VirtualBox:/home/varo/the-new-era# git push origin master
+error: src refspec master no concuerda con ninguno
+error: falló el empuje de algunas referencias a 'https://github.com/alvarolh7696/the-new-era.git'
+root@varo-VirtualBox:/home/varo/the-new-era# git push origin main
+Username for 'https://github.com': alvarolh7696
+Password for 'https://alvarolh7696@github.com': 
+remote: Support for password authentication was removed on August 13, 2021.
+remote: Please see https://docs.github.com/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+fatal: Autenticación falló para 'https://github.com/alvarolh7696/the-new-era.git/'
+root@varo-VirtualBox:/home/varo/the-new-era# git push origin main
+Username for 'https://github.com': alvarolh7696
+Password for 'https://alvarolh7696@github.com': 
+Enumerando objetos: 4, listo.
+Contando objetos: 100% (4/4), listo.
+Compresión delta usando hasta 2 hilos
+Comprimiendo objetos: 100% (2/2), listo.
+Escribiendo objetos: 100% (3/3), 344 bytes | 344.00 KiB/s, listo.
+Total 3 (delta 0), reusados 0 (delta 0), pack-reusados 0
+To https://github.com/alvarolh7696/the-new-era.git
+   04f9a52..22ec135  main -> main
+root@varo-VirtualBox:/home/varo/the-new-era# 

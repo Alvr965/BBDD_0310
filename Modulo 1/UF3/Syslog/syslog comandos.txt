@@ -1,0 +1,22 @@
+Ubuntu 22
+echo "Mes,Día,Hora,Host,Proceso" > syslog.csv
+cut -d' ' -f1,2,3,4,5 /var/log/syslog |tr ' ' ',' |sed 's/\[.*//' >syslog.csv
+#Si queremos que nos indique por pantalla el numero de procesos que aparecen y de cada tipo
+awk '{print $5}' /var/log/syslog | cut -d'[' -f1 | sort | uniq -c | sort -nr
+	- awk '{print $5}' /var/log/syslog: Extrae la quinta columna de cada línea en el archivo syslog, que contiene el nombre del proceso y el PID.
+	- cut -d'[' -f1: Elimina el PID y deja solo el nombre del proceso.
+	- sort: Ordena las líneas alfabéticamente.
+	- uniq -c: Cuenta las ocurrencias de cada proceso.
+	- sort -nr: Ordena los resultados numéricamente en orden descendente.
+Si queremos por ejemplo todos los systemd
+	-  grep 'systemd' /var/log/syslog | awk '{print $5}' | cut -d'[' -f1 | sort | uniq -c | sort -nr
+	
+Ubuntu 24
+	cd /var/log
+	head syslog -n 3
+	echo "Fecha,Host,Proceso" > syslog.csv
+	cut -d' ' -f1 syslog |cut -d'T' -f1 > fecha #coge la fecha y corta por la T para despues dumpearlo en fecha como fecha (año-mes-dia)
+	cut -d' ' -f2,3 syslog |tr ' ' ',' |sed 's/\[.*//' > hostProceso.csv
+	head hostProceso -n 3
+	echo "Fecha, Host, Proceso" > syslog.csv
+	paste -d ',' fecha hostProceso >> syslog.csv
