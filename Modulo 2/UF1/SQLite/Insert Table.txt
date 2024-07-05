@@ -1,0 +1,25 @@
+INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+VALUES
+(101, 'Joseph'    ,22, 'M', '2016-11-23', 'Pune'),
+(102, 'Maria'     ,35, 'M', '2016-11-23', 'New York'),
+(103, 'Vipul'     ,20, 'M', '2026-11-24', 'Miami'),
+(104, 'Anubhav'   ,31, 'M', '2016-11-25', 'Pune'),
+(105, 'Utkarsh'   ,35, 'M', '2016-11-23', 'New York'),
+(106, 'Carolina'  ,35, 'F', '2016-11-24', 'New York'),
+(107, 'Cecilia'   ,52, 'F', '2016-11-22', 'Rosario'),
+(108, 'Akshay'    ,36, 'M', '2016-11-23', 'Pune'),
+(109, 'Akash'     ,38, 'M', '2016-11-25', 'New York'),
+(110, 'Javier'    ,26, 'M', '1998-05-16', 'Madrid'),
+(111, 'Raghav'    ,24, 'M', '2016-11-23', 'Detroit'),
+(112, 'Bianca'    ,24, 'F', '2016-11-24', 'Pune'),
+(113, 'Amnrit'    ,23, 'M', '2016-11-25', 'Miami'),
+(114, 'Andrew'    ,18, 'M', '2016-11-23', 'Boston'),
+(115, 'Ricky'     ,26, 'M', '2016-11-25', 'Detroit'),
+(116, 'Cummins'   ,30, 'M', '2016-11-24', 'Chicago'), 
+(117, 'Rabada'    ,20, 'M', '2016-11-23', 'Boston'),
+(118, 'Johnson'   ,25, 'M', '2016-11-23', 'New York'),
+(119, 'Jessenia'  ,27, 'M', '2016-11-25', 'Boston'),
+(120, 'Illeana'   ,25, 'F', '2016-11-24', 'Chicago')
+;
+
+UPDATE 

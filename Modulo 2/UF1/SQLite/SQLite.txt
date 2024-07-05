@@ -1,0 +1,526 @@
+Microsoft Windows [Versión 10.0.22631.3672]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Windows\System32>cd %userprofile%
+
+C:\Users\Mañanas>color B5
+
+C:\Users\Mañanas>cd ..
+
+C:\Users>cd ...
+
+C:\Users>cd ..
+
+C:\>cd SQLite
+
+C:\SQLite>sqlite3
+SQLite version 3.46.0 2024-05-23 13:25:27 (UTF-16 console I/O)
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> create table students (stu_Id int primary key,
+(x1...> stu_name varchar(25), Age int, Gender char(1),
+(x1...> Doa date, Address varchar(20));
+sqlite> .tables
+students
+sqlite> pragma table_info ('students')
+   ...> ;
+0|stu_Id|INT|0||1
+1|stu_name|varchar(25)|0||0
+2|Age|INT|0||0
+3|Gender|char(1)|0||0
+4|Doa|date|0||0
+5|Address|varchar(20)|0||0
+sqlite> SELECT name
+   ...> FROM sqlite_master
+   ...> WHERE type = 'table'
+   ...> ;
+students
+sqlite> SELECT sql
+   ...> FROM sqlite_master
+   ...> ;
+CREATE TABLE students (stu_Id int primary key,
+stu_name varchar(25), Age int, Gender char(1),
+Doa date, Address varchar(20))
+
+
+sqlite> INSERT INTO students (stu_Id, stu_name, Age, Gender, Doa, Address)
+   ...> VALUES
+   ...> (101, 'Joseph'    ,22, 'M', '2016-11-23', 'Pune'),
+   ...> (102, 'Maria'     ,35, 'M', '2016-11-23', 'New York'),
+   ...> (103, 'Vipul'     ,20, 'M', '2026-11-24', 'Miami'),
+   ...> (104, 'Anubhav'   ,31, 'M', '2016-11-25', 'Pune'),
+   ...> (105, 'Utkarsh'   ,35, 'M', '2016-11-23', 'New York'),
+   ...> (106, 'Carolina'  ,35, 'F', '2016-11-24', 'New York'),
+   ...> (107, 'Cecilia'   ,52, 'F', '2016-11-22', 'Rosario'),
+   ...> (108, 'Akshay'    ,36, 'M', '2016-11-23', 'Pune'),
+   ...> (109, 'Akash'     ,38, 'M', '2016-11-25', 'New York'),
+   ...> (110, 'Javier'    ,26, 'M', '1998-05-16', 'Madrid'),
+   ...> (111, 'Raghav'    ,24, 'M', '2016-11-23', 'Detroit'),
+   ...> (112, 'Bianca'    ,24, 'F', '2016-11-24', 'Pune'),
+   ...> (113, 'Amnrit'    ,23, 'M', '2016-11-25', 'Miami'),
+   ...> (114, 'Andrew'    ,18, 'M', '2016-11-23', 'Boston'),
+   ...> (115, 'Ricky'     ,26, 'M', '2016-11-25', 'Detroit'),
+   ...> (116, 'Cummins'   ,30, 'M', '2016-11-24', 'Chicago'),
+   ...> (117, 'Rabada'    ,20, 'M', '2016-11-23', 'Boston'),
+   ...> (118, 'Johnson'   ,25, 'M', '2016-11-23', 'New York'),
+   ...> (119, 'Jessenia'  ,27, 'M', '2016-11-25', 'Boston'),
+   ...> (120, 'Illeana'   ,25, 'F', '2016-11-24', 'Chicago')
+   ...> ;
+sqlite> select * from students
+   ...> ;
+101|Joseph|22|M|2016-11-23|Pune
+102|Maria|35|M|2016-11-23|New York
+103|Vipul|20|M|2026-11-24|Miami
+104|Anubhav|31|M|2016-11-25|Pune
+105|Utkarsh|35|M|2016-11-23|New York
+106|Carolina|35|F|2016-11-24|New York
+107|Cecilia|52|F|2016-11-22|Rosario
+108|Akshay|36|M|2016-11-23|Pune
+109|Akash|38|M|2016-11-25|New York
+110|Javier|26|M|1998-05-16|Madrid
+111|Raghav|24|M|2016-11-23|Detroit
+112|Bianca|24|F|2016-11-24|Pune
+113|Amnrit|23|M|2016-11-25|Miami
+114|Andrew|18|M|2016-11-23|Boston
+115|Ricky|26|M|2016-11-25|Detroit
+116|Cummins|30|M|2016-11-24|Chicago
+117|Rabada|20|M|2016-11-23|Boston
+118|Johnson|25|M|2016-11-23|New York
+119|Jessenia|27|M|2016-11-25|Boston
+120|Illeana|25|F|2016-11-24|Chicago
+sqlite> select * from students where stu_Id=103;
+103|Vipul|20|M|2026-11-24|Miami
+sqlite>
+sqlite> select stu_name from students where stu_Id=103;
+Vipul
+sqlite> update studentes
+   ...> set stu_name = 'Stephen'
+   ...> where stu_id = 103;
+Parse error: no such table: studentes
+sqlite> UPDATE students
+   ...> SET stu_name = 'Margarita'
+   ...> WHERE stu_Id = 103;
+sqlite>
+sqlite> select stu_name from students where stu_Id=103;
+Margarita
+sqlite> .save students
+sqlite> SELECT
+   ...>     stu_Id,
+   ...>     stu_name,
+   ...>     Age,
+   ...>     Gender,
+   ...>     strftime('%d/%m/%Y', Doa) AS formatted_date,
+   ...>     Adress
+   ...> FROM
+   ...>     students;
+Parse error: no such column: Adress
+   strftime('%d/%m/%Y', Doa) AS formatted_date,     Adress FROM     students;
+                                      error here ---^
+sqlite> SELECT
+   ...>     stu_Id,
+   ...>     stu_name,
+   ...>     Age,
+   ...>     Gender,
+   ...>     strftime('%d/%m/%Y', Doa) AS formatted_date,
+   ...>     Address
+   ...> FROM
+   ...>     students;
+101|Joseph|22|M|23/11/2016|Pune
+102|Maria|35|M|23/11/2016|New York
+103|Margarita|20|M|24/11/2026|Miami
+104|Anubhav|31|M|25/11/2016|Pune
+105|Utkarsh|35|M|23/11/2016|New York
+106|Carolina|35|F|24/11/2016|New York
+107|Cecilia|52|F|22/11/2016|Rosario
+108|Akshay|36|M|23/11/2016|Pune
+109|Akash|38|M|25/11/2016|New York
+110|Javier|26|M|16/05/1998|Madrid
+111|Raghav|24|M|23/11/2016|Detroit
+112|Bianca|24|F|24/11/2016|Pune
+113|Amnrit|23|M|25/11/2016|Miami
+114|Andrew|18|M|23/11/2016|Boston
+115|Ricky|26|M|25/11/2016|Detroit
+116|Cummins|30|M|24/11/2016|Chicago
+117|Rabada|20|M|23/11/2016|Boston
+118|Johnson|25|M|23/11/2016|New York
+119|Jessenia|27|M|25/11/2016|Boston
+120|Illeana|25|F|24/11/2016|Chicago
+sqlite> pragma table_info('students')
+   ...> ;
+0|stu_Id|INT|0||1
+1|stu_name|varchar(25)|0||0
+2|Age|INT|0||0
+3|Gender|char(1)|0||0
+4|Doa|date|0||0
+5|Address|varchar(20)|0||0
+sqlite> CREATE VIEW estudiantes (id,name,age,gender,fecha,direccion)
+   ...> AS
+   ...> SELECT
+   ...> stu_Id,
+   ...> stu_name,
+   ...> Age,
+   ...> Gender,
+   ...> strftime('%d/%m/Y',Doa) AS formatted_date,
+   ...> Address
+   ...> FROM
+   ...> students;
+sqlite> pragma table_info ('estudiantes')
+   ...> ;
+0|id|INT|0||0
+1|name|varchar(25)|0||0
+2|age|INT|0||0
+3|gender|char(1)|0||0
+4|fecha||0||0
+5|direccion|varchar(20)|0||0
+sqlite> select * FROM estudiantes WHERE stu_id>105;
+Parse error: no such column: stu_id
+  select * FROM estudiantes WHERE stu_id>105;
+                    error here ---^
+sqlite> select * FROM estudiantes WHERE stu_id<105;
+Parse error: no such column: stu_id
+  select * FROM estudiantes WHERE stu_id<105;
+                    error here ---^
+sqlite> select * FROM estudiantes WHERE stu_Id>105;
+Parse error: no such column: stu_Id
+  select * FROM estudiantes WHERE stu_Id>105;
+                    error here ---^
+sqlite> select * FROM estudiantes WHERE id>105;
+106|Carolina|35|F|24/11/Y|New York
+107|Cecilia|52|F|22/11/Y|Rosario
+108|Akshay|36|M|23/11/Y|Pune
+109|Akash|38|M|25/11/Y|New York
+110|Javier|26|M|16/05/Y|Madrid
+111|Raghav|24|M|23/11/Y|Detroit
+112|Bianca|24|F|24/11/Y|Pune
+113|Amnrit|23|M|25/11/Y|Miami
+114|Andrew|18|M|23/11/Y|Boston
+115|Ricky|26|M|25/11/Y|Detroit
+116|Cummins|30|M|24/11/Y|Chicago
+117|Rabada|20|M|23/11/Y|Boston
+118|Johnson|25|M|23/11/Y|New York
+119|Jessenia|27|M|25/11/Y|Boston
+120|Illeana|25|F|24/11/Y|Chicago
+sqlite> CREATE VIEW estudiantes (id,name,age,gender,fecha,direccion)
+   ...> AS
+   ...> SELECT
+   ...> stu_Id,
+   ...> stu_name,
+   ...> Age,
+   ...> Gender,
+   ...> strftime('%d/%m/Y',Doa) AS formatted_date,
+   ...> Address
+   ...> FROM
+   ...> students;
+sqlite>
+sqlite> pragma table_info ('estudiantes');
+0|id|INT|0||0
+1|name|varchar(25)|0||0
+2|age|INT|0||0
+3|gender|char(1)|0||0
+4|fecha||0||0
+5|direccion|varchar(20)|0||0
+sqlite> INSERT INTO estudiantes
+   ...> VALUES
+   ...> (200,'Roberto',21,'M','1/1/2000','Madrid');
+Parse error: cannot modify estudiantes because it is a view
+sqlite> SELECT Doa, COUNT(stu_Id)
+   ...> FROM students
+   ...> GROUP BY doa;
+1998-05-16|1
+2016-11-22|1
+2016-11-23|8
+2016-11-24|4
+2016-11-25|5
+2026-11-24|1
+sqlite> SELECT Doa, COUNT(stu_Id)
+   ...> FROM students
+   ...> GROUP BY doa
+   ...> HAVING COUNT(stu_Id)>=4;
+2016-11-23|8
+2016-11-24|4
+2016-11-25|5
+sqlite> SELECT doa, COUNT(stu_Id)
+   ...> FROM students
+   ...> WHERE gender='F'
+   ...> GROUP BY Doa
+   ...> HAVING COUNT(stu_Id)>=4
+   ...> ;
+sqlite> HAVING COUNT(stu_Id)<=4;
+Parse error: near "HAVING": syntax error
+  HAVING COUNT(stu_Id)<=4;
+  ^--- error here
+sqlite> HAVING COUNT(stu_Id)<4;
+Parse error: near "HAVING": syntax error
+  HAVING COUNT(stu_Id)<4;
+  ^--- error here
+sqlite> SELECT doa, COUNT(stu_Id)
+   ...> FROM students
+   ...> WHERE gender='F'
+   ...> GROUP BY Doa
+   ...> HAVING COUNT(stu_Id)<=4;
+2016-11-22|1
+2016-11-24|3
+sqlite> SELECT doa, COUNT(stu_Id)
+   ...> FROM students
+   ...> WHERE gender='F'
+   ...> GROUP BY Doa
+   ...> HAVING COUNT(stu_Id)<=4
+   ...> ORDER BY doa;
+2016-11-22|1
+2016-11-24|3
+sqlite> SELECT doa, COUNT(stu_Id)
+   ...> FROM students
+   ...> WHERE gender='M'
+   ...> GROUP BY Doa
+   ...> HAVING COUNT(stu_Id)<=4
+   ...> ORDER BY doa;
+1998-05-16|1
+2016-11-24|1
+2026-11-24|1
+sqlite> SELECT doa, COUNT(stu_Id)
+   ...> FROM students
+   ...> WHERE gender='M'
+   ...> GROUP BY Doa
+   ...> HAVING COUNT(stu_Id)<=4
+   ...> ORDER BY doa DESC;
+2026-11-24|1
+2016-11-24|1
+1998-05-16|1
+sqlite> INSERT INTO students
+   ...> VALUES
+   ...> (200,'Roberto',21,'M','1/1/2000','Madrid');
+sqlite> select * from students;
+101|Joseph|22|M|2016-11-23|Pune
+102|Maria|35|M|2016-11-23|New York
+103|Margarita|20|M|2026-11-24|Miami
+104|Anubhav|31|M|2016-11-25|Pune
+105|Utkarsh|35|M|2016-11-23|New York
+106|Carolina|35|F|2016-11-24|New York
+107|Cecilia|52|F|2016-11-22|Rosario
+108|Akshay|36|M|2016-11-23|Pune
+109|Akash|38|M|2016-11-25|New York
+110|Javier|26|M|1998-05-16|Madrid
+111|Raghav|24|M|2016-11-23|Detroit
+112|Bianca|24|F|2016-11-24|Pune
+113|Amnrit|23|M|2016-11-25|Miami
+114|Andrew|18|M|2016-11-23|Boston
+115|Ricky|26|M|2016-11-25|Detroit
+116|Cummins|30|M|2016-11-24|Chicago
+117|Rabada|20|M|2016-11-23|Boston
+118|Johnson|25|M|2016-11-23|New York
+119|Jessenia|27|M|2016-11-25|Boston
+120|Illeana|25|F|2016-11-24|Chicago
+200|Roberto|21|M|1/1/2000|Madrid
+sqlite> SELECT * FROM students
+   ...> WHERE Address LIKE '%e';
+101|Joseph|22|M|2016-11-23|Pune
+104|Anubhav|31|M|2016-11-25|Pune
+108|Akshay|36|M|2016-11-23|Pune
+112|Bianca|24|F|2016-11-24|Pune
+sqlite> SELECT FROM students
+   ...> WHERE Address LIKE '%e'
+   ...> ORDER BY Address;
+Parse error: near "FROM": syntax error
+  SELECT FROM students WHERE Address LIKE '%e' ORDER BY Address;
+         ^--- error here
+sqlite> SELECT FROM students
+   ...> ;
+Parse error: near "FROM": syntax error
+  SELECT FROM students ;
+         ^--- error here
+sqlite> SELECT * FROM students
+   ...> WHERE Address LIKE '%e%'
+   ...> ORDER BY Address;
+111|Raghav|24|M|2016-11-23|Detroit
+115|Ricky|26|M|2016-11-25|Detroit
+102|Maria|35|M|2016-11-23|New York
+105|Utkarsh|35|M|2016-11-23|New York
+106|Carolina|35|F|2016-11-24|New York
+109|Akash|38|M|2016-11-25|New York
+118|Johnson|25|M|2016-11-23|New York
+101|Joseph|22|M|2016-11-23|Pune
+104|Anubhav|31|M|2016-11-25|Pune
+108|Akshay|36|M|2016-11-23|Pune
+112|Bianca|24|F|2016-11-24|Pune
+sqlite> SELECT * FROM students
+   ...> WHERE Address LIKE '%e%'
+   ...> ORDER BY 6;
+111|Raghav|24|M|2016-11-23|Detroit
+115|Ricky|26|M|2016-11-25|Detroit
+102|Maria|35|M|2016-11-23|New York
+105|Utkarsh|35|M|2016-11-23|New York
+106|Carolina|35|F|2016-11-24|New York
+109|Akash|38|M|2016-11-25|New York
+118|Johnson|25|M|2016-11-23|New York
+101|Joseph|22|M|2016-11-23|Pune
+104|Anubhav|31|M|2016-11-25|Pune
+108|Akshay|36|M|2016-11-23|Pune
+112|Bianca|24|F|2016-11-24|Pune
+sqlite> .headers ON
+sqlite> SELECT * FROM students
+   ...> WHERE Address LIKE '%e%'
+   ...> ORDER BY 6;
+stu_Id|stu_name|Age|Gender|Doa|Address
+111|Raghav|24|M|2016-11-23|Detroit
+115|Ricky|26|M|2016-11-25|Detroit
+102|Maria|35|M|2016-11-23|New York
+105|Utkarsh|35|M|2016-11-23|New York
+106|Carolina|35|F|2016-11-24|New York
+109|Akash|38|M|2016-11-25|New York
+118|Johnson|25|M|2016-11-23|New York
+101|Joseph|22|M|2016-11-23|Pune
+104|Anubhav|31|M|2016-11-25|Pune
+108|Akshay|36|M|2016-11-23|Pune
+112|Bianca|24|F|2016-11-24|Pune
+sqlite> SELECT stu_ID AS 'Id' FROM students
+   ...> WHERE Address LIKE '%e%'
+   ...> ORDER BY 6;
+Parse error: 1st ORDER BY term out of range - should be between 1 and 1
+sqlite> SELECT stu_ID AS 'Id' FROM students
+   ...> WHERE Address LIKE '%e%'
+   ...> ;
+Id
+101
+102
+104
+105
+106
+108
+109
+111
+112
+115
+118
+sqlite> SELECT DISTINCT Address AS Dirección FROM students ORDER BY 1;
+Dirección
+Boston
+Chicago
+Detroit
+Madrid
+Miami
+New York
+Pune
+Rosario
+sqlite> SELECT * from students
+   ...> WHERE Age BETWEEN 20 and 30
+   ...> ORDER BY Age;
+stu_Id|stu_name|Age|Gender|Doa|Address
+103|Margarita|20|M|2026-11-24|Miami
+117|Rabada|20|M|2016-11-23|Boston
+200|Roberto|21|M|1/1/2000|Madrid
+101|Joseph|22|M|2016-11-23|Pune
+113|Amnrit|23|M|2016-11-25|Miami
+111|Raghav|24|M|2016-11-23|Detroit
+112|Bianca|24|F|2016-11-24|Pune
+118|Johnson|25|M|2016-11-23|New York
+120|Illeana|25|F|2016-11-24|Chicago
+110|Javier|26|M|1998-05-16|Madrid
+115|Ricky|26|M|2016-11-25|Detroit
+119|Jessenia|27|M|2016-11-25|Boston
+116|Cummins|30|M|2016-11-24|Chicago
+sqlite> SELECT * from students
+   ...> WHERE Age>=20 and Age<=30
+   ...> ORDER BY Age;
+stu_Id|stu_name|Age|Gender|Doa|Address
+103|Margarita|20|M|2026-11-24|Miami
+117|Rabada|20|M|2016-11-23|Boston
+200|Roberto|21|M|1/1/2000|Madrid
+101|Joseph|22|M|2016-11-23|Pune
+113|Amnrit|23|M|2016-11-25|Miami
+111|Raghav|24|M|2016-11-23|Detroit
+112|Bianca|24|F|2016-11-24|Pune
+118|Johnson|25|M|2016-11-23|New York
+120|Illeana|25|F|2016-11-24|Chicago
+110|Javier|26|M|1998-05-16|Madrid
+115|Ricky|26|M|2016-11-25|Detroit
+119|Jessenia|27|M|2016-11-25|Boston
+116|Cummins|30|M|2016-11-24|Chicago
+sqlite> SELECT stu_Id, student_name
+   ...> CASE
+   ...> WHEN age<20 THEN
+   ...> 'teenagers'
+   ...> else
+   ...> 'not teenagers'
+   ...> END agegroup
+   ...> FROM students;
+Parse error: near "CASE": syntax error
+  SELECT stu_Id, student_name CASE WHEN age<20 THEN 'teenagers' else 'not teenag
+                error here ---^
+sqlite> SELECT stu_Id, student_name
+   ...> case
+   ...> WHEN age<20 THEN
+   ...> 'teenagers'
+   ...> else
+   ...> 'not teenagers'
+   ...> END agegroup
+   ...> FROM students;
+Parse error: near "case": syntax error
+  SELECT stu_Id, student_name case WHEN age<20 THEN 'teenagers' else 'not teenag
+                error here ---^
+sqlite> SELECT stu_Id, student_name,
+   ...> CASE
+   ...> WHEN age<20 THEN
+   ...> 'teenagers'
+   ...> else
+   ...> 'not teenagers'
+   ...> END agegroup
+   ...> FROM students;
+Parse error: no such column: student_name
+  SELECT stu_Id, student_name, CASE WHEN age<20 THEN 'teenagers' else 'not teena
+                 ^--- error here
+sqlite> SELECT * from students
+   ...> ;
+stu_Id|stu_name|Age|Gender|Doa|Address
+101|Joseph|22|M|2016-11-23|Pune
+102|Maria|35|M|2016-11-23|New York
+103|Margarita|20|M|2026-11-24|Miami
+104|Anubhav|31|M|2016-11-25|Pune
+105|Utkarsh|35|M|2016-11-23|New York
+106|Carolina|35|F|2016-11-24|New York
+107|Cecilia|52|F|2016-11-22|Rosario
+108|Akshay|36|M|2016-11-23|Pune
+109|Akash|38|M|2016-11-25|New York
+110|Javier|26|M|1998-05-16|Madrid
+111|Raghav|24|M|2016-11-23|Detroit
+112|Bianca|24|F|2016-11-24|Pune
+113|Amnrit|23|M|2016-11-25|Miami
+114|Andrew|18|M|2016-11-23|Boston
+115|Ricky|26|M|2016-11-25|Detroit
+116|Cummins|30|M|2016-11-24|Chicago
+117|Rabada|20|M|2016-11-23|Boston
+118|Johnson|25|M|2016-11-23|New York
+119|Jessenia|27|M|2016-11-25|Boston
+120|Illeana|25|F|2016-11-24|Chicago
+200|Roberto|21|M|1/1/2000|Madrid
+sqlite> SELECT stu_Id, stu_name,
+   ...> CASE
+   ...> WHEN age<20 THEN
+   ...> 'teenagers'
+   ...> else
+   ...> 'not teenagers'
+   ...> END agegroup
+   ...> FROM students;
+stu_Id|stu_name|agegroup
+101|Joseph|not teenagers
+102|Maria|not teenagers
+103|Margarita|not teenagers
+104|Anubhav|not teenagers
+105|Utkarsh|not teenagers
+106|Carolina|not teenagers
+107|Cecilia|not teenagers
+108|Akshay|not teenagers
+109|Akash|not teenagers
+110|Javier|not teenagers
+111|Raghav|not teenagers
+112|Bianca|not teenagers
+113|Amnrit|not teenagers
+114|Andrew|teenagers
+115|Ricky|not teenagers
+116|Cummins|not teenagers
+117|Rabada|not teenagers
+118|Johnson|not teenagers
+119|Jessenia|not teenagers
+120|Illeana|not teenagers
+200|Roberto|not teenagers
+sqlite>
