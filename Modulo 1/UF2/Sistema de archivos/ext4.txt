@@ -1,0 +1,50 @@
+Minix
+	Fecha de Lanzamiento: 1987
+	Desarrollador: Andrew S. Tanenbaum
+	Uso Ideal: Sistema operativo orientado al texto con un enfoque en la seguridad y confiabilidad.
+	Características Clave: Micronúcleo, cada controlador de dispositivo se ejecuta como un proceso aislado en modo usuario.
+EXT
+	Fecha de Lanzamiento: 1992
+	Desarrollador: Rémy Card
+	Uso Ideal: Superar las limitaciones de tamaño del sistema de archivos Minix.
+	Características Clave: Basado en el sistema de archivos de Unix (UFS), modificaciones en metadatos del sistema de archivos.
+EXT2
+	Fecha de Lanzamiento: No especificada
+	Uso Ideal: Distribuciones de Linux durante varios años.
+	Características Clave: Estructuras de metadatos similares a EXT, pero más eficiente en la gestión del espacio en disco.
+EXT3
+	Fecha de Lanzamiento: No especificada
+	Uso Ideal: Reducción del tiempo necesario para la recuperación de estructuras de disco dañadas.
+	Características Clave: Introducción del registro en el diario para reducir el tiempo de recuperación después de fallos.
+EXT4
+	Fecha de Lanzamiento: Diciembre 2008
+	Desarrollador: Mingming Cao, Andreas Dilger, Alex Zhuravlev, Dave Kleikamp, Theodore Ts'o, Eric Sandeen, Sam Naghshineh
+	Uso Ideal: Aplicaciones que requieren alto rendimiento y gestión eficiente del espacio en disco.
+	Características Clave:
+		Tamaño del Sistema de Archivos: Soporta sistemas de archivos de hasta 1 exbibyte de tamaño y archivos de hasta 16 tebibytes de tamaño, en comparación con los límites más bajos de EXT3.
+		Extensiones: Los archivos grandes se dividen en varias "extensiones", lo que mejora la asignación de datos y reduce la fragmentación.
+		Asignación Multibloque: Asigna múltiples bloques para un archivo en una sola operación para optimizar la asignación de memoria.
+		Asignación Retardada: Almacena datos en caché antes de escribirlos en el disco, lo que mejora la eficiencia.
+		Desfragmentación en Línea: Permite la desfragmentación en tiempo real para mantener un rendimiento óptimo.
+		Suma de Comprobación del Diario: Utiliza la suma de comprobación del diario para evitar la corrupción de datos.
+		Inodos/Timestamps: Tiene un tamaño de inodo más grande y una precisión de marca de tiempo en nanosegundos.
+		Compatibilidad con Versiones Anteriores: Permite la migración desde sistemas de archivos Ext3 sin necesidad de formatear o reinstalar el sistema operativo.
+Pros
+	Mejor Rendimiento: Ext4 ofrece un rendimiento mejorado en comparación con sistemas de archivos anteriores como Ext3, especialmente en términos de velocidad de acceso y gestión de archivos grandes.
+	Compatibilidad con Grandes Volúmenes: Soporta sistemas de archivos de hasta 1 exbibyte de tamaño y archivos individuales de hasta 16 tebibytes, lo que lo hace adecuado para aplicaciones que requieren almacenamiento masivo.
+	Extensiones y Reducción de Fragmentación: El uso de extensiones reduce la fragmentación de archivos y mejora la asignación de datos, lo que conduce a un mejor uso del espacio en disco y una menor fragmentación.
+	Desfragmentación en Línea: Ext4 permite la desfragmentación en tiempo real, lo que facilita el mantenimiento del sistema de archivos y el rendimiento constante.
+	Suma de Comprobación del Diario: Utiliza la suma de comprobación del diario para detectar y evitar la corrupción de datos, lo que aumenta la integridad del sistema de archivos.
+	Compatibilidad con Versiones Anteriores: Permite la migración desde sistemas de archivos Ext3 sin necesidad de formatear o reinstalar el sistema operativo, lo que facilita la actualización.
+Contras
+	Carga Administrativa Adicional: Ext4 puede requerir una carga administrativa adicional en comparación con sistemas de archivos más simples debido a su amplia gama de características y opciones de configuración.
+	Posible Desperdicio de Espacio en Disco: Debido a su complejidad y características avanzadas, es posible que Ext4 ocasione un desperdicio de espacio en disco mayor del necesario en algunas situaciones.
+	Incidentes con Disco Lleno: Existe la posibilidad de que ocurran más incidentes relacionados con un disco lleno debido a la gestión más compleja del espacio en disco por parte de Ext4.
+	Dificultad en Crear Instantáneas Consistentes: Puede ser más difícil crear instantáneas consistentes de aplicaciones que se ejecutan en diferentes volúmenes debido a la gestión separada del espacio.
+	
+Comparación con otros sistemas de archivos
+	XFS: Ideal para sistemas de computación grandes y alto rendimiento, pero con operaciones de metadatos más lentas.
+	Btrfs: Bueno para la tolerancia a fallos y protección de datos, pero con un alto nivel de fragmentación.
+	ZFS: Útil para sistemas que abarcan una serie de unidades o un pool, pero no comprueba la salud de la RAM en caso de errores de datos.
+	JFS: Mantiene la coherencia de metadatos registrándolos en el diario, pero no permite reducir una partición JFS.
+	NTFS: Evita la pérdida de datos en caso de pérdida de energía, pero tiene problemas de compatibilidad con Android y macOS.
