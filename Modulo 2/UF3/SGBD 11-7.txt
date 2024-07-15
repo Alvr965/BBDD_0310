@@ -1,0 +1,130 @@
+[varo@localhost ~]$ sqlplus sugus@localhost/XEPDB1
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Thu Jul 11 11:20:52 2024
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter password: 
+Hora de Ultima Conexion Correcta: Mie Jul 10 2024 11:26:36 +02:00
+
+Conectado a:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> set pagesize 100
+SQL> set linesize 100
+SQL> SELECT * FROM v$controlfile;
+
+STATUS
+-------
+NAME
+----------------------------------------------------------------------------------------------------
+IS_ BLOCK_SIZE FILE_SIZE_BLKS	  CON_ID
+--- ---------- -------------- ----------
+
+/opt/oracle/oradata/XE/control01.ctl
+NO	 16384		 1142	       0
+
+
+/opt/oracle/oradata/XE/control02.ctl
+NO	 16384		 1142	       0
+
+SQL> SELECT * FROM v$log;
+
+SQL> SELECT * FROM v$log;
+
+    GROUP#    THREAD#  SEQUENCE#      BYTES  BLOCKSIZE	  MEMBERS ARC STATUS	       FIRST_CHANGE# FIRST_TI NEXT_CHANGE# NEXT_TIM	CON_ID
+---------- ---------- ---------- ---------- ---------- ---------- --- ---------------- ------------- -------- ------------ -------- ----------
+	 1	    1	      16  209715200	   512		1 NO  INACTIVE		    15663762 15/07/24	  16665412 15/07/24	     0
+	 2	    1	      17  209715200	   512		1 NO  INACTIVE		    16665412 15/07/24	  17669250 15/07/24	     0
+	 3	    1	      18  209715200	   512		1 NO  CURRENT		    17669250 15/07/24	9,2954E+18		     0
+
+
+---------------------------------------------------------------Podriamos observar los parametros y crear un fichero con ellos:
+
+SHOW PARAMETERS
+SHOW PARAMETERS recycle
+CREATE PFILE='C:\app\javier\product\21c\dbhomeXE\database\init.ora' FROM MEMORY;                        --Podemos crear este archivo que es legible y contine los de la memoria--
+                                                                    FROM SPFILE;                        --Para poder ver los que tiene por defecto y al arrancar--
+STARTUP PFFILE = 'C:\app\javier\product\21c\dbhomeXE\database\init.ora';                                --Podemos inicar con ese parametro de configuraciones una vez apagada--
+
+----------------------------------------Ahora creamos una tabla, la eliminamos y posteriormente accedemos a su interior desde la basura
+SQL> create table kk (columna int);
+
+Tabla creada.
+
+SQL> insert into kk values (1);
+
+1 fila creada.
+
+SQL> commit;
+
+Confirmacion terminada.
+
+SQL> drop table kk;
+
+Tabla borrada.
+
+SQL> set pagesize 100
+SQL> select * from recyclebin;
+
+OBJECT_NAME
+--------------------------------------------------------------------------------
+ORIGINAL_NAME
+--------------------------------------------------------------------------------
+OPERATION TYPE			    TS_NAME
+--------- ------------------------- ------------------------------
+CREATETIME	    DROPTIME		   DROPSCN
+------------------- ------------------- ----------
+PARTITION_NAME
+--------------------------------------------------------------------------------
+CAN CAN    RELATED BASE_OBJECT PURGE_OBJECT	 SPACE
+--- --- ---------- ----------- ------------ ----------
+BIN$HPZKtSKrGj3gZQAAAAAAAQ==$0
+KK
+DROP	  TABLE 		    ROBERTO
+2024-07-11:11:21:22 2024-07-11:11:21:46   21779856
+
+YES YES      76148	 76148	      76148	     8
+
+
+SQL> CREATE TABLE KK AS select * from "BIN$HPZKtSKrGj3gZQAAAAAAAQ==$0";
+
+Tabla creada.
+
+SQL> select * from KK;
+
+   COLUMNA
+----------
+	 1
+
+[varo@localhost ~]$ sqlplus sys@localhost/XEPDB1 as sysdba
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Thu Jul 11 13:21:08 2024
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter password: 
+
+Conectado a:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SELECT tablespace_name,
+round(sum(bytes) / (1024 * 1024), 2) AS "Total_MB",
+round((1 - sum(bytes_free) / sum(bytes)) * 100, 2) AS "Used_Pct"
+FROM dba_data_files df
+JOIN (
+	SELECT file_id, sum(bytes) AS bytes_free
+	FROM dba_free_space
+	GROUP BY file_id
+) 
+fs ON df.file_id = fs.file_id
+WHERE tablespace_name = 'USERS'
+GROUP BY tablespace_name;
+
+TABLESPACE_NAME 		 Total_MB   Used_Pct
+------------------------------ ---------- ----------
+USERS					5	  20

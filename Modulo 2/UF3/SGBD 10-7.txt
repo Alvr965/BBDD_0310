@@ -1,0 +1,171 @@
+sqlplus sys@localhost/XEPDB1 as sysdba
+Conectado a:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> shutdown immediate;
+Base de datos de conexion cerrada.
+---En otro terminal, sin cerrar este en el que acabamos de cerrar la conexion con XEPDB1------
+
+sqlplus sys@localhost/XE as sysdba
+Conectado a:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> shutdown abort;
+Instancia ORACLE cerrada.
+SQL> startup nomount;
+Instancia ORACLE iniciada.
+SQL> ALTER DATABASE MOUNT;
+Base de datos modificada.
+SQL> ALTER DATABASE OPEN;
+Base de datos modificada.
+
+SQL> SELECT NAME, OPEN_MODE FROM V$DATABASE;
+
+NAME	  OPEN_MODE
+--------- --------------------
+XE	  READ WRITE
+
+SQL> SELECT INSTANCE_NAME, STATUS FROM V$INSTANCE;
+
+INSTANCE_NAME	 STATUS
+---------------- ------------
+XE		 OPEN
+
+Oracle - Puedes hacer un flashback para recuperar los datos de un campo tras haber hecho un commit
+	Instancia - Memoria
+	Base de datos  Todos los archivos
+	Conjunto de Instancia y Base de datos - Servidor de Oracle
+		database
+			PWDXE - Contiene la contraseña
+			initXE - Parametros basicos del servidor
+				Version antigua que indica la ruta de la version nueva
+
+Todo lo que requiera espacio de almacenamiento necesita ubicarse en un espacio de tabla
+	TableSpace es un espacio logico, esto se almacena en una serie de ficheros qeu contienen los datos.
+	
+SQL> create tablespace roberto
+  2  DATAFILE 'roberto.dbf'
+  3  SIZE 20M AUTOEXTEND ON;
+
+Tablespace creado.
+
+SQL> drop tablespace roberto;
+
+Tablespace borrado.
+
+SQL> create tablespace roberto
+  2  DATAFILE 'roberto.dbf'
+  3  SIZE 20M AUTOEXTEND ON MAXSIZE 800M;
+
+SQL> create tablespace roberto
+*
+ERROR en linea 1:
+ORA-01119: error al crear el archivo de base de datos 'roberto.dbf'
+ORA-27038: el archivo creado ya existe
+Additional information: 1
+
+Si quieres eliminar ese archivo, este se encuentra en /opt/oracle/homes/OraDBHome21cXE/dbs
+
+Si desconoces la localizacion de un datafile y tienes el nombre, tienes que introducir la siguiente SQL QUERY
+SQL> select file_name
+  2  from dba_data_files
+  3  where tablespace_name = 'PRUEBITA';
+
+SQL> create tablespace roberto
+  2  DATAFILE 'roberto2.dbf'
+  3  SIZE 20M AUTOEXTEND ON MAXSIZE 800M;
+
+
+Si te encuentras en la base de datos contenendora y como tienes que trabajar en la enchufable, tienes que realisar el siguiente comando
+
+SQL> ALTER SESSION set container = XEPDB1;
+Sesion modificada
+
+SQL> show user
+USER es "SYS"
+
+SQL> SHOW CON_NAME;
+
+CON_NAME
+------------------------------
+XEPDB1
+
+Es posible que Oracle XE 21c solo admita conexiones locales
+
+SQL> ALTER TABLESPACE roberto OFFLINE; - Es una forma de realizar un backup de la tablespace
+Tablespace modificado.
+
+SQL> ALTER TABLESPACE roberto ONLINE;
+Tablespace modificado.
+
+------------------Si quiero crear un usuario y que utilice el usuario y la tablespace por defecto-----------------------------
+
+SQL> create user sugus IDENTIFIED BY Varo$2024 DEFAULT TABLESPACE roberto QUOTA UNLIMITED ON roberto;
+Usuario creado.
+
+SQL> GRANT CREATE SESSION, CREATE TABLE, SELECT ANY TABLE TO sugus;
+Concesion terminada correctamente.
+
+[varo@localhost ~]$ sqlplus sugus@localhost/XEPDB1
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Wed Jul 10 10:55:53 2024
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter password: 
+
+Conectado a:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL>
+
+------------------------Si el usuario ya esta creado, podemos alterarlo con sys o con un usuario con privilegios de administrador------------------------------------------------
+ALTER USER 'usuario objetivo'
+DEFAULT TABLESPACE 'TABLESPACE TO WORK IN'
+QUOTA UNLIMITED ON 'TABLESPACE TO WORK IN'
+
+------------------------Revisamos que tablespace esta usando un usuario determinado------------------------------------------------
+SELECT username, default_tablespace
+FROM dba_users
+WHERE username = 'usuario determinado';
+
+Con un comando similar, podemos averiguar que tablas pertenecen a un determinado usuario
+select TABLE_NAME 
+from DBA_TABLES 
+where owner='known_user';
+
+======================Cambiamos el estado de la tablespace==================
+
+-------ONLINE---------------
+ALTER TABLESPACE prueba ONLINE;
+
+-------OFFLINE---------------
+ALTER TABLESPACE prueba OFFLINE;
+
+-------READ---------------
+ALTER TABLESPACE prueba READ ONLY FFLINE;
+
+-------------------------------------Ahora creamos en el tablespace la tabla------------------------------------------------
+
+SQL> CREATE TABLE piña(COLUMNA INT);
+Tabla creada.
+
+SQL> BEGIN
+  2      FOR i IN 1..1000 LOOP
+        INSERT INTO piña (columna) VALUES (6);
+  4      END LOOP;
+  5      COMMIT;  -- Confirmar los cambios
+  6  END;
+  7  /
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> select count(*) from piña;
+
+  COUNT(*)
+----------
+      1000

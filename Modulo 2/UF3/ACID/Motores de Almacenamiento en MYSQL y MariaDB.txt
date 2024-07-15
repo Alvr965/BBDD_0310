@@ -1,0 +1,88 @@
+Aprendemos qué son y en que consisten los diferentes motores de almacenamiento para MySQL y MariaDB. Al final de la entrada, también os recomiendo una serie de libros, que tratan sobre ello.
+
+Un motor de almacenamiento es un módulo de software que utiliza un sistema de administración de bases de datos para crear, leer y actualizar datos de una base de datos. Hay dos tipos de motores de almacenamiento en MySQL y MariaDB: transaccionales y no transaccionales.
+
+
+Para MySQL 5.5 y posteriores, el motor de almacenamiento predeterminado es InnoDB. El motor de almacenamiento predeterminado para MySQL antes de la versión 5.5 era MyISAM. La elección del motor de almacenamiento adecuado es una decisión estratégica importante que afectará el desarrollo futuro. En esta entrada, usaremos motores de almacenamiento MyISAM, InnoDB, Memory y CSV. Si eres nuevo en MySQL y está estudiando el sistema de administración de bases de datos MySQL y MariaDB, esto es un tema importante. Si estás planificando una base de datos de producción, las cosas se vuelven más complejas.
+
+Lista de los motores de almacenamiento
+La lista de los motores de almacenamiento, actualmente, es la siguiente: InnoDB, MyISAM, Memory, CSV, Merge, Archive, Federated, Blackhole y Example.
+
+	- InnoDB es el motor de almacenamiento más utilizado con soporte para transacciones. Es un motor de almacenamiento compatible con ACID. Admite bloqueo de nivel de fila, recuperación de fallos y control de concurrencia de múltiples versiones. Es el único motor que proporciona una restricción de integridad referencial de clave externa. Oracle recomienda usar InnoDB para tablas, excepto para casos de uso especializados.
+	- MyISAM es el motor de almacenamiento original. Es un motor de almacenamiento rápido. No admite transacciones. MyISAM proporciona bloqueo a nivel de tabla. Se utiliza principalmente en Web y almacenamiento de datos.
+	- El motor de almacenamiento Memory crea tablas en la memoria (de ahí el nombre). Es el motor más rápido. Proporciona bloqueo a nivel de mesa. No admite transacciones. El motor de almacenamiento de memoria es ideal para crear tablas temporales o búsquedas rápidas. Los datos se pierden cuando se reinicia la base de datos.
+	- CSV almacena datos en archivos CSV. Proporciona una gran flexibilidad porque los datos en este formato se integran fácilmente en otras aplicaciones.
+	- Merge opera en tablas MyISAM subyacentes. Las tablas de combinación ayudan a administrar grandes volúmenes de datos con mayor facilidad. Agrupa lógicamente una serie de tablas MyISAM idénticas y las referencia como un solo objeto. Es una buena opción para entornos de almacenamiento de datos.
+	- El motor de almacenamiento Archive (de archivos) está optimizado para la inserción de alta velocidad. Comprime los datos a medida que se insertan. No admite transacciones. Es ideal para almacenar y recuperar grandes cantidades de datos históricos archivados a los que rara vez se hace referencia.
+	- El motor de almacenamiento Blackhole acepta pero no almacena datos. Las recuperaciones siempre devuelven un conjunto vacío. La funcionalidad se puede utilizar en el diseño de bases de datos distribuidas donde los datos se replican automáticamente, pero no se almacenan localmente. Este motor de almacenamiento se puede utilizar para realizar pruebas de rendimiento entre otras.
+	- El motor de almacenamiento Federated (federado) ofrece la capacidad de separar los servidores MySQL para crear una base de datos lógica a partir de muchos servidores físicos. Las consultas en el servidor local se ejecutan automáticamente en las tablas remotas (federadas). No se almacenan datos en las tablas locales. Es bueno para entornos distribuidos
+	
+Desde la consola de administración podemos listar los motores de almacenamiento disponibles:
+
+mysql> SHOW ENGINES\G
+*************************** 1. ROW ***************************
+      Engine: InnoDB
+     Support: DEFAULT
+     Comment: Supports transactions, row-level locking, AND FOREIGN KEYS
+Transactions: YES
+          XA: YES
+  Savepoints: YES
+*************************** 2. ROW ***************************
+      Engine: CSV
+     Support: YES
+     Comment: CSV storage engine
+Transactions: NO
+          XA: NO
+  Savepoints: NO
+...
+Tal y como se muestra en el ejemplo, debemos utilizar SHOW ENGINES , este comando nos mostrará todos los motores disponibles que admite el servidor.
+
+---------------------------------------Elegir el motor adecuado---------------------------------------------
+
+Ningún motor de almacenamiento es ideal para todas las circunstancias. Algunos funcionan mejor en determinadas condiciones y peor en otras situaciones. Hay varias cosas que se debes considerar. Una solución más segura requiere más recursos; podría ser más lento, requerir más tiempo de CPU y espacio en disco. MySQL y MariaDB son muy flexibles en el hecho de que proporcionan varios motores de almacenamiento diferentes. Algunos de ellos, como el motor Archive, se crean para ser utilizados en situaciones específicas.
+
+En algunos casos, la respuesta es clara. Siempre que estemos tratando con algunos sistemas de pago, estamos obligados a utilizar la solución más segura. No podemos permitirnos perder datos tan sensibles. InnoDB, sin duda, es el camino a seguir. Si queremos una búsqueda de texto completo, entonces podemos elegir entre MyISAM o InnoDB. Solo InnoDB admite la restricción de integridad referencial de clave externa y si planeamos usar esta restricción, entonces la elección es clara.
+
+------------------------------Especificar y modificar motores de almacenamiento-----------------------------
+
+El motor de almacenamiento se especifica en el momento de la creación de la tabla. Por ejemplo:
+
+mysql> CREATE TABLE Coches(Id INTEGER PRIMARY KEY, Name VARCHAR(50), 
+    -> Cost INTEGER) ENGINE='MyISAM';
+La palabra clave ENGINE especifica el motor de almacenamiento utilizado para esta tabla en particular.
+
+Si no especificamos el motor de almacenamiento de forma explícita, se utiliza el motor de almacenamiento predeterminado. Tal y como hemos comentado en párrafos anteriores, antes de MySQL 5.5, el motor de almacenamiento predeterminado era MyISAM. Para MySQL 5.5 y posteriores, el motor de almacenamiento predeterminado es InnoDB.
+
+Es posible migrar a un motor de almacenamiento diferente. Debemos tener en cuenta que la migración de una tabla grande puede llevar bastante tiempo. Además, es posible que tengamos algunos problemas al migrar tablas. Es posible que algunas funciones no sean compatibles con ambas tablas.
+
+mysql> SELECT ENGINE FROM information_schema.TABLES
+    -> WHERE TABLE_SCHEMA='concesionariodb'
+    -> AND TABLE_NAME='Coches';
++--------+
+| ENGINE |
++--------+
+| InnoDB |
++--------+
+1 ROW IN SET (0,05 sec)
+Esta declaración SQL descubre el motor de almacenamiento utilizado para una tabla «Coches» en la base de datos «Concesionariodb». También podríamos usar la declaración SQL SELECT CREATE TABLE Coches. «Information_schema» es una tabla que almacena información técnica sobre nuestras tablas.
+
+mysql> ALTER TABLE Coches ENGINE='MyISAM';
+Esta declaración SQL cambia el motor de almacenamiento de la tabla «Coches» a MyISAM.
+
+mysql> SELECT ENGINE FROM information_schema.TABLES
+    -> WHERE TABLE_SCHEMA='Concesionariodb'
+    -> AND TABLE_NAME='Coches';
++--------+
+| ENGINE |
++--------+
+| MyISAM |
++--------+
+1 ROW IN SET (0,00 sec)
+Ahora el motor de almacenamiento de la tabla es MyISAM.
+
+Esta entrada, sin duda muy teórica, sirve básicamente para mis apuntes, pero si además os puede servir a ti, ávido lector, mejor que mejor.
+Si quieres ampliar conocimientos siempre puedes echar un ojo a alguna de estas recomendaciones, sobre libros que versan sobre el tema:
+
+Administrar MySQL y MariaDB: Aprende a administrar MySQL y MariaDB fácilmente
+Learning MySQL and MariaDB: Heading in the Right Direction with MySQL and MariaDB
+Y esto es todo, espero que esta información os sea de utilidad en algún momento.

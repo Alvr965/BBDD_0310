@@ -1,0 +1,6 @@
+Mariadb tiene sentencias con un auto commit, no tienes que ponerlo de forma explicita en este gestor de bases de datos. Si quieres que se produzca un bloqueo hasta que se complete la transaccion tienes que poner
+	start transaction;
+	select * from empleados where id=1 for UPDATE;
+Introduces todas las sentencias que quieras y entoncers el usuario acapara el gestor hata que se produzca el fin de transaccion
+	commit;
+Una vez introducido, volvera al comportamiento habitual de autocommit cada vez que ejecutes una sentencia
