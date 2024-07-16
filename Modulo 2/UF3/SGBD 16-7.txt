@@ -1,0 +1,424 @@
+============================Ejecucion de un script en mariadb===============================================
+mysql --ssl=0 -u root -p <C:\Users\Mañanas\Downloads\jardineria.sql
+source C:\Users\Mañanas\Downloads\jardineria.sql
+
+MariaDB [jardineria]> show tables;
++----------------------+
+| Tables_in_jardineria |
++----------------------+
+| cliente              |
+| detalle_pedido       |
+| empleado             |
+| gama_producto        |
+| oficina              |
+| pago                 |
+| pedido               |
+| producto             |
++----------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [jardineria]> SELECT nombre_contacto, telefono
+    -> FROM cliente
+    -> WHERE pais = 'France';
++-----------------+----------------+
+| nombre_contacto | telefono       |
++-----------------+----------------+
+| FraÃ§ois        | (33)5120578961 |
+| Pierre          | (33)0140205050 |
++-----------------+----------------+
+2 rows in set (0.003 sec)
+
+-------------------------------------------Cambio de nombre utilizando el telefono como referencia debido a que la gente codifica mal-----------------------------------------------------------------
+MariaDB [jardineria]> update cliente set nombre_contacto = 'Francois'
+    -> where telefono = '(33)5120578961';
+Query OK, 1 row affected (0.003 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [jardineria]> SELECT nombre_contacto, telefono
+    -> FROM cliente
+    -> WHERE pais = 'France';
++-----------------+----------------+
+| nombre_contacto | telefono       |
++-----------------+----------------+
+| Francois        | (33)5120578961 |
+| Pierre          | (33)0140205050 |
++-----------------+----------------+
+2 rows in set (0.000 sec)
+
+------------------------------------Consulta para comprobar el numero de filas ha tenido que revisar con la sentencia que le hemos dado
+MariaDB [jardineria]> EXPLAIN SELECT nombre_contacto, telefono
+    -> FROM cliente
+    -> WHERE pais = 'francia';
++------+-------------+---------+------+---------------+------+---------+------+------+-------------+
+| id   | select_type | table   | type | possible_keys | key  | key_len | ref  | rows | Extra       |
++------+-------------+---------+------+---------------+------+---------+------+------+-------------+
+|    1 | SIMPLE      | cliente | ALL  | NULL          | NULL | NULL    | NULL | 36   | Using where |
++------+-------------+---------+------+---------------+------+---------+------+------+-------------+
+1 row in set (0.006 sec)
+
+MariaDB [jardineria]> desc cliente
+    -> ;
++----------------------------+---------------+------+-----+---------+-------+
+| Field                      | Type          | Null | Key | Default | Extra |
++----------------------------+---------------+------+-----+---------+-------+
+| codigo_cliente             | int(11)       | NO   | PRI | NULL    |       |
+| nombre_cliente             | varchar(50)   | NO   |     | NULL    |       |
+| nombre_contacto            | varchar(30)   | YES  |     | NULL    |       |
+| apellido_contacto          | varchar(30)   | YES  |     | NULL    |       |
+| telefono                   | varchar(15)   | NO   |     | NULL    |       |
+| fax                        | varchar(15)   | NO   |     | NULL    |       |
+| linea_direccion1           | varchar(50)   | NO   |     | NULL    |       |
+| linea_direccion2           | varchar(50)   | YES  |     | NULL    |       |
+| ciudad                     | varchar(50)   | NO   |     | NULL    |       |
+| region                     | varchar(50)   | YES  |     | NULL    |       |
+| pais                       | varchar(50)   | YES  |     | NULL    |       |
+| codigo_postal              | varchar(10)   | YES  |     | NULL    |       |
+| codigo_empleado_rep_ventas | int(11)       | YES  | MUL | NULL    |       |
+| limite_credito             | decimal(15,2) | YES  |     | NULL    |       |
++----------------------------+---------------+------+-----+---------+-------+
+14 rows in set (0.015 sec)
+
+-Optimizacion realizada, hemos pasado de 36 a 2 solo acotando pais como un indice de rapido acceso (En vez de entrar a cada cliente y revisar el pais, estamos indicandole los paises directamente y no tiene que revisarlas
+
+MariaDB [jardineria]> CREATE INDEX idx_pais ON cliente(pais);
+Query OK, 0 rows affected (0.011 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [jardineria]> EXPLAIN SELECT nombre_contacto, telefono
+    -> FROM cliente
+    -> WHERE pais = 'France';
++------+-------------+---------+------+---------------+----------+---------+-------+------+-----------------------+
+| id   | select_type | table   | type | possible_keys | key      | key_len | ref   | rows | Extra                 |
++------+-------------+---------+------+---------------+----------+---------+-------+------+-----------------------+
+|    1 | SIMPLE      | cliente | ref  | idx_pais      | idx_pais | 203     | const | 2    | Using index condition |
++------+-------------+---------+------+---------------+----------+---------+-------+------+-----------------------+
+1 row in set (0.003 sec)
+
+--------------------------------------------------------------------------NUEVA BBDD y NUEVO EJERCICIO------------------------------------------------------------------------------------------------
+MariaDB [(none)]> DROP DATABASE IF EXISTS viajes;
+Query OK, 0 rows affected, 1 warning (0.000 sec)
+MariaDB [(none)]> CREATE DATABASE viajes CHARACTER SET utf8mb4;
+Query OK, 1 row affected (0.000 sec)
+MariaDB [(none)]> USE viajes;
+Database changed
+MariaDB [viajes]>
+MariaDB [viajes]> CREATE TABLE lugares (
+    ->   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    ->   nombre VARCHAR(100) NOT NULL,
+    ->   descripcion TEXT NOT NULL
+    -> );
+Query OK, 0 rows affected (0.005 sec)
+MariaDB [viajes]>
+MariaDB [viajes]> INSERT INTO lugares VALUES (1, 'París', 'Viaje a <strong>París</strong>, fascinado por la <strong>Torre Eiffel</strong> iluminada de noche y el museo del <strong>Louvre</strong> con la <strong>Mona Lisa</strong>.');
+Query OK, 1 row affected (0.001 sec)
+MariaDB [viajes]> INSERT INTO lugares VALUES (2, 'Santorini', 'Pintoresco pueblo de <strong>Santorini</strong> con casas blancas y tejados azules, playas de arena volcánica. Cuenta con museos fascinantes como el del Louvre que muestran la rica historia de la isla y su cultura.');
+Query OK, 1 row affected (0.000 sec)
+MariaDB [viajes]> INSERT INTO lugares VALUES (3, 'Gran Cañon', 'Impresionante <strong>Gran Cañón</strong> con paredes rocosas y espectaculares puestas de sol.');
+Query OK, 1 row affected (0.000 sec)
+MariaDB [viajes]> INSERT INTO lugares VALUES (4, 'Machu Pichu', 'Ruinas antiguas de <strong>Machu Picchu</strong>, caminar por calles empedradas y admirar templos y terrazas.');
+Query OK, 1 row affected (0.000 sec)
+MariaDB [viajes]> INSERT INTO lugares VALUES (5, 'Tokio', 'Contraste de tradición y modernidad en <strong>Tokio</strong>, con templos históricos y brillantes letreros de neón.');
+Query OK, 1 row affected (0.001 sec)
+
+------------------------------------------------Vamos a tener que hacer un poco de cabriolas mentales por culpa del formato html que tienen------------------------------------------------------------
+MariaDB [viajes]> SELECT * FROM lugares
+    -> WHERE descripcion LIKE '%museo del Louvre%';
+Empty set (0.000 sec)
+
+----------Esta expresion regular indica que el contenido de lo que esta entre angulos sea seleccionado de la tabla en el que dicho contenido contenga museo del Louvre---------------------------------
+MariaDB [viajes]> SELECT REGEXP_REPLACE(descripcion, "<[^>]+>", "")
+    -> FROM lugares
+    -> WHERE REGEXP_REPLACE(descripcion, "<[^>]+>", "") LIKE '%museo del Louvre%';
++----------------------------------------------------------------------------------------------------------+
+| REGEXP_REPLACE(descripcion, "<[^>]+>", "")                                                               |
++----------------------------------------------------------------------------------------------------------+
+| Viaje a París, fascinado por la Torre Eiffel iluminada de noche y el museo del Louvre con la Mona Lisa.  |
++----------------------------------------------------------------------------------------------------------+
+1 row in set (0.004 sec)
+
+MariaDB [viajes]> EXPLAIN SELECT REGEXP_REPLACE(descripcion, "<[^>]+>", "")
+    -> FROM lugares
+    -> WHERE REGEXP_REPLACE(descripcion, "<[^>]+>", "") LIKE '%museo del Louvre%';
++------+-------------+---------+------+---------------+------+---------+------+------+-------------+
+| id   | select_type | table   | type | possible_keys | key  | key_len | ref  | rows | Extra       |
++------+-------------+---------+------+---------------+------+---------+------+------+-------------+
+|    1 | SIMPLE      | lugares | ALL  | NULL          | NULL | NULL    | NULL | 5    | Using where |
++------+-------------+---------+------+---------------+------+---------+------+------+-------------+
+1 row in set (0.000 sec)
+
+--------------------------------------------Este es u intento de reducir las cinco filas revisadas por hallar la fila pertinente y seleccionarla gracias a la creacion de un indice--------------------
+
+MariaDB [viajes]> CREATE FULLTEXT INDEX idx_nombre ON lugares(descripcion);
+Query OK, 0 rows affected (0.024 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [viajes]> SELECT *, MATCH(descripcion) AGAINST ('museo del Louvre')
+    -> FROM lugares
+    -> WHERE MATCH(descripcion) AGAINST ('museo del Louvre');
++----+-----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
+| id | nombre    | descripcion
+                          | MATCH(descripcion) AGAINST ('museo del Louvre') |
++----+-----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
+|  1 | París     | Viaje a <strong>París</strong>, fascinado por la <strong>Torre Eiffel</strong> iluminada de noche y el museo del <strong>Louvre</strong> con la <strong>Mona Lisa</strong>.
+                          |                               0.805271565914154 |
+|  2 | Santorini | Pintoresco pueblo de <strong>Santorini</strong> con casas blancas y tejados azules, playas de arena volcánica. Cuenta con museos fascinantes como el del Louvre que muestran la rica historia de la isla y su cultura.  |                             0.31671249866485596 |
++----+-----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+
+2 rows in set (0.001 sec)
+
+Como se puede ver, en efecto se ha obtenido un resultado exitoso en explain, pero la devolucion de la consulta presenta las mismas etiquetas que queriamos eliminar, asi que hay que realizar ciertos ajustes y la eliminacion de un resultado no coincidente
+
+MariaDB [viajes]> EXPLAIN SELECT *, MATCH(descripcion) AGAINST ('museo del Louvre')
+    -> FROM lugares
+    -> WHERE MATCH(descripcion) AGAINST ('museo del Louvre');
++------+-------------+---------+----------+---------------+------------+---------+------+------+-------------+
+| id   | select_type | table   | type     | possible_keys | key        | key_len | ref  | rows | Extra       |
++------+-------------+---------+----------+---------------+------------+---------+------+------+-------------+
+|    1 | SIMPLE      | lugares | fulltext | idx_nombre    | idx_nombre | 0       |      | 1    | Using where |
++------+-------------+---------+----------+---------------+------------+---------+------+------+-------------+
+1 row in set (0.000 sec)
+
+MariaDB [viajes]> SELECT * FROM lugares
+    -> WHERE
+    ->   MATCH(descripcion) AGAINST ('museo del Louvre') AND
+    ->   REGEXP_REPLACE(descripcion, "<[^>]+>", "") LIKE '%museo del Louvre%';
++----+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| id | nombre | descripcion
+                                                                     |
++----+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|  1 | París  | Viaje a <strong>París</strong>, fascinado por la <strong>Torre Eiffel</strong> iluminada de noche y el museo del <strong>Louvre</strong> con la <strong>Mona Lisa</strong>.  |
++----+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.002 sec)
+
+MariaDB [viajes]> EXPLAIN SELECT * FROM lugares
+    -> WHERE
+    ->   MATCH(descripcion) AGAINST ('museo del Louvre') AND
+    ->   REGEXP_REPLACE(descripcion, "<[^>]+>", "") LIKE '%museo del Louvre%';
++------+-------------+---------+----------+---------------+------------+---------+------+------+-------------+
+| id   | select_type | table   | type     | possible_keys | key        | key_len | ref  | rows | Extra       |
++------+-------------+---------+----------+---------------+------------+---------+------+------+-------------+
+|    1 | SIMPLE      | lugares | fulltext | idx_nombre    | idx_nombre | 0       |      | 1    | Using where |
++------+-------------+---------+----------+---------------+------------+---------+------+------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [viajes]> alter table lugares
+    -> ADD COLUMN descripcion_limpia VARCHAR(255) AS (REGEXP_REPLACE(descripcion, '<[^>]+>', '')) STORED; -- Creacion de una columna virtual sin las etiquetas de html
+Query OK, 5 rows affected (0.028 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [viajes]> EXPLAIN SELECT * FROM lugares WHERE
+    -> MATCH(descripcion) AGAINST ('museo del Louvre');
++------+-------------+---------+----------+---------------+------------+---------+------+------+-------------+
+| id   | select_type | table   | type     | possible_keys | key        | key_len | ref  | rows | Extra       |
++------+-------------+---------+----------+---------------+------------+---------+------+------+-------------+
+|    1 | SIMPLE      | lugares | fulltext | idx_nombre    | idx_nombre | 0       |      | 1    | Using where |
++------+-------------+---------+----------+---------------+------------+---------+------+------+-------------+
+1 row in set (0.003 sec)
+
+MariaDB [viajes]> EXPLAIN SELECT * FROM lugares WHERE
+    -> MATCH(descripcion_limpia) AGAINST ('museo del Louvre'); -- Estamos intentando usar descripcion para indagar en descripcion limpia, cuando nuestro argumento ya fue depurado
+ERROR 1191 (HY000): Can't find FULLTEXT index matching the column list
+MariaDB [viajes]> CREATE FULLTEXT INDEX idx_nombre ON lugares(descripcion); -- No pueden existir dos indices con el mismo nombre
+ERROR 1061 (42000): Duplicate key name 'idx_nombre'
+MariaDB [viajes]> ALTER TABLE lugares DROP INDEX idx_nombre; -- Hay que cambiar el indice o crear uno nuevo porque lugares esta asociado con descripcion, no con descripcion limpia, que este ultimo es el que nos interesa.
+Query OK, 0 rows affected (0.011 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [viajes]> ALTER TABLE lugares ADD FULLTEXT INDEX idx_nombre (descripcion_limpia);
+Query OK, 0 rows affected (0.025 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [viajes]> EXPLAIN SELECT * FROM lugares WHERE
+    -> MATCH(descripcion_limpia) AGAINST ('museo del Louvre');
++------+-------------+---------+----------+---------------+------------+---------+------+------+-------------+
+| id   | select_type | table   | type     | possible_keys | key        | key_len | ref  | rows | Extra       |
++------+-------------+---------+----------+---------------+------------+---------+------+------+-------------+
+|    1 | SIMPLE      | lugares | fulltext | idx_nombre    | idx_nombre | 0       |      | 1    | Using where |
++------+-------------+---------+----------+---------------+------------+---------+------+------+-------------+
+1 row in set (0.001 sec)
+
+=================================================================Ejercicios=======================================================================================================================
+---------------------------------------------------------Consulta index_name con instrucciones de sql-------------------------------------------------------------------------------------------
+
+MariaDB [jardineria]> SELECT
+    ->     TABLE_NAME AS `Tabla`,
+    ->     INDEX_NAME AS `Nombre del Índice`,
+    ->     SEQ_IN_INDEX AS `Secuencia en el Índice`,
+    ->     COLUMN_NAME AS `Nombre de la Columna`,
+    ->     COLLATION AS `Colación`,
+    ->     CARDINALITY AS `Cardinalidad`,
+    ->     SUB_PART AS `Parte Sub-Índice`,
+    ->     NULLABLE AS `Es Nulo`,
+    ->     INDEX_TYPE AS `Tipo de Índice`
+    -> FROM
+    ->     information_schema.statistics
+    -> WHERE
+    ->     TABLE_SCHEMA = 'jardineria'  -- Nombre de tu base de datos
+    ->     AND TABLE_NAME = 'producto'
+    -> ORDER BY
+    ->     TABLE_NAME , INDEX_NAME , SEQ_IN_INDEX;
++----------+------------------------+-------------------------+----------------------+-----------+--------------+-------------------+---------+-----------------+
+| Tabla    | Nombre del Índice      | Secuencia en el Índice  | Nombre de la Columna | Colación  | Cardinalidad | Parte Sub-Índice  | Es Nulo | Tipo de Índice  |
++----------+------------------------+-------------------------+----------------------+-----------+--------------+-------------------+---------+-----------------+
+| producto | gama                   |                       1 | gama                 | A         |            4 |              NULL |         | BTREE           |
+| producto | idx_nombre_descripcion |                       1 | nombre               | NULL      |         NULL |              NULL |         | FULLTEXT        |
+| producto | idx_nombre_descripcion |                       2 | descripcion          | NULL      |         NULL |              NULL | YES     | FULLTEXT        |
+| producto | PRIMARY                |                       1 | codigo_producto      | A         |          276 |              NULL |         | BTREE           |
++----------+------------------------+-------------------------+----------------------+-----------+--------------+-------------------+---------+-----------------+
+4 rows in set (0.003 sec)
+
+------------------------------------------------------------------------------------- Cual consulta esta haciendo menos comparaciones ----------------------------------------------------------
+MariaDB [jardineria]> SELECT *
+    -> FROM producto
+    -> WHERE codigo_producto = 'OR-114';
++-----------------+---------------------+--------------+-------------+------------------+-------------+-------------------+--------------+------------------+
+| codigo_producto | nombre              | gama         | dimensiones | proveedor        | descripcion | cantidad_en_stock | precio_venta | precio_proveedor |
++-----------------+---------------------+--------------+-------------+------------------+-------------+-------------------+--------------+------------------+
+| OR-114          | Evonimus Pulchellus | Ornamentales | 35-45       | Viveros EL OASIS |             |               120 |         5.00 |             4.00 |
++-----------------+---------------------+--------------+-------------+------------------+-------------+-------------------+--------------+------------------+
+1 row in set (0.001 sec)
+
+MariaDB [jardineria]> SELECT *
+    -> FROM producto
+    -> WHERE nombre = 'Evonimus Pulchellus';
++-----------------+---------------------+--------------+-------------+------------------+-------------+-------------------+--------------+------------------+
+| codigo_producto | nombre              | gama         | dimensiones | proveedor        | descripcion | cantidad_en_stock | precio_venta | precio_proveedor |
++-----------------+---------------------+--------------+-------------+------------------+-------------+-------------------+--------------+------------------+
+| OR-114          | Evonimus Pulchellus | Ornamentales | 35-45       | Viveros EL OASIS |             |               120 |         5.00 |             4.00 |
++-----------------+---------------------+--------------+-------------+------------------+-------------+-------------------+--------------+------------------+
+1 row in set (0.001 sec)
+
+MariaDB [jardineria]> EXPLAIN SELECT *
+    -> FROM producto
+    -> WHERE codigo_producto = 'OR-114';
++------+-------------+----------+-------+---------------+---------+---------+-------+------+-------+
+| id   | select_type | table    | type  | possible_keys | key     | key_len | ref   | rows | Extra |
++------+-------------+----------+-------+---------------+---------+---------+-------+------+-------+
+|    1 | SIMPLE      | producto | const | PRIMARY       | PRIMARY | 62      | const | 1    |       |
++------+-------------+----------+-------+---------------+---------+---------+-------+------+-------+
+1 row in set (0.000 sec)
+
+MariaDB [jardineria]> EXPLAIN SELECT *
+    -> FROM producto
+    -> WHERE nombre = 'Evonimus Pulchellus';
++------+-------------+----------+------+------------------------+------+---------+------+------+-------------+
+| id   | select_type | table    | type | possible_keys          | key  | key_len | ref  | rows | Extra       |
++------+-------------+----------+------+------------------------+------+---------+------+------+-------------+
+|    1 | SIMPLE      | producto | ALL  | idx_nombre_descripcion | NULL | NULL    | NULL | 276  | Using where |
++------+-------------+----------+------+------------------------+------+---------+------+------+-------------+
+1 row in set (0.000 sec)
+
+---------------------------------------------------------------------------Indica cual es la sentencia mas eficiente de entre las dos consultas--------------------------------------------------
+MariaDB [jardineria]> EXPLAIN SELECT AVG(total)
+    -> FROM pago
+    -> WHERE fecha_pago >= '2008-01-01' AND fecha_pago <= '2008-12-31';
++------+-------------+-------+------+---------------+------+---------+------+------+-------------+
+| id   | select_type | table | type | possible_keys | key  | key_len | ref  | rows | Extra       |
++------+-------------+-------+------+---------------+------+---------+------+------+-------------+
+|    1 | SIMPLE      | pago  | ALL  | NULL          | NULL | NULL    | NULL | 26   | Using where |
++------+-------------+-------+------+---------------+------+---------+------+------+-------------+
+1 row in set (0.000 sec)
+
+MariaDB [jardineria]> EXPLAIN SELECT AVG(total)
+    -> FROM pago
+    -> WHERE YEAR(fecha_pago) = 2008;
++------+-------------+-------+------+---------------+------+---------+------+------+-------------+
+| id   | select_type | table | type | possible_keys | key  | key_len | ref  | rows | Extra       |
++------+-------------+-------+------+---------------+------+---------+------+------+-------------+
+|    1 | SIMPLE      | pago  | ALL  | NULL          | NULL | NULL    | NULL | 26   | Using where |
++------+-------------+-------+------+---------------+------+---------+------+------+-------------+
+1 row in set (0.000 sec)
+
+MariaDB [jardineria]> CREATE INDEX FECHAPAGO ON PAGO(FECHA_PAGO);
+Query OK, 0 rows affected (0.011 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [jardineria]> EXPLAIN SELECT AVG(total)
+    -> FROM pago
+    -> WHERE YEAR(fecha_pago) = 2008;
++------+-------------+-------+-------+---------------+-----------+---------+------+------+-----------------------+
+| id   | select_type | table | type  | possible_keys | key       | key_len | ref  | rows | Extra                 |
++------+-------------+-------+-------+---------------+-----------+---------+------+------+-----------------------+
+|    1 | SIMPLE      | pago  | range | FECHAPAGO     | FECHAPAGO | 3       | NULL | 5    | Using index condition |
++------+-------------+-------+-------+---------------+-----------+---------+------+------+-----------------------+
+1 row in set (0.001 sec)
+
+MariaDB [jardineria]> EXPLAIN SELECT AVG(TOTAL)
+    -> FROM pago
+    -> WHERE fecha_pago >= '2008-01-01' AND fecha_pago <= '2008-12-31';
++------+-------------+-------+-------+---------------+-----------+---------+------+------+-----------------------+
+| id   | select_type | table | type  | possible_keys | key       | key_len | ref  | rows | Extra                 |
++------+-------------+-------+-------+---------------+-----------+---------+------+------+-----------------------+
+|    1 | SIMPLE      | pago  | range | FECHAPAGO     | FECHAPAGO | 3       | NULL | 5    | Using index condition |
++------+-------------+-------+-------+---------------+-----------+---------+------+------+-----------------------+
+1 row in set (0.000 sec)
+--------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------Optimiza la consulta mediante el uso de indices y asegurate mediante explain-----------------------------------------
+
+MariaDB [jardineria]> EXPLAIN SELECT *
+    -> FROM cliente INNER JOIN pedido
+    -> ON cliente.codigo_cliente = pedido.codigo_cliente
+    -> WHERE cliente.nombre_cliente LIKE 'A%';
++------+-------------+---------+------+----------------+----------------+---------+-----------------------------------+------+-------------+
+| id   | select_type | table   | type | possible_keys  | key            | key_len | ref                               | rows | Extra       |
++------+-------------+---------+------+----------------+----------------+---------+-----------------------------------+------+-------------+
+|    1 | SIMPLE      | cliente | ALL  | PRIMARY        | NULL           | NULL    | NULL                              | 36   | Using where |
+|    1 | SIMPLE      | pedido  | ref  | codigo_cliente | codigo_cliente | 4       | jardineria.cliente.codigo_cliente | 1    |             |
++------+-------------+---------+------+----------------+----------------+---------+-----------------------------------+------+-------------+
+2 rows in set (0.000 sec)
+
+MariaDB [jardineria]> SHOW INDEX FROM CLIENTE;
++---------+------------+----------------------------+--------------+----------------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+
+| Table   | Non_unique | Key_name                   | Seq_in_index | Column_name                | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Ignored |
++---------+------------+----------------------------+--------------+----------------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+
+| cliente |          0 | PRIMARY                    |            1 | codigo_cliente             | A         |          36 |     NULL | NULL   |      | BTREE      |         |               | NO      |
+| cliente |          1 | codigo_empleado_rep_ventas |            1 | codigo_empleado_rep_ventas | A         |          12 |     NULL | NULL   | YES  | BTREE      |         |               | NO      |
+| cliente |          1 | idx_pais                   |            1 | pais                       | A         |           5 |     NULL | NULL   | YES  | BTREE      |         |               | NO      |
++---------+------------+----------------------------+--------------+----------------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+
+3 rows in set (0.000 sec)
+
+MariaDB [jardineria]> CREATE INDEX inicialcliente on CLIENTE(NOMBRE_CLIENTE(1));
+Query OK, 0 rows affected (0.008 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [jardineria]> EXPLAIN SELECT *
+    -> FROM cliente INNER JOIN pedido
+    -> ON cliente.codigo_cliente = pedido.codigo_cliente
+    -> WHERE cliente.nombre_cliente LIKE 'A%';
++------+-------------+---------+-------+------------------------+----------------+---------+-----------------------------------+------+-------------+
+| id   | select_type | table   | type  | possible_keys          | key            | key_len | ref                               | rows | Extra       |
++------+-------------+---------+-------+------------------------+----------------+---------+-----------------------------------+------+-------------+
+|    1 | SIMPLE      | cliente | range | PRIMARY,inicialcliente | inicialcliente | 6       | NULL                              | 3    | Using where |
+|    1 | SIMPLE      | pedido  | ref   | codigo_cliente         | codigo_cliente | 4       | jardineria.cliente.codigo_cliente | 1    |             |
++------+-------------+---------+-------+------------------------+----------------+---------+-----------------------------------+------+-------------+
+2 rows in set (0.001 sec)
+------------------------------Por que no es posible optimizar el tiepo de ejecucion de las siguientes consultas si utilizamos indices---------------------------------------------------------------
+Es debido al like
+
+SELECT *
+FROM cliente INNER JOIN pedido
+ON cliente.codigo_cliente = pedido.codigo_cliente
+WHERE cliente.nombre_cliente LIKE '%A%';
+
+------------------------------------------------------------------------practica de optimizacion de mysql--------------------------------------------------------------------------------------------
+MariaDB [jardineria]> show variables like '%query_log%';
++---------------------+-----------------+
+| Variable_name       | Value           |
++---------------------+-----------------+
+| slow_query_log      | OFF             |
+| slow_query_log_file | SB0506-slow.log |
++---------------------+-----------------+
+2 rows in set (0.003 sec)
+
+MariaDB [jardineria]> set global slow_query_log=1;
+Query OK, 0 rows affected (0.010 sec)
+-- Tienes que modificar el archivo my.ini que se enccuentra en la carpeta /data (Ya sea dentro de xampp/mysql como programfiles/maria 11.4) y, justo encima de cliente, escribir slow_query_log=1
+-- Despues, tienes que reiniciar el servicio, ya sea el de mariadb como el mysql de xampp. Despues, tienes que entrar en mariadb de nuevo.
+
+MariaDB [jardineria]> show variables like '%query_log%';
++---------------------+-----------------+
+| Variable_name       | Value           |
++---------------------+-----------------+
+| slow_query_log      | ON              |
+| slow_query_log_file | SB0506-slow.log |
++---------------------+-----------------+
