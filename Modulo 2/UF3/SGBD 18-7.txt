@@ -1,0 +1,307 @@
+SQL es un lenguaje de cuarta generacion en el que tu le dices lo que quieres que te devuelva pero no la forma en lo que lo hace, esto ultimo es propio de un lenguaje de tercera generacion.
+
+Un procedimiento almacenado no devuelve nada, en caso de devolver algo, se denominaria funciones. Me puede devolver algo a traves de un parametro, pero esto no lo convierte en funcion. La funcion siempre tiene un return, ya sea implicito o explicito.@
+	Oracle - pl/sql, c, java, python
+
+==============================================================LINK======================================
+https://codigofacilito.com/articulos/eventos-mysql
+
+MariaDB [(none)]> create database planning;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> use planning;
+Database changed
+MariaDB [planning]> CREATE TABLE test(
+    -> evento VARCHAR(50),
+    -> fecha DATETIME
+    -> );
+Query OK, 0 rows affected (0.007 sec)
+
+MariaDB [planning]> show variables like 'event_scheduler';
++-----------------+-------+
+| Variable_name   | Value |
++-----------------+-------+
+| event_scheduler | OFF   |
++-----------------+-------+
+1 row in set (0.002 sec)
+
+MariaDB [planning]> SET GLOBAL event_scheduler = ON;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [planning]> show variables like 'event_scheduler';
++-----------------+-------+
+| Variable_name   | Value |
++-----------------+-------+
+| event_scheduler | ON    |
++-----------------+-------+
+1 row in set (0.001 sec)
+
+MariaDB [planning]> CREATE EVENT insertion_event
+    -> ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 MINUTE
+    -> DO INSERT INTO test VALUES ('Evento 1', NOW());
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [planning]> select * from test,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [planning]> select * from test;
++----------+---------------------+
+| evento   | fecha               |
++----------+---------------------+
+| Evento 1 | 2024-07-18 09:35:21 |
++----------+---------------------+
+1 row in set (0.000 sec)
+
+MariaDB [planning]> show events\G;
+Empty set (0.009 sec)
+
+ERROR: No query specified
+
+MariaDB [planning]> select * from test;
++----------+---------------------+
+| evento   | fecha               |
++----------+---------------------+
+| Evento 1 | 2024-07-18 09:35:21 |
++----------+---------------------+
+1 row in set (0.001 sec)
+
+MariaDB [planning]> DELIMITER //
+MariaDB [planning]> CREATE PROCEDURE insertar_test()
+    -> BEGIN
+    -> END //
+Query OK, 0 rows affected (0.005 sec)
+
+MariaDB [planning]> DROP PROCEDURE insertar_test();
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '()' at line 1
+MariaDB [planning]> DROP PROCEDURE insertar_test()
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '()' at line 1
+MariaDB [planning]> CREATE OR REPLACE PROCEDURE insertar_test()
+    -> BEGIN
+    -> INSERT INTO test VALUES ('Evento 1', NOW());
+    -> END//
+Query OK, 0 rows affected (0.005 sec)
+
+MariaDB [planning]> DELIMITER ;
+MariaDB [planning]> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2024-07-18 09:49:45 |
++---------------------+
+1 row in set (0.000 sec)
+
+MariaDB [planning]> DELIMITER $
+MariaDB [planning]> CREATE FUNCTION funcion() RETURN VARCHAR(56)
+    -> BEGIN
+    -> RETURN 'Hola Mundo';
+    -> END$
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'RETURN VARCHAR(56)
+BEGIN
+RETURN 'Hola Mundo';
+END' at line 1
+MariaDB [planning]> DELIMITER $
+MariaDB [planning]> CREATE FUNCTION funcion() RETURN VARCHAR(56)
+    -> BEGIN
+    -> RETURN 'Hola Mundo';
+    -> END$
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'RETURN VARCHAR(56)
+BEGIN
+RETURN 'Hola Mundo';
+END' at line 1
+MariaDB [planning]> CREATE FUNCTION funcion() RETURN VARCHAR(56)
+    -> $
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'RETURN VARCHAR(56)' at line 1
+MariaDB [planning]> CREATE FUNCTION funcion() RETURNS VARCHAR(56)
+    -> BEGIN
+    -> RETURN 'Hola Mundo';
+    -> END$
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [planning]> SELECT funcion()$
++------------+
+| funcion()  |
++------------+
+| Hola Mundo |
++------------+
+1 row in set (0.002 sec)
+
+MariaDB [planning]> DELIMITER ;
+MariaDB [planning]> SET @salida = '';
+Query OK, 0 rows affected (0.002 sec)
+
+MariaDB [planning]> DELIMITER //
+MariaDB [planning]> CREATE EVENT beatriz
+    -> ON SCHEDULE EVERY 1 MINUTE STARTS NOW()
+    -> DO
+    -> BEGIN
+    -> SET @salida=funcion();
+    -> END//
+Query OK, 0 rows affected (0.002 sec)
+
+MariaDB [planning]> DELIMITER ;
+
+MariaDB [planning]> CREATE OR REPLACE EVENT beatriz
+    -> ON SCHEDULE EVERY 1 MINUTE STARTS NOW()
+    -> DO INSERT INTO test VALUES ('NEW_EVENT', NOW())//
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [planning]> DELIMITER ;
+MariaDB [planning]> SELECT * from test;
++-----------+---------------------+
+| evento    | fecha               |
++-----------+---------------------+
+| Evento 1  | 2024-07-18 09:35:21 |
+| NEW_EVENT | 2024-07-18 10:20:13 |
++-----------+---------------------+
+2 rows in set (0.000 sec)
+
+MariaDB [planning]> show events
+    -> ;
++----------+---------+----------------+-----------+-----------+------------+----------------+----------------+---------------------+------+---------+------------+----------------------+----------------------+--------------------+
+| Db       | Name    | Definer        | Time zone | Type      | Execute at | Interval value | Interval field | Starts              | Ends | Status  | Originator | character_set_client | collation_connection | Database Collation |
++----------+---------+----------------+-----------+-----------+------------+----------------+----------------+---------------------+------+---------+------------+----------------------+----------------------+--------------------+
+| planning | beatriz | root@localhost | SYSTEM    | RECURRING | NULL       | 1              | MINUTE         | 2024-07-18 10:20:13 | NULL | ENABLED |          1 | cp850                | cp850_general_ci     | latin1_swedish_ci  |
++----------+---------+----------------+-----------+-----------+------------+----------------+----------------+---------------------+------+---------+------------+----------------------+----------------------+--------------------+
+1 row in set (0.011 sec)
+
+MariaDB [planning]> SELECT * from test;
++-----------+---------------------+
+| evento    | fecha               |
++-----------+---------------------+
+| Evento 1  | 2024-07-18 09:35:21 |
+| NEW_EVENT | 2024-07-18 10:20:13 |
+| NEW_EVENT | 2024-07-18 10:21:13 |
+| NEW_EVENT | 2024-07-18 10:22:13 |
+| NEW_EVENT | 2024-07-18 10:23:13 |
+| NEW_EVENT | 2024-07-18 10:24:13 |
++-----------+---------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [planning]> alter event beatriz disable;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [planning]> show events;
++----------+---------+----------------+-----------+-----------+------------+----------------+----------------+---------------------+------+----------+------------+----------------------+----------------------+--------------------+
+| Db       | Name    | Definer        | Time zone | Type      | Execute at | Interval value | Interval field | Starts              | Ends | Status   | Originator | character_set_client | collation_connection | Database Collation |
++----------+---------+----------------+-----------+-----------+------------+----------------+----------------+---------------------+------+----------+------------+----------------------+----------------------+--------------------+
+| planning | beatriz | root@localhost | SYSTEM    | RECURRING | NULL       | 1              | MINUTE         | 2024-07-18 10:20:13 | NULL | DISABLED |          1 | cp850                | cp850_general_ci     | latin1_swedish_ci  |
++----------+---------+----------------+-----------+-----------+------------+----------------+----------------+---------------------+------+----------+------------+----------------------+----------------------+--------------------+
+1 row in set (0.010 sec)
+=============================================Oracle=============================================
+user - Informacion accesible exclusivamente para el usuario actual
+all - informacion accesible para el usuario actual y para todo usuario al que le hubieran otorgado privilegios para acceder a ello
+dba - informacion accesible para todo el mundo
+
+Test connection 'SYSDBA.XEPDB1' failed. 
+Details: ORA-01017: nombre de usuario/contraseña no válidos; conexión denegada. 
+Network config file location: C:\Users\Mañanas\Oracle\network\admin
+
+SQL> CREATE TABLE test (
+  2  event_name VARCHAR2(50),
+  3  event_time TIMESTAMP);
+
+Tabla creada.
+
+BEGIN
+  2      DBMS_SCHEDULER.create_job (
+  3          job_name        => 'insertion_event_job',
+  4          job_type        => 'PLSQL_BLOCK',
+  5          job_action      => '
+            BEGIN
+                INSERT INTO test (event_name, event_time) VALUES (''Evento 1'', SYSTIMESTAMP);
+  7    8              END;',
+  9          start_date      => SYSTIMESTAMP,
+ 10          repeat_interval => 'FREQ=MINUTELY; INTERVAL=1',
+ 11          enabled         => TRUE
+ 12      );
+ 13  END;
+ 14  / 
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> select job_name, state, next_run_date
+  2  FROM dba_scheduler_jobs
+  3  WHERE job_name = 'insertion_event_job';
+
+ninguna fila seleccionada
+
+SQL> select * from test
+  2  ;
+
+EVENT_NAME
+--------------------------------------------------
+EVENT_TIME
+---------------------------------------------------------------------------
+Evento 1
+18/07/24 12:17:08,256920
+
+Evento 1
+18/07/24 12:18:08,363941
+
+Evento 1
+18/07/24 12:19:08,405155
+
+
+SQL> 
+SQL> CREATE TABLE test (
+  2  event_name VARCHAR2(50),
+  3  event_time TIMESTAMP);
+
+Tabla creada.
+
+BEGIN
+  2      DBMS_SCHEDULER.create_job (
+  3          job_name        => 'insertion_event_job',
+  4          job_type        => 'PLSQL_BLOCK',
+  5          job_action      => '
+            BEGIN
+                INSERT INTO test (event_name, event_time) VALUES (''Evento 1'', SYSTIMESTAMP);
+  7    8              END;',
+  9          start_date      => SYSTIMESTAMP,
+ 10          repeat_interval => 'FREQ=MINUTELY; INTERVAL=1',
+ 11          enabled         => TRUE
+ 12      );
+ 13  END;
+ 14  / 
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> select job_name, state, next_run_date
+  2  FROM dba_scheduler_jobs
+  3  WHERE job_name = 'insertion_event_job';
+
+ninguna fila seleccionada
+
+SQL> select * from test
+  2  ;
+
+EVENT_NAME
+--------------------------------------------------
+EVENT_TIME
+---------------------------------------------------------------------------
+Evento 1
+18/07/24 12:17:08,256920
+
+Evento 1
+18/07/24 12:18:08,363941
+
+Evento 1
+18/07/24 12:19:08,405155
+
+BEGIN
+	DBMS_SCHEDULER.CREATE_JOB(
+		job_name        => 'insertion_event_job',
+		job_type        => 'PLSQL_BLOCK',
+		job_action      => '
+            BEGIN
+                INSERT INTO test (event_name, event_time) VALUES (''Evento 1'', SYSTIMESTAMP);
+  7    8              END;',
+  9          start_date      => SYSTIMESTAMP,
+ 10          repeat_interval => 'FREQ=MINUTELY; INTERVAL=1',
+ 11          enabled         => TRUE
+ 12      );
+ 13  END;
+ 14  / 
+SQL> COLUMN EVENT_TIME FORMAT A15

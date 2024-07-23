@@ -1,0 +1,71 @@
+=============================Crea una bbdd con 10 mill de registros y comprueba en el slow_query_log generado como esa instruccion aparece
+MariaDB [(none)]> create database diezmillon;
+MariaDB [(none)]> use diezmillon;
+Database changed
+MariaDB [diezmillon]> CREATE TABLE IF NOT EXISTS secuencial_nif ( id INT AUTO_INCREMENT PRIMARY KEY, secuencial INT NOT NULL, hora DATETIME NOT NULL, nif VARCHAR(9) NOT NULL);
+Query OK, 0 rows affected (0.005 sec)
+MariaDB [DIEZMILLON]> DELIMITER //
+MariaDB [DIEZMILLON]>
+MariaDB [DIEZMILLON]> CREATE PROCEDURE insertar_10000000_filas()
+		BEGIN
+			DECLARE i INT DEFAULT 1;
+			DECLARE letras CHAR (23) DEFAULT 'TRWAGMYFPDXBNJZSQVHLCKE';
+			DECLARE nif_num INT;
+			DECLARE nif_letra CHAR(1);
+			
+			WHILE i <= 10000000 DO
+				SET nif_num = FLOOR (RAND() * 10000000);
+				SET nif_letra = SUBSTRING(letras, (nif_num % 23) + 1, 1);
+				INSERT INTO secuencial_nif (secuencial, hora, nif) VALUES (i, NOW(), concat(LPAD(nif_num, 8, '0'), nif_letra));
+				SET i = i + 1;
+			END WHILE;
+		END //
+Query OK, 0 rows affected (0.003 sec)
+MariaDB [DIEZMILLON]> DELIMITER ;
+MariaDB [DIEZMILLON]> CALL insertar_10000000_filas ();
+
+SELECT COUNT(*)
+FROM (SELECT nif 
+FROM secuencial_nif 
+WHERE nif like '%A'
+ORDER BY 1) Subconsulta
+, secuencial_nif;
+
+SELECT nif
+FROM secuencial_nif
+WHERE nif like '%A'
+ORDER BY 1;
+
+Si quieres ver la localizacion de ese archivo de slow_query_log, tienes que irte a C:\Program Files\MariaDB 11.4\data\SB0506-slow.log, cuyo contenido actual es:
+C:\Program Files\MariaDB 11.4\bin\mysqld.exe, Version: 11.4.2-MariaDB (mariadb.org binary distribution). started with:
+TCP Port: 3306, Named Pipe: MySQL
+Time		    Id Command	Argument
+C:\Program Files\MariaDB 11.4\bin\mysqld.exe, Version: 11.4.2-MariaDB-log (mariadb.org binary distribution). started with:
+TCP Port: 3306, Named Pipe: (null)
+Time		    Id Command	Argument
+C:\Program Files\MariaDB 11.4\bin\mysqld.exe, Version: 11.4.2-MariaDB-log (mariadb.org binary distribution). started with:
+TCP Port: 3306, Named Pipe: (null)
+Time		    Id Command	Argument
+C:\Program Files\MariaDB 11.4\bin\mysqld.exe, Version: 11.4.2-MariaDB-log (mariadb.org binary distribution). started with:
+TCP Port: 3306, Named Pipe: (null)
+Time		    Id Command	Argument
+C:\Program Files\MariaDB 11.4\bin\mysqld.exe, Version: 11.4.2-MariaDB-log (mariadb.org binary distribution). started with:
+TCP Port: 3306, Named Pipe: (null)
+Time		    Id Command	Argument
+C:\Program Files\MariaDB 11.4\bin\mysqld.exe, Version: 11.4.2-MariaDB-log (mariadb.org binary distribution). started with:
+TCP Port: 3306, Named Pipe: (null)
+Time		    Id Command	Argument
+C:\Program Files\MariaDB 11.4\bin\mysqld.exe, Version: 11.4.2-MariaDB-log (mariadb.org binary distribution). started with:
+TCP Port: 3306, Named Pipe: (null)
+Time		    Id Command	Argument
+C:\Program Files\MariaDB 11.4\bin\mysqld.exe, Version: 11.4.2-MariaDB-log (mariadb.org binary distribution). started with:
+TCP Port: 3306, Named Pipe: (null)
+Time		    Id Command	Argument
+# Time: 240717 10:52:50
+# User@Host: root[root] @ localhost [::1]
+# Thread_id: 6  Schema: diezmillon  QC_hit: No
+# Query_time: 3738.227344  Lock_time: 0.000082  Rows_sent: 0  Rows_examined: 0
+# Rows_affected: 10000000  Bytes_sent: 14
+use diezmillon;
+SET timestamp=1721206370;
+CALL insertar_10000000_filas ();
