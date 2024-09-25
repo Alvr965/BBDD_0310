@@ -1,6 +1,21 @@
 Centrarse en la sentencia SELECT desde 286
 
-chcp 1252 --Permite leer las tildes
+chcp 1252 --Permite leer las tildes, ponerlo antes de entrar en SQLPLUS
+
+C:\Users\Alvaro>SQLPLUS HR/HR@localhost/XEPDB1
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Mié Sep 25 17:33:26 2024
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Hora de Última Conexión Correcta: Mié Sep 25 2024 16:58:13 +02:00
+
+Conectado a:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL>-- A partir de aqui y a menos que no se diga, asume siempre que SQL> esta a la izquierda de cada clausula
 
 SET PAGESIZE 1000;
 SET LINESIZE 1000;
