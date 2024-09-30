@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="90A57EE7-8EBD-83E1-D857-57D055EC78E6" containerWithKeyObject="E14674CC-1DDB-ACE5-38E7-4C6DBEFA63ED" localFKIndex="1D2081EF-ECDA-43A0-D40E-03B0CB2913B5" name="SYS_C008266">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>RAPTORS</sourceObjSchema>
+<sourceObjName>SYS_C008266</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:30 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<referredTableLongName>RAPTORS.EQUIPOS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>D7862B82-A941-6ABE-F4BB-1CC617E76C8E</referredTableID>
+<keyObject>75D068FB-9582-12C3-4359-5F15E18E9414</keyObject>
+<referredKeyID>75D068FB-9582-12C3-4359-5F15E18E9414</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>NOMBRE</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

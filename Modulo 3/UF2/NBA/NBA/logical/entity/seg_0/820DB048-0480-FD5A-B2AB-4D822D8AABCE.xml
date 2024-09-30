@@ -1,0 +1,148 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="820DB048-0480-FD5A-B2AB-4D822D8AABCE" name="JUGADORES">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>0AD3078D-C12F-E2BD-423E-0BB05A75DC23</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="CODIGO" id="318C15B0-02DE-B243-495A-7DC9783C217E">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>9E061D33-090B-0610-F0E6-505DB58B4DA8</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NOMBRE" id="2D6697E2-A1CE-053F-6B5C-BD621A7256B0">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>FD6D26A0-DD04-ACD5-EB81-C828B47C903F</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PROCEDENCIA" id="6CA69742-1F28-E6B4-25CE-C8F1CD19D727">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>8FF5C284-3167-52A9-F48D-C09F9B479E32</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ALTURA" id="DCE4F7E0-5CDD-143E-79B4-EC8192CEB4EF">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>D6787C3E-521D-6D05-FFBE-94CCDB5D3F91</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 BYTE</dataTypeSize>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>4 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PESO" id="9C6E59C9-31EC-EB3E-14AE-5152D115554E">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>1C75B0F8-B2D1-371B-5248-E31A843ADB8A</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+</Attribute>
+<Attribute name="POSICION" id="13C59F28-EDD7-76A6-8DED-78C087BDDD2C">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>01D97BBB-ACCA-6D82-8496-730CD30D888C</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 BYTE</dataTypeSize>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>5 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NOMBRE EQUIPO" id="44D2FD41-68A8-6174-BFED-B47415A80FA4">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>C2EEC11F-E1D6-E3EF-9C7C-90ABE10453E7</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>1EF684D1-92CE-FDFF-4CDD-F906F907DE9D</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="2641388A-B311-E6BE-3DAA-30EA32186232" name="JUGADORES PK">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>410CF14C-85FC-D9BF-14B9-2A9F4F6A6BC6</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>318C15B0-02DE-B243-495A-7DC9783C217E</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

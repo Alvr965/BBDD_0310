@@ -1,0 +1,137 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4DD86E05-2D9C-08D1-75C8-97FC6D169C55" schemaObject="004E6265-C8BE-A32B-D354-681FC1BF422A" name="ESTADISTICAS">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>RAPTORS</sourceObjSchema>
+<sourceObjName>ESTADISTICAS</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:24 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TEMPORADA" id="E1FC9ACB-BD8E-5DEF-DA1D-BB51398C1673">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>ESTADISTICAS</sourceObjSchema>
+<sourceObjName>TEMPORADA</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 BYTE</dataTypeSize>
+<ownDataTypeParameters>5 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="JUGADOR" id="9D89C362-4239-BF0C-4D5F-49843BC41730">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>ESTADISTICAS</sourceObjSchema>
+<sourceObjName>JUGADOR</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="580B4805-A7ED-5FCF-D2BE-EF49F6822F95" referredColumn="9E061D33-090B-0610-F0E6-505DB58B4DA8"/>
+</associations>
+</Column>
+<Column name="PUNTOS_POR_PARTIDO" id="BBB67321-CBD7-DAA7-AE4A-B75A369A4FAF">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>ESTADISTICAS</sourceObjSchema>
+<sourceObjName>PUNTOS_POR_PARTIDO</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>126</dataTypePrecision>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,126,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ASISTENCIAS_POR_PARTIDO" id="159F86F9-5DC5-82B6-7338-7ADBCE30AB56">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>ESTADISTICAS</sourceObjSchema>
+<sourceObjName>ASISTENCIAS_POR_PARTIDO</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>126</dataTypePrecision>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,126,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TAPONES_POR_PARTIDO" id="A5990E27-CCB9-39AB-CA99-85D1A7DF23FC">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>ESTADISTICAS</sourceObjSchema>
+<sourceObjName>TAPONES_POR_PARTIDO</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>126</dataTypePrecision>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,126,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REBOTES_POR_PARTIDO" id="581DFDB4-B49F-9F6A-E2D1-B5CBDF9D6F7E">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>ESTADISTICAS</sourceObjSchema>
+<sourceObjName>REBOTES_POR_PARTIDO</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>126</dataTypePrecision>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,126,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="064F5449-B5D7-DF9D-A356-58AB2514A1B8" schemaObject="004E6265-C8BE-A32B-D354-681FC1BF422A" name="ESTADISTICAS_PK">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>RAPTORS</sourceObjSchema>
+<sourceObjName>SYS_C008261</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:27 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E1FC9ACB-BD8E-5DEF-DA1D-BB51398C1673"/>
+<colUsage columnID="9D89C362-4239-BF0C-4D5F-49843BC41730"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CCA8BEE7-1A21-592F-298B-99D2B23D34BB" name="SYS_C008262">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:30 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9D89C362-4239-BF0C-4D5F-49843BC41730"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

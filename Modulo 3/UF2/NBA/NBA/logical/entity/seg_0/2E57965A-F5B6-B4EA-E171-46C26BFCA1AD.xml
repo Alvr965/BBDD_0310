@@ -1,0 +1,134 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2E57965A-F5B6-B4EA-E171-46C26BFCA1AD" name="PARTIDOS">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>E14674CC-1DDB-ACE5-38E7-4C6DBEFA63ED</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="CODIGO" id="EDB81042-1E16-39DD-53F2-B88DF30860D6">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>7CB23D9B-B46C-8E21-3826-EF6CE128A388</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+</Attribute>
+<Attribute name="EQUIPO LOCAL" id="A64221B0-FD28-F97B-1159-9A526AE33BE3">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>8BD34619-1D20-559B-F068-BB9B4DDA84CA</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>1EF684D1-92CE-FDFF-4CDD-F906F907DE9D</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="EQUIPO VISITANTE" id="5027C652-18E1-DF5D-27F6-6CF259B94B6F">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>8D30FFB4-1D01-D8C6-E0B2-0BCD2004840C</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>1EF684D1-92CE-FDFF-4CDD-F906F907DE9D</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PUNTOS LOCAL" id="D8EA2D05-747D-13ED-71CC-5C1AD50203D0">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>A2319B56-132D-6A94-0481-61A83575469F</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PUNTOS VISITANTE" id="E619ACA1-D1F1-D514-A49B-6EA652C9E911">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>50C6BD7D-B261-E815-D003-9EAFA03FDD25</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TEMPORADA" id="10DDAC33-6DCE-7628-EFD3-EB1EB73CFE53">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>95C787F6-8087-3A2A-CA95-4A16EF6AAB21</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 BYTE</dataTypeSize>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>5 BYTE,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="B63A0676-81BC-C2D9-577B-ECF529C61334" name="PARTIDOS PK">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>0F3FFC9F-4441-0537-37BC-2B5098B57046</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>EDB81042-1E16-39DD-53F2-B88DF30860D6</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

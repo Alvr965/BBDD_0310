@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="EQUIPOS" directorySegmentName="seg_0" id="D7862B82-A941-6ABE-F4BB-1CC617E76C8E">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<schemaObject>004E6265-C8BE-A32B-D354-681FC1BF422A</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>FB4A8058-A651-2E55-2892-703640DFF032</segment>
+<tableSpace>935715FF-D43A-2228-CCA6-CB45734F05FE</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="DIVISION" id="067F9113-9E6B-CA74-BEF8-15DBD71B02EB">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<defaultValue>NULL</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="CONFERENCIA" id="33B639CE-9026-2A19-F0E4-507531724823">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<defaultValue>NULL</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="CIUDAD" id="52866E25-C226-29E0-AD10-08EE57B298A7">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<defaultValue>NULL</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="NOMBRE" id="814CDEA4-49AE-023D-011B-CF475F218952">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="EQUIPOS_PK" id="75D068FB-9582-12C3-4359-5F15E18E9414">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:29 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<schemaObject>004E6265-C8BE-A32B-D354-681FC1BF422A</schemaObject>
+<segment>A755DD0D-EEFB-A31B-03CC-A2CDD8AE2E6A</segment>
+<tableSpace>935715FF-D43A-2228-CCA6-CB45734F05FE</tableSpace>
+<indexSegment>A755DD0D-EEFB-A31B-03CC-A2CDD8AE2E6A</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev20c>

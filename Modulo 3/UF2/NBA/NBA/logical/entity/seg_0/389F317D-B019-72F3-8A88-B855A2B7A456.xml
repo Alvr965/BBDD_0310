@@ -1,0 +1,130 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="389F317D-B019-72F3-8A88-B855A2B7A456" name="ESTADISTICAS">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>4DD86E05-2D9C-08D1-75C8-97FC6D169C55</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="TEMPORADA" id="3492BA35-E8B9-696B-E922-C52CF02D09E9">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>E1FC9ACB-BD8E-5DEF-DA1D-BB51398C1673</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 BYTE</dataTypeSize>
+<ownDataTypeParameters>5 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="JUGADOR" id="11302E60-72F0-4659-F745-B3C072D56DDD">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>A6536031-7AA4-98B3-ADE9-B7D92FD8CA59</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<referedAttribute>318C15B0-02DE-B243-495A-7DC9783C217E</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PUNTOS POR PARTIDO" id="CE3EC098-FE8D-104E-8C09-CF895B9E96E9">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>BBB67321-CBD7-DAA7-AE4A-B75A369A4FAF</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>126</dataTypePrecision>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,126,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ASISTENCIAS POR PARTIDO" id="0C6D8910-A78C-755F-6257-82EB50C0145F">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>159F86F9-5DC5-82B6-7338-7ADBCE30AB56</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>126</dataTypePrecision>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,126,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TAPONES POR PARTIDO" id="72B5FA2B-599C-3D63-D746-BE500D9EDDD5">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>A5990E27-CCB9-39AB-CA99-85D1A7DF23FC</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>126</dataTypePrecision>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,126,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="REBOTES POR PARTIDO" id="4DBA953C-8309-D893-A850-880D5945AD12">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>581DFDB4-B49F-9F6A-E2D1-B5CBDF9D6F7E</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>126</dataTypePrecision>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,126,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="678DE2AA-2577-2EB0-F6C4-33EE06E8682C" name="ESTADISTICAS PK">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>064F5449-B5D7-DF9D-A356-58AB2514A1B8</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>3492BA35-E8B9-696B-E922-C52CF02D09E9</attributeRef>
+<attributeRef>11302E60-72F0-4659-F745-B3C072D56DDD</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

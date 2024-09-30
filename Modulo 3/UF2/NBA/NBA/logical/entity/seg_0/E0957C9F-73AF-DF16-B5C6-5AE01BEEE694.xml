@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E0957C9F-73AF-DF16-B5C6-5AE01BEEE694" name="EQUIPOS">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>D7862B82-A941-6ABE-F4BB-1CC617E76C8E</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="NOMBRE" id="1EF684D1-92CE-FDFF-4CDD-F906F907DE9D">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>814CDEA4-49AE-023D-011B-CF475F218952</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CIUDAD" id="78D6273E-7AB6-01BD-F362-818D6F6E693A">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>52866E25-C226-29E0-AD10-08EE57B298A7</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="CONFERENCIA" id="2F38D2AB-51A6-F574-B1BE-83F3E301E076">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>33B639CE-9026-2A19-F0E4-507531724823</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 BYTE</dataTypeSize>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>4 BYTE,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="DIVISION" id="67D81E01-809A-65C4-3878-3290BF45C8A7">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>067F9113-9E6B-CA74-BEF8-15DBD71B02EB</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>9 BYTE</dataTypeSize>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>9 BYTE,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="D454476B-261A-8746-79FE-7E5F10393316" name="EQUIPOS PK">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:55 UTC</createdTime>
+<generatorID>75D068FB-9582-12C3-4359-5F15E18E9414</generatorID>
+<ownerDesignName>NBA</ownerDesignName>
+<engineerTo>
+<item key="B621D43B-69A9-546D-3051-6AFBDD894287" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>1EF684D1-92CE-FDFF-4CDD-F906F907DE9D</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

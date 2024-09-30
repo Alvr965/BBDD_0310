@@ -1,0 +1,153 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E14674CC-1DDB-ACE5-38E7-4C6DBEFA63ED" schemaObject="004E6265-C8BE-A32B-D354-681FC1BF422A" name="PARTIDOS">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>RAPTORS</sourceObjSchema>
+<sourceObjName>PARTIDOS</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CODIGO" id="7CB23D9B-B46C-8E21-3826-EF6CE128A388">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>PARTIDOS</sourceObjSchema>
+<sourceObjName>CODIGO</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EQUIPO_LOCAL" id="4BA64EC6-0E83-36A5-BC65-BA546BCAF5D4">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>PARTIDOS</sourceObjSchema>
+<sourceObjName>EQUIPO_LOCAL</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="29EE56F2-99AD-AD08-EB38-8EF994835F91" referredColumn="814CDEA4-49AE-023D-011B-CF475F218952"/>
+</associations>
+</Column>
+<Column name="EQUIPO_VISITANTE" id="B422D612-6CCB-49E9-B585-826572715C55">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>PARTIDOS</sourceObjSchema>
+<sourceObjName>EQUIPO_VISITANTE</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="90A57EE7-8EBD-83E1-D857-57D055EC78E6" referredColumn="814CDEA4-49AE-023D-011B-CF475F218952"/>
+</associations>
+</Column>
+<Column name="PUNTOS_LOCAL" id="A2319B56-132D-6A94-0481-61A83575469F">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>PARTIDOS</sourceObjSchema>
+<sourceObjName>PUNTOS_LOCAL</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PUNTOS_VISITANTE" id="50C6BD7D-B261-E815-D003-9EAFA03FDD25">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>PARTIDOS</sourceObjSchema>
+<sourceObjName>PUNTOS_VISITANTE</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>*</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>,*,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TEMPORADA" id="95C787F6-8087-3A2A-CA95-4A16EF6AAB21">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>PARTIDOS</sourceObjSchema>
+<sourceObjName>TEMPORADA</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 BYTE</dataTypeSize>
+<defaultValue>NULL</defaultValue>
+<ownDataTypeParameters>5 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0F3FFC9F-4441-0537-37BC-2B5098B57046" schemaObject="004E6265-C8BE-A32B-D354-681FC1BF422A" name="PARTIDOS_PK">
+<sourceConnName>NBA</sourceConnName>
+<sourceObjSchema>RAPTORS</sourceObjSchema>
+<sourceObjName>SYS_C008264</sourceObjName>
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:27 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7CB23D9B-B46C-8E21-3826-EF6CE128A388"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="775B2C1E-5D6A-8F87-17D5-B37636232343" name="SYS_C008265">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:30 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4BA64EC6-0E83-36A5-BC65-BA546BCAF5D4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1D2081EF-ECDA-43A0-D40E-03B0CB2913B5" name="SYS_C008266">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:30 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B422D612-6CCB-49E9-B585-826572715C55"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

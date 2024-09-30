@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="PARTIDOS" directorySegmentName="seg_0" id="E14674CC-1DDB-ACE5-38E7-4C6DBEFA63ED">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<schemaObject>004E6265-C8BE-A32B-D354-681FC1BF422A</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>FB4A8058-A651-2E55-2892-703640DFF032</segment>
+<tableSpace>935715FF-D43A-2228-CCA6-CB45734F05FE</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="EQUIPO_LOCAL" id="4BA64EC6-0E83-36A5-BC65-BA546BCAF5D4">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<defaultValue>NULL</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="PUNTOS_VISITANTE" id="50C6BD7D-B261-E815-D003-9EAFA03FDD25">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<defaultValue>NULL</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="CODIGO" id="7CB23D9B-B46C-8E21-3826-EF6CE128A388">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="TEMPORADA" id="95C787F6-8087-3A2A-CA95-4A16EF6AAB21">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<defaultValue>NULL</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="PUNTOS_LOCAL" id="A2319B56-132D-6A94-0481-61A83575469F">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<defaultValue>NULL</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="EQUIPO_VISITANTE" id="B422D612-6CCB-49E9-B585-826572715C55">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:25 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<defaultValue>NULL</defaultValue>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SYS_C008266" id="1D2081EF-ECDA-43A0-D40E-03B0CB2913B5">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:30 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SYS_C008265" id="775B2C1E-5D6A-8F87-17D5-B37636232343">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:30 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="PARTIDOS_PK" id="0F3FFC9F-4441-0537-37BC-2B5098B57046">
+<createdBy>Alvaro</createdBy>
+<createdTime>2024-09-28 18:02:29 UTC</createdTime>
+<ownerDesignName>NBA</ownerDesignName>
+<schemaObject>004E6265-C8BE-A32B-D354-681FC1BF422A</schemaObject>
+<segment>A755DD0D-EEFB-A31B-03CC-A2CDD8AE2E6A</segment>
+<tableSpace>935715FF-D43A-2228-CCA6-CB45734F05FE</tableSpace>
+<indexSegment>A755DD0D-EEFB-A31B-03CC-A2CDD8AE2E6A</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev20c>
