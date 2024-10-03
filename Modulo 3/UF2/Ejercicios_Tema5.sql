@@ -18,3 +18,77 @@ SELECT COUNT(CASE WHEN COMMISSION_PCT IS NOT NULL THEN EMPLOYEE_ID END)"Nro Empl
     , 100*(MIN(CASE WHEN COMMISSION_PCT IS NOT NULL THEN COMMISSION_PCT END)) ||'%' "Minimo Comision"
     , TO_CHAR(AVG(CASE WHEN COMMISSION_PCT IS NOT NULL THEN COMMISSION_PCT END)*100, 999.999) ||'%' "Comision Media"
 FROM EMPLOYEES;
+
+3
+SELECT DISTINCT DEPARTMENT_ID FROM EMPLOYEES;
+SELECT DEPARTMENT_ID "Id. DPTO."
+    ,TO_CHAR(MAX(COALESCE(SALARY*(1+COMMISSION_PCT),SALARY,0)), '999,999.99')|| "$" "Salario Maximo"
+    ,TO_CHAR(MIN(COALESCE(SALARY*(1+COMMISSION_PCT),SALARY,0)), '999,999.99')|| "$" "Salario Minimo"
+    ,TO_CHAR(AVG(COALESCE(SALARY*(1+COMMISSION_PCT),SALARY,0)), '999,999.99')|| "$" "Salario Medio"
+FROM EMPLOYEES
+WHERE DEPARTMENT_ID IS NOT NULL
+GROUP BY DEPARTMENT_ID
+ORDER BY 4;
+
+4 
+SELECT TRUNC(AVG(MONTHS_BETWEEN(SYSDATE,HIRE_DATE)/12)) "Años de Media"
+    , DEPARTMENT_ID "Id. Dpto."
+    , JOB_ID "Id.Trabajo"
+FROM EMPLOYEES
+WHERE COMMISSION_PCT IS NULL
+GROUP BY DEPARTMENT_ID, JOB_ID
+HAVING COUNT(EMPLOYEE_ID)>10
+ORDER BY 2,3
+;
+
+5
+SELECT COUNT(EMPLOYEE_ID) "Nro Empleados",
+       TO_CHAR(MAX(COALESCE(SALARY * (1 + COMMISSION_PCT), SALARY, 0)), '999,999.99') || "$" "Salario Maximo",
+       TO_CHAR(MIN(COALESCE(SALARY * (1 + COMMISSION_PCT), SALARY, 0)), '999,999.99') || "$" "Salario Minimo"
+FROM EMPLOYEES
+WHERE JOB_ID NOT IN ('SA_MAN', 'SA_REP')
+  AND DEPARTMENT_ID IN (
+      SELECT DEPARTMENT_ID 
+      FROM DEPARTMENTS
+      WHERE LOCATION_ID IN (
+          SELECT LOCATION_ID 
+          FROM LOCATIONS
+          WHERE COUNTRY_ID IN (
+              SELECT COUNTRY_ID 
+              FROM COUNTRIES
+              WHERE REGION_ID = (
+                  SELECT REGION_ID 
+                  FROM REGIONS
+                  WHERE REGION_NAME = 'Europe'
+              )
+          )
+      )
+  );
+
+6 Ejercicio propuesto por ChatGPT
+--Obtén los nombres de empleados que trabajan en departamentos en países de la región de 'Americas', pero solo si su salario es mayor que el promedio de su departamento.
+SELECT FIRST_NAME || ' ' || LAST_NAME AS "Nombre Completo"
+FROM EMPLOYEES
+WHERE SALARY > (
+      SELECT AVG(COALESCE(SALARY * (1 + COMMISSION_PCT), SALARY, 0))
+      FROM EMPLOYEES E
+      WHERE E.DEPARTMENT_ID = EMPLOYEES.DEPARTMENT_ID
+  )
+AND DEPARTMENT_ID IN (
+      SELECT DEPARTMENT_ID
+      FROM DEPARTMENTS
+      WHERE LOCATION_ID IN (
+          SELECT LOCATION_ID
+          FROM LOCATIONS
+          WHERE COUNTRY_ID IN (
+              SELECT COUNTRY_ID
+              FROM COUNTRIES
+              WHERE REGION_ID = (
+                  SELECT REGION_ID
+                  FROM REGIONS
+                  WHERE REGION_NAME = 'Americas'
+              )
+          )
+      )
+  )
+ORDER BY 1;

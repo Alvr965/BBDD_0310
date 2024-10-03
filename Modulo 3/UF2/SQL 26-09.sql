@@ -1,5 +1,6 @@
 -- hint lo toca los administrdores muy viejos, tu no te preocupes, te sientes viejo pero no lo eres... Tanto.
 SET NLS_LANG=AMERICAN_AMERICA.WE8MSWIN1252
+SET NLS_LANG=SPANISH_SPAIN.WE8MSWIN1252
 
  -- Con esta opcion, pones el lenguaje en estadounidense e indicas que el conjunto de lenguaje sea 1252
 -- Despues puedes entrar a SQLPLUS y meter todo esto
